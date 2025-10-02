@@ -5,7 +5,7 @@ const {
   getMyOrders,
   getMyOrdersuser,
   returnOrderItem,
-} = require("../Controllers/orderController");
+} = require("../Controllers/OrderController");
 const { authMiddleware } = require("../Middlewares/Auth");
 
 // ✅ Place Order

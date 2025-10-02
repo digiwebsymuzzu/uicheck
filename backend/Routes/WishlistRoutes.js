@@ -4,7 +4,7 @@ const {
     addToWishlist,
     getWishlist,
     removeFromWishlist,
-} = require("../Controllers/wishlistController");
+} = require("../Controllers/WishlistController");
 const { authMiddleware } = require("../Middlewares/Auth");
 
 // Add product to wishlist
