@@ -1,0 +1,18 @@
+/* ======================= Newsletter Css Start =========================== */
+.newsletter-box {
+    background-color: #111213;
+    padding: 32px clampCal(24, 64, 1199, 1499);
+}
+.newsletter-box-new {
+    background-color: #2a2d30;
+    padding: 32px clampCal(24, 64, 1199, 1499);
+}
+
+.newsletter-two {
+    &__form {
+        @include md-screen {
+            width: 100% !important;
+        }
+    }
+}
+/* ======================= Newsletter Css End =========================== */

@@ -1,0 +1,128 @@
+// border
+@each $color, $shades in $colors {
+    @each $shade, $value in $shades {
+      .border-#{$color}-#{$shade} {
+        border-color: var(--#{$color}-#{$shade}) !important;
+      }
+    }
+}
+
+// hover border
+@each $color, $shades in $colors {
+    @each $shade, $value in $shades {
+      .hover-border-#{$color}-#{$shade} {
+        &:hover {
+            border-color: #bc0101 !important;
+        }
+      }
+    }
+}
+
+.border {
+  &-dashed {
+    border-style: dashed !important;
+  }
+  &-dotted {
+    border-style: dotted !important;
+  }
+}
+/* Login Button */
+.btn.btn-primary {
+  background-color: #bc0101;
+  border: none;
+  padding: 12px 15px;
+  border-radius: 6px;
+  font-size: 14px;
+  transition: background 0.2s ease;
+}
+
+.btn.btn-primary.show,
+.btn.btn-primary:hover {
+  background-color: #000 !important;
+  color: #fff;
+}
+
+/* Dropdown Wrapper */
+.login-dropdown {
+  position: absolute;
+  top: 110%;  /* little gap below button */
+  right: 0;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+  width: 260px;
+  z-index: 1000;
+  padding: 12px 0;
+  display: none; /* default hidden */
+}
+
+/* Show when parent is hovered (React handles this) */
+.dropdown:hover .login-dropdown {
+  display: block;
+}
+
+/* Signup row (top part) */
+.signup-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+}
+
+.signup-row .text-muted {
+  font-size: 13px;
+  color: #666;
+}
+
+.signup-btn {
+  font-size: 13px;
+  font-weight: 600;
+  color: #ffffff !important;
+  text-decoration: none;
+  transition: color 0.2s;
+  background-color:#bc0101 ;
+}
+
+.signup-btn:hover {
+  color: #000 !important;
+}
+
+/* Divider */
+.dropdown-divider {
+  margin: 8px 0;
+  border-top: 1px solid #eee;
+}
+
+/* Dropdown Links */
+.login-dropdown a {
+  display: block;
+  padding: 10px 16px;
+  font-size: 14px;
+  color: #333;
+  text-decoration: none;
+  transition: background 0.2s, padding-left 0.2s;
+}
+
+.login-dropdown a:hover {
+  background: #f8f9fa;
+  padding-left: 20px; /* subtle slide effect */
+  color: #000;
+}
+.login-page {
+    width: 100%;
+    height: 80vh;
+    display: inline-block;
+    display: flex;
+    align-items: center;
+}
+.register-page{
+  width: 100%;
+    height: 90vh;
+    display: inline-block;
+    display: flex;
+    align-items: center;
+}
+.form-right i {
+    font-size: 100px;
+}
+
