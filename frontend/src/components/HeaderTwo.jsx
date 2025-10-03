@@ -30,7 +30,7 @@ const HeaderTwo = ({ category }) => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const res = await fetch("https://147.93.108.82:5000/api/categories");
+        const res = await fetch("http://147.93.108.82:5000/api/categories");
         const data = await res.json();
         if (data.success) {
           setCategories(data.data); // store categories in state
@@ -137,7 +137,7 @@ const HeaderTwo = ({ category }) => {
   //   if (!token) return;
 
   //   try {
-  //     const res = await fetch("https://147.93.108.82:5000/api/whichlist", {
+  //     const res = await fetch("http://147.93.108.82:5000/api/whichlist", {
   //       headers: { Authorization: `Bearer ${token}` },
   //     });
   //     const data = await res.json();
@@ -164,7 +164,7 @@ const HeaderTwo = ({ category }) => {
     setLoading(true);
     try {
       const res = await axios.get(
-        `https://147.93.108.82:5000/api/products/product/search?name=${query}`
+        `http://147.93.108.82:5000/api/products/product/search?name=${query}`
       );
       setProducts(res.data.products || []);
     } catch (err) {

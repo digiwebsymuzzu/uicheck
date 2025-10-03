@@ -34,7 +34,7 @@ const DewaltHistory = () => {
   useEffect(() => {
     const fetchVideos = async () => {
       try {
-        const res = await fetch("https://147.93.108.82:5000/api/dewalt");
+        const res = await fetch("http://147.93.108.82:5000/api/dewalt");
         const data = await res.json();
         if (data.success) setVideos(data.videos);
       } catch (err) {

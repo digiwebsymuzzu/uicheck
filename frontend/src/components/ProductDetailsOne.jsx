@@ -48,7 +48,7 @@ const ProductDetailsOne = ({ productId }) => {
 
   //     try {
   //       const res = await axios.get(
-  //         `https://147.93.108.82:5000/api/reviews/${productId}`
+  //         `http://147.93.108.82:5000/api/reviews/${productId}`
   //       );
   //       console.log("API response:", res.data);
   //       if (res.data.success) setReviews(res.data.reviews);
@@ -62,7 +62,7 @@ const ProductDetailsOne = ({ productId }) => {
 
   const fetchProduct = async (id) => {
     try {
-      const res = await fetch(`https://147.93.108.82:5000/api/products/${id}`, {
+      const res = await fetch(`http://147.93.108.82:5000/api/products/${id}`, {
         headers: { "Content-Type": "application/json" },
       });
 
@@ -197,7 +197,7 @@ const ProductDetailsOne = ({ productId }) => {
 
     try {
       const res = await axios.post(
-        "https://147.93.108.82:5000/api/reviews/add",
+        "http://147.93.108.82:5000/api/reviews/add",
         {
           productId: product._id,
           rating,

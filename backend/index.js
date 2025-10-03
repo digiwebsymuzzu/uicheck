@@ -48,7 +48,7 @@ app.get("/mohafiz", (req, res) => {
   res.send("hello mohafiz this is your world ");
 });
 app.listen(PORT, () => {
-  console.log(`https://147.93.108.82:5000/ server is running on ${PORT}`);
+  console.log(`http://147.93.108.82:5000/ server is running on ${PORT}`);
 });
 
 app.get("/", (req, res) => {

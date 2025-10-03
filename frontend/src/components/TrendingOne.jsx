@@ -12,7 +12,7 @@ const TrendingOne = () => {
     try {
       const superParentName = "machinery";
       const res = await fetch(
-        `https://147.93.108.82:5000/api/products/superparent/${superParentName}`,
+        `http://147.93.108.82:5000/api/products/superparent/${superParentName}`,
         {
           headers: {
             "Content-Type": "application/json",

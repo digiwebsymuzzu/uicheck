@@ -9,7 +9,7 @@ const Blog = () => {
     const fetchBlogs = async () => {
       try {
         const response = await fetch(
-          "https://147.93.108.82:5000/api/allblogs/blogs"
+          "http://147.93.108.82:5000/api/allblogs/blogs"
         );
         const data = await response.json();
         if (data.success) {

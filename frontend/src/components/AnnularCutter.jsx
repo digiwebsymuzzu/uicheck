@@ -31,7 +31,7 @@ const AnnularCutter = () => {
   useEffect(() => {
     const fetchVideos = async () => {
       try {
-        const res = await fetch("https://147.93.108.82:5000/api/annular");
+        const res = await fetch("http://147.93.108.82:5000/api/annular");
         const data = await res.json();
         if (data.success) setVideos(data.videos);
       } catch (err) {

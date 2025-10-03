@@ -20,7 +20,7 @@ const Register = () => {
       return handleError("name,email,password field are required");
     }
     try {
-      const url = "https://147.93.108.82:5000/auth/register";
+      const url = "http://147.93.108.82:5000/auth/register";
       const response = await fetch(url, {
         method: "POST",
         headers: {

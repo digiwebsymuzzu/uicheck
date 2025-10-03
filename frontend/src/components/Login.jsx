@@ -25,7 +25,7 @@ const Login = () => {
       return handleError("name,email,password field are required");
     }
     try {
-      const url = "https://147.93.108.82:5000/auth/login";
+      const url = "http://147.93.108.82:5000/auth/login";
       const response = await fetch(url, {
         method: "POST",
         headers: {
