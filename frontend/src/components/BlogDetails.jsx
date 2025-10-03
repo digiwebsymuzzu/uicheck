@@ -35,7 +35,7 @@ const BlogDetails = () => {
     const fetchBlog = async () => {
       try {
         const res = await fetch(
-          `http://147.93.108.82:5000/api/allblogs/blog/${slug}`
+          `https://udemandme.cloud/api/allblogs/blog/${slug}`
         );
         const data = await res.json();
         if (data.success) setBlog(data.blog);
@@ -51,7 +51,7 @@ const BlogDetails = () => {
     const fetchRecentBlogs = async () => {
       try {
         const res = await fetch(
-          "http://147.93.108.82:5000/api/allblogs/blogs?limit=4"
+          "https://udemandme.cloud/api/allblogs/blogs?limit=4"
         );
         const data = await res.json();
         if (data.success)

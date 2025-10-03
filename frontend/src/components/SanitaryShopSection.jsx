@@ -23,7 +23,7 @@ const ShopSection = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const res = await fetch("http://147.93.108.82:5000/api/categories");
+        const res = await fetch("https://udemandme.cloud/api/categories");
         const data = await res.json();
         if (data.success) {
           setCategories(data.data); // set categories
@@ -47,7 +47,7 @@ const ShopSection = () => {
   useEffect(() => {
     const fetchAttributes = async () => {
       try {
-        const res = await fetch("http://147.93.108.82:5000/api/attributes");
+        const res = await fetch("https://udemandme.cloud/api/attributes");
         const data = await res.json();
         if (data.success) {
           setAttributes(data.data);
@@ -79,7 +79,7 @@ const fetchProducts = async (pageToLoad = 1) => {
     const limit = 40; // Load 40 products at a time
 
     const res = await fetch(
-      `http://147.93.108.82:5000/api/products/superparent/${superParentName}?page=${pageToLoad}&limit=${limit}`,
+      `https://udemandme.cloud/api/products/superparent/${superParentName}?page=${pageToLoad}&limit=${limit}`,
       {
         headers: {
           "Content-Type": "application/json",

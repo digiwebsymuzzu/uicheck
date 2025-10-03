@@ -105,7 +105,7 @@ const Checkout = () => {
     };
 
     try {
-      const response = await fetch("http://147.93.108.82:5000/api/order/add", {
+      const response = await fetch("https://udemandme.cloud/api/order/add", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
