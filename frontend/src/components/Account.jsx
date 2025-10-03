@@ -89,7 +89,7 @@ const Account = () => {
       data.append("userreference", quotationForm.userreference);
       data.append("usermessage", quotationForm.usermessage);
 
-      const response = await fetch("http://147.93.108.82:5000/api/quotation", {
+      const response = await fetch("https://147.93.108.82:5000/api/quotation", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -156,7 +156,7 @@ const Account = () => {
   useEffect(() => {
     const fetchProfile = async () => {
       try {
-        const response = await fetch("http://147.93.108.82:5000/auth/profile", {
+        const response = await fetch("https://147.93.108.82:5000/auth/profile", {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -183,7 +183,7 @@ const Account = () => {
   const handleReturn = async (orderId, itemId) => {
     try {
       const { data } = await axios.put(
-        `http://147.93.108.82:5000/api/order/orders/${orderId}/return/${itemId}`,
+        `https://147.93.108.82:5000/api/order/orders/${orderId}/return/${itemId}`,
         {},
         {
           headers: {
@@ -227,7 +227,7 @@ const Account = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch("http://147.93.108.82:5000/auth/updateprofile", {
+      const response = await fetch("https://147.93.108.82:5000/auth/updateprofile", {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -291,7 +291,7 @@ const Account = () => {
   // ✅ Fetch addresses from backend
   const fetchAddresses = async () => {
     try {
-      const res = await fetch("http://147.93.108.82:5000/api/address", {
+      const res = await fetch("https://147.93.108.82:5000/api/address", {
         headers: { Authorization: `Bearer ${token}` },
       });
       const data = await res.json();
@@ -333,11 +333,11 @@ const Account = () => {
     }
 
     try {
-      let url = "http://147.93.108.82:5000/api/address";
+      let url = "https://147.93.108.82:5000/api/address";
       let method = "POST";
 
       if (editId) {
-        url = `http://147.93.108.82:5000/api/address/${editId}`;
+        url = `https://147.93.108.82:5000/api/address/${editId}`;
         method = "PUT";
       }
 
@@ -386,7 +386,7 @@ const Account = () => {
   const handleDelete = async (id) => {
     if (!id) return console.error("No address ID provided");
     try {
-      const res = await fetch(`http://147.93.108.82:5000/api/address/${id}`, {
+      const res = await fetch(`https://147.93.108.82:5000/api/address/${id}`, {
         method: "DELETE",
         headers: { Authorization: `Bearer ${token}` },
       });
@@ -415,7 +415,7 @@ const Account = () => {
       try {
         const token = localStorage.getItem("token"); // login token
         const res = await axios.get(
-          "http://147.93.108.82:5000/api/order/my-orders",
+          "https://147.93.108.82:5000/api/order/my-orders",
           {
             headers: {
               Authorization: `Bearer ${token}`,

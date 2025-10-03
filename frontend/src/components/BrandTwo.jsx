@@ -82,7 +82,7 @@ const BrandTwo = () => {
   useEffect(() => {
     const fetchBrands = async () => {
       try {
-        const res = await fetch("http://147.93.108.82:5000/api/brand");
+        const res = await fetch("https://147.93.108.82:5000/api/brand");
         const data = await res.json();
         if (data.success) {
           setBrands(data.data); // backend me "data" array return ho rha hai

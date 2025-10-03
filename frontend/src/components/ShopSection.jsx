@@ -23,7 +23,7 @@ const ShopSection = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const res = await fetch("http://147.93.108.82:5000/api/categories");
+        const res = await fetch("https://147.93.108.82:5000/api/categories");
         const data = await res.json();
         if (data.success) {
           setCategories(data.data); // set categories
@@ -47,7 +47,7 @@ const ShopSection = () => {
   useEffect(() => {
     const fetchAttributes = async () => {
       try {
-        const res = await fetch("http://147.93.108.82:5000/api/attributes");
+        const res = await fetch("https://147.93.108.82:5000/api/attributes");
         const data = await res.json();
         if (data.success) {
           setAttributes(data.data);
@@ -75,7 +75,7 @@ const ShopSection = () => {
   // ✅ Fetch products from backend
   // const fetchProducts = async () => {
   //   try {
-  //     const res = await fetch("http://147.93.108.82:5000/api/products", {
+  //     const res = await fetch("https://147.93.108.82:5000/api/products", {
   //       headers: {
   //         "Content-Type": "application/json",
   //       },
@@ -102,7 +102,7 @@ const ShopSection = () => {
     setLoading(true);
     try {
       const res = await fetch(
-        `http://147.93.108.82:5000/api/products?page=${page}&limit=20`
+        `https://147.93.108.82:5000/api/products?page=${page}&limit=20`
       );
       const data = await res.json();
 

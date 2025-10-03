@@ -70,7 +70,7 @@ const TopSellingOne = () => {
     try {
       const superParentName = "oil and gas";
       const res = await fetch(
-        `http://147.93.108.82:5000/api/products/superparent/${superParentName}`,
+        `https://147.93.108.82:5000/api/products/superparent/${superParentName}`,
         {
           headers: {
             "Content-Type": "application/json",
