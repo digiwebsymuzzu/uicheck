@@ -20,6 +20,9 @@ const ShopSection = () => {
   const [loading, setLoading] = useState(false);
   const observer = useRef();
 
+  const [activeFilterGroup, setActiveFilterGroup] = useState(null);
+  const [selectedFilters, setSelectedFilters] = useState([]);
+
   useEffect(() => {
     const fetchCategories = async () => {
       try {
@@ -164,6 +167,61 @@ const ShopSection = () => {
     [loading, page, pages]
   );
 
+
+  // Filter
+const handleFilterSelect = (group, value) => {
+  if (!activeFilterGroup || activeFilterGroup === group) {
+    let newSelected = [];
+    if (selectedFilters.includes(value)) {
+      newSelected = selectedFilters.filter(v => v !== value); // deselect
+    } else {
+      newSelected = [...selectedFilters, value]; // select
+    }
+    setSelectedFilters(newSelected);
+
+    if (newSelected.length === 0) {
+      setActiveFilterGroup(null); // reset if nothing selected
+    } else {
+      setActiveFilterGroup(group);
+    }
+  } else {
+    // switching to a new group
+    setActiveFilterGroup(group);
+    setSelectedFilters([value]);
+  }
+};
+
+
+ useEffect(() => {
+  if (activeFilterGroup && selectedFilters.length > 0) {
+    const params = new URLSearchParams({
+      page: 1,
+      limit: 20,
+    });
+
+    if (activeFilterGroup === 'category') {
+      params.append('category', selectedFilters.join(','));
+    } else {
+      params.append('attribute', activeFilterGroup);
+      params.append('values', selectedFilters.join(','));
+    }
+
+    fetch(`http://localhost:5000/api/products/filter?${params.toString()}`)
+      .then(res => res.json())
+      .then(data => {
+        if (data.success) {
+          setProducts(data.products);
+          setPages(data.pages);
+          setPage(1);
+        }
+      })
+      .catch(err => console.error(err));
+  } else if (!activeFilterGroup) {
+    // No filter → fetch default products
+    fetchProducts(1);
+  }
+}, [selectedFilters, activeFilterGroup]);
+
   return (
     <section className="shop py-80">
       <div className={`side-overlay ${active && "show"}`}></div>
@@ -202,16 +260,29 @@ const ShopSection = () => {
                 </h6>
                 <ul className="max-h-540 overflow-y-auto scroll-sm">
                   {categories.map((cat) => (
-                    <li key={cat.id} className="mb-24">
-                      <Link
-                        to={`/shop/${cat._id}`}
-                        className="text-gray-900 hover-text-main-600"
-                      >
-                        {formatCategoryName(cat.name)}
-                      </Link>
+                    <li key={cat._id} className="mb-24">
+                      <div className="form-check common-check">
+                        <input
+                          type="checkbox"
+                          id={`category-${cat._id}`}
+                          className="form-check-input"
+                          checked={
+                            activeFilterGroup === "category" &&
+                            selectedFilters.includes(cat.name)
+                          }
+                          disabled={activeFilterGroup && activeFilterGroup !== "category"}
+                          onChange={() => handleFilterSelect("category", cat.name)}
+                        />
+                        <label
+                          htmlFor={`category-${cat._id}`}
+                          className="form-check-label text-gray-900 hover-text-main-600"
+                        >
+                          {formatCategoryName(cat.name)}
+                        </label>
+                      </div>
                     </li>
                   ))}
-                </ul>
+            </ul>
               </div>
 
               {attributes.map((attr) => (
@@ -222,32 +293,36 @@ const ShopSection = () => {
                   <h6 className="text-xl border-bottom border-gray-100 pb-24 mb-24">
                     Filter by {displayName(attr.name)}
                   </h6>
-                  <ul className="max-h-540 overflow-y-auto scroll-sm">
-                    {attr.items.map((item, index) => (
-                      <li key={item.id || index} className="mb-24">
-                        <div className="form-check common-check common-radio">
-                          <input
-                            className="form-check-input"
-                            type="radio"
-                            name={attr.slug}
-                            id={`${attr.slug}-${index}`}
-                          />
-                          <label
-                            className="form-check-label"
-                            htmlFor={`${attr.slug}-${index}`}
-                          >
-                            {item.name}
-                          </label>
-                        </div>
-                      </li>
-                    ))}
-                  </ul>
+                   <ul className="max-h-540 overflow-y-auto scroll-sm">
+      {attr.items.map((item, index) => (
+        <li key={item.id || index} className="mb-24">
+          <div className="form-check common-check">
+            <input
+              type="checkbox"
+              id={`${attr.slug}-${index}`}
+              className="form-check-input"
+              checked={
+                activeFilterGroup === attr.name &&
+                selectedFilters.includes(item.name)
+              }
+              disabled={
+                activeFilterGroup && activeFilterGroup !== attr.name
+              }
+              onChange={() => handleFilterSelect(attr.name, item.name)}
+            />
+            <label
+              htmlFor={`${attr.slug}-${index}`}
+              className="form-check-label"
+            >
+              {item.name}
+            </label>
+          </div>
+        </li>
+      ))}
+    </ul>
                 </div>
               ))}
 
-              <div className="shop-sidebar__box rounded-8">
-                <img src="assets/images/thumbs/advertise-img1.png" alt="" />
-              </div>
             </div>
           </div>
           {/* Sidebar End */}
@@ -470,20 +545,19 @@ const ShopSection = () => {
                       </button>
 
                       <Link
-                        to="#"
-                        onClick={() => {
-                          const productUrl = `${window.location.origin}/product/${product.slug}`;
-                          const message = `Check out this product:\n\n*${product.productName}*\n${productUrl}\n\nImage: ${product.productMainImage}`;
+  to="#"
+  onClick={() => {
+    const productUrl = `${window.location.origin}/product-details/${product.productSlug}`;
+    const message = `Check out this product: ${product.productName}\n${productUrl}`;
 
-                          const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(
-                            message
-                          )}`;
-                          window.open(whatsappUrl, "_blank");
-                        }}
-                        className="product-card__cart btn bg-success-btn text-light hover-text-white py-11 px-24 rounded-8 flex-center gap-8 fw-medium"
-                      >
-                        <i className="ph ph-whatsapp-logo"></i>
-                      </Link>
+    // WhatsApp link for a specific number
+    const whatsappUrl = `https://wa.me/971502530888?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, "_blank");
+  }}
+  className="product-card__cart btn bg-success-btn text-light hover-text-white py-11 px-24 rounded-8 flex-center gap-8 fw-medium"
+>
+  <i className="ph ph-whatsapp-logo"></i>
+</Link>
                     </div>
                   </div>
                 </div>
