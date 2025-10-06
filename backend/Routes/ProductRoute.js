@@ -5,7 +5,11 @@ const {
   getProductById,
   getProductsBySuperparent,
   searchProducts,
+  getFilteredProducts,
 } = require("../Controllers/ProductController");
+
+// In routes/ProductRoutes.js
+router.get("/filter", getFilteredProducts);
 
 // @route GET /api/products
 router.get("/", getProducts);
