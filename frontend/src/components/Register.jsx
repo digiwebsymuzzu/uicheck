@@ -20,7 +20,7 @@ const Register = () => {
       return handleError("name,email,password field are required");
     }
     try {
-      const url = "https://udemandme.cloud/auth/register";
+      const url = "https://udemandme.cloud/api/auth/register";
       const response = await fetch(url, {
         method: "POST",
         headers: {
