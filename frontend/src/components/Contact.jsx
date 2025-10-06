@@ -118,10 +118,10 @@ const Contact = () => {
 									<i className="ph-fill ph-phone-call text-danger" />
 								</span>
 								<Link
-									to="/tel:+050-2530888"
+									to="tel:+971-50-2530888"
 									className="text-md text-gray-900 hover-text-main-600"
 								>
-									+050-2530888
+									+971-50-2530888
 								</Link>
 							</div>
 							<div className="flex-align gap-16 mb-16">
@@ -129,7 +129,7 @@ const Contact = () => {
 									<i className="ph-fill ph-envelope text-danger" />
 								</span>
 								<Link
-									to="/mailto:info@udemandme.com"
+									to="mailto:info@udemandme.com"
 									className="text-md text-gray-900 hover-text-main-600"
 								>
 									info@udemandme.com
@@ -147,7 +147,7 @@ const Contact = () => {
 							</div>
 							<div className="mt-28 flex-align flex-wrap gap-16">
 								<Link
-									to="/tel:+050-2530888"
+									to="tel:+971-50-2530888"
 									className="bg-neutral-600 hover-bg-main-600 rounded-8 p-10 px-16 flex-between flex-wrap gap-8 flex-grow-1"
 								>
 									<span className="text-white fw-medium">
