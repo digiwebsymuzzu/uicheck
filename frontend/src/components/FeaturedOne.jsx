@@ -118,6 +118,7 @@ const FeaturedOne = () => {
                               }
                               alt={product.productName}
                               className="w-auto max-w-unset"
+                              style={{maxWidth:'160px!important'}}
                             />
                           </Link>
                           <div className="product-card__content my-20 flex-grow-1">

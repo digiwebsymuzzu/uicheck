@@ -188,10 +188,10 @@ const FooterTwo = () => {
               <div className="d-flex align-items-center gap-2 mb-2 mt-5">
                 <i className="ph-fill ph-phone-call primecolor fs-5" />
                 <Link
-                  to="tel:+050-2530888"
+                  to="tel:+971-50-2530888"
                   className="text-md text-light hover-text-main-600 mx-3"
                 >
-                  +050-2530888
+                  +971-50-2530888
                 </Link>
               </div>
               <div className="d-flex align-items-center gap-2 mb-2 mt-4">
