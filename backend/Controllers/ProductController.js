@@ -2,21 +2,7 @@ const Product = require("../Models/Product");
 const Brand = require("../Models/Brand"); // required for populate("brands")
 const Category = require("../Models/Category"); // required for populate("categories")
 
-// @desc Get all products
-// @route GET /api/products
-// @access Public (you can change later if you want auth)
-// const getProducts = async (req, res) => {
-//   try {
-//     const products = await Product.find()
-//       .populate("categories")
-//       .populate("brands");
 
-//     res.json({ success: true, products });
-//   } catch (error) {
-//     console.error("Error fetching products:", error.message);
-//     res.status(500).json({ success: false, message: "Server Error" });
-//   }
-// };
 const getProducts = async (req, res) => {
   try {
     const page = parseInt(req.query.page) || 1; // current page, default 1
@@ -69,6 +55,11 @@ const getProductById = async (req, res) => {
 
 const getProductsBySuperparent = async (req, res) => {
   try {
+
+    const page = parseInt(req.query.page) || 1; 
+    const limit = parseInt(req.query.limit) || 20;
+
+
     const superParentName = req.params.superParentName?.toLowerCase();
 
     console.log("Requested Superparent:", superParentName);
@@ -104,7 +95,10 @@ const getProductsBySuperparent = async (req, res) => {
     // Fetch products that have at least one category matching
     const products = await Product.find({
       "productCategories.name": { $in: categoryNames },
-    }).lean(); // .lean() ensures we get plain JS objects
+    })
+    .skip((page - 1) * limit)
+    .limit(limit)
+    .lean(); // .lean() ensures we get plain JS objects
 
     console.log("Products fetched:", products.length);
 
@@ -140,29 +134,16 @@ const getProductsBySuperparent = async (req, res) => {
 
     console.log("Filtered products count:", filteredProducts.length);
 
-    return res.json({ success: true, products: filteredProducts });
+
+     const totalProducts = await Product.countDocuments({
+      "productCategories.name": { $in: categoryNames },
+    });
+
+
+    return res.json({ success: true, products: filteredProducts, total: totalProducts, page, pages: Math.ceil(totalProducts / limit)});
   } catch (error) {
     console.error("Error in getProductsBySuperparent:", error);
     return res.status(500).json({ success: false, message: "Server Error" });
-  }
-};
-const searchProducts = async (req, res) => {
-  try {
-    const { name } = req.query;
-    if (!name) {
-      return res
-        .status(400)
-        .json({ success: false, message: "Search term required" });
-    }
-
-    const products = await Product.find({
-      productName: { $regex: name, $options: "i" }, // note: productName
-    });
-
-    res.json({ success: true, products });
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ success: false, message: "Server Error" });
   }
 };
 
