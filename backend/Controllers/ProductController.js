@@ -166,9 +166,71 @@ const searchProducts = async (req, res) => {
   }
 };
 
+
+// Filter
+const getFilteredProducts = async (req, res) => {
+  try {
+    const { category, attribute, values, page = 1, limit = 20 } = req.query;
+    const skip = (page - 1) * limit;
+
+    let query = {};
+    console.log("Incoming query params:", req.query);
+
+    // ---------- CATEGORY FILTER ----------
+    if (category) {
+      const categoryNames = category
+        .split(",")
+        .map((c) => c.trim())
+        .map((c) => c.toLowerCase()); // normalize case
+
+      console.log("Filtering by categories:", categoryNames);
+
+      query["productCategories.name"] = {
+        $in: categoryNames.map((c) => c.toUpperCase()), // adjust case to match DB if needed
+      };
+    }
+    // ---------- ATTRIBUTE FILTER ----------
+    else if (attribute && values) {
+      const valuesArray = values.split(",").map((v) => v.trim());
+      console.log("Filtering by attribute:", attribute, "with values:", valuesArray);
+
+      query["productAttributes"] = {
+        $elemMatch: {
+          attributeName: attribute,
+          "attributeValues.attributeValue": { $in: valuesArray },
+        },
+      };
+    }
+
+    console.log("MongoDB query object:", JSON.stringify(query, null, 2));
+
+    const products = await Product.find(query)
+      .skip(skip)
+      .limit(parseInt(limit))
+      .lean();
+
+    const total = await Product.countDocuments(query);
+
+    console.log("Products fetched:", products.length);
+
+    res.json({
+      success: true,
+      products,
+      total,
+      page: parseInt(page),
+      pages: Math.ceil(total / limit),
+    });
+  } catch (error) {
+    console.error("Error fetching filtered products:", error);
+    return res.status(500).json({ success: false, message: "Server Error" });
+  }
+};
+
+
 module.exports = {
   getProducts,
   getProductById,
   getProductsBySuperparent,
   searchProducts,
+  getFilteredProducts,
 };
