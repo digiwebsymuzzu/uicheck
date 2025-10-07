@@ -261,7 +261,7 @@ const TopSellingTwo = () => {
                               AED {product.productSalePriceInr}
                             </span>
                           </div>
-                          <div className="d-flex justify-content-between">
+                          <div className="w-full flex flex-col items-stretch">
                             <button
                               onClick={() => {
                                 if (!product?._id) {
