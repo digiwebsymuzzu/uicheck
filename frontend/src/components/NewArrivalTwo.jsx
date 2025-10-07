@@ -68,10 +68,6 @@ const NewArrivalTwo = () => {
                     </Link>
                   </h6>
 
-                  {/* <span className="text-xs h6 primecolor border-bottom border-top pb-1">
-                    {item.categories?.map((c) => c.name).join(", ") ||
-                      "Category"}
-                  </span> */}
                   <div className="mt-8">
                     <div
                       className="progress w-100 bg-color-three rounded-pill h-4"
@@ -101,7 +97,7 @@ const NewArrivalTwo = () => {
                   </div>
                   <span className="text-sm h6 primecolor pb-1 mt-4">
                     {item?.productCategories
-                      ?.slice(0, 2) // sirf pehli 2 categories
+                      ?.slice(0, 2)
                       .map((cat) => cat.name)
                       .join(", ")}
                   </span>
@@ -111,15 +107,14 @@ const NewArrivalTwo = () => {
                       className="text-gray-400 text-md fw-semibold text-decoration-line-through"
                       style={{ marginRight: "10px" }}
                     >
-                      AED {item.productRegularPriceInr} {/* ✅ fallback */}
+                      AED {item.productRegularPriceInr}  
                     </span>
                     <span className="text-heading text-md fw-semibold ml-2">
                       AED {item.productSalePriceInr}{" "}
-                      {/* <span className="text-gray-500 fw-normal">/Qty</span> */}
                     </span>
                   </div>
 
-                  <div className="custom-flex-wrapper">
+                  <div className="w-full flex flex-col items-stretch">
                     <button
                       onClick={() => {
                         if (!item?._id) {
@@ -141,7 +136,7 @@ const NewArrivalTwo = () => {
                                   item.productRegularPriceUsd,
                               },
                             ]
-                          : []; // ✅ empty array jab attributes hi nahi hai
+                          : [];
 
                         console.log("Add To Cart Payload:", {
                           product: item,
@@ -151,7 +146,7 @@ const NewArrivalTwo = () => {
 
                         addToCart(item, 1, payload);
                       }}
-                      className="product-card__cart btn bg-dark text-light hover-bg-main-600 hover-text-white py-11 rounded-8 flex-center gap-8 fw-medium"
+                      className="product-card__cart btn bg-dark text-light hover-bg-main-600 hover-text-white py-3 rounded-8 flex justify-center items-center gap-2 fw-medium w-full text-center text-sm sm:text-base"
                     >
                       Add To Cart <i className="ph ph-shopping-cart" />
                     </button>
@@ -167,7 +162,7 @@ const NewArrivalTwo = () => {
                         )}`;
                         window.open(whatsappUrl, "_blank");
                       }}
-                      className="product-card__cart btn bg-success-btn text-light hover-text-white py-11 px-24 rounded-8 flex-center gap-8 fw-medium"
+                      className="product-card__cart btn bg-success-btn text-light hover-text-white py-3 rounded-8 flex justify-center items-center gap-2 fw-medium w-full text-center mt-3 sm:mt-3 text-sm sm:text-base"
                       tabIndex={0}
                     >
                       <i className="ph ph-whatsapp-logo"></i>

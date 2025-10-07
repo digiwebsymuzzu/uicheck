@@ -39,26 +39,7 @@ const ProductDetailsOne = ({ productId }) => {
     focusOnSelect: true,
   };
 
-  // ✅ useEffect hamesha top-level pe call
-
-  // ✅ useEffect always top-level
-  // useEffect(() => {
-  //   const fetchReviews = async () => {
-  //     if (!productId) return;
-
-  //     try {
-  //       const res = await axios.get(
-  //         `https://udemandme.cloud/api/reviews/${productId}`
-  //       );
-  //       console.log("API response:", res.data);
-  //       if (res.data.success) setReviews(res.data.reviews);
-  //     } catch (err) {
-  //       console.error("Failed to fetch reviews:", err);
-  //     }
-  //   };
-
-  //   fetchReviews();
-  // }, [productId]);
+   
 
   const fetchProduct = async (id) => {
     try {
@@ -270,32 +251,6 @@ const ProductDetailsOne = ({ productId }) => {
                 <div className="product-details__content">
                   <h5 className="mb-12">{product?.productName}</h5>
                   <div className="flex-align flex-wrap gap-12">
-                    <div className="flex-align gap-12 flex-wrap">
-                      <div className="flex-align gap-8">
-                        <span className="text-15 fw-medium text-warning-600 d-flex">
-                          <i className="ph-fill ph-star" />
-                        </span>
-                        <span className="text-15 fw-medium text-warning-600 d-flex">
-                          <i className="ph-fill ph-star" />
-                        </span>
-                        <span className="text-15 fw-medium text-warning-600 d-flex">
-                          <i className="ph-fill ph-star" />
-                        </span>
-                        <span className="text-15 fw-medium text-warning-600 d-flex">
-                          <i className="ph-fill ph-star" />
-                        </span>
-                        <span className="text-15 fw-medium text-warning-600 d-flex">
-                          <i className="ph-fill ph-star" />
-                        </span>
-                      </div>
-                      <span className="text-sm fw-medium text-neutral-600">
-                        4.7 Star Rating
-                      </span>
-                      <span className="text-sm fw-medium text-gray-500">
-                        (21,671)
-                      </span>
-                    </div>
-                    <span className="text-sm fw-medium text-gray-500">|</span>
                     <span className="text-gray-900">
                       {" "}
                       <span className="text-gray-400">SKU:</span>
@@ -333,13 +288,6 @@ const ProductDetailsOne = ({ productId }) => {
                           <i className="ph ph-heart" />
                         </button>
                       )}
-
-                      <Link
-                        to="#"
-                        className="w-52 h-52 bg-btn-gray text-light text-xl  flex-center rounded-circle"
-                      >
-                        <i className="ph ph-share-network" />
-                      </Link>
                     </div>
                   </div>
                   <span className="mt-32 pt-32 text-gray-700 border-top border-gray-100 d-block" />
@@ -681,7 +629,7 @@ const ProductDetailsOne = ({ productId }) => {
                   tabIndex={0}
                 >
                   <div className="row g-4">
-                    <div className="col-lg-6">
+                    <div className="col-lg-12">
                       <h6 className="mb-24">Product Description</h6>
                       <div className="d-flex align-items-start gap-24">
                         <div className="d-flex align-items-start gap-24 pb-44 border-bottom border-gray-100 mb-44">
@@ -847,233 +795,6 @@ const ProductDetailsOne = ({ productId }) => {
                         </div>
                       </div>
                     </div>
-                    <div className="col-lg-6">
-                      <div className="ms-xxl-5">
-                        <h6 className="mb-24">Customers Feedback</h6>
-                        <div className="d-flex flex-wrap gap-44">
-                          <div className="border border-gray-100 rounded-8 px-40 py-52 flex-center flex-column flex-shrink-0 text-center">
-                            <h2 className="mb-6 text-main-600">4.8</h2>
-                            <div className="flex-center gap-8">
-                              <span className="text-15 fw-medium text-warning-600 d-flex">
-                                <i className="ph-fill ph-star" />
-                              </span>
-                              <span className="text-15 fw-medium text-warning-600 d-flex">
-                                <i className="ph-fill ph-star" />
-                              </span>
-                              <span className="text-15 fw-medium text-warning-600 d-flex">
-                                <i className="ph-fill ph-star" />
-                              </span>
-                              <span className="text-15 fw-medium text-warning-600 d-flex">
-                                <i className="ph-fill ph-star" />
-                              </span>
-                              <span className="text-15 fw-medium text-warning-600 d-flex">
-                                <i className="ph-fill ph-star" />
-                              </span>
-                            </div>
-                            <span className="mt-16 text-gray-500">
-                              Average Product Rating
-                            </span>
-                          </div>
-                          <div className="border border-gray-100 rounded-8 px-24 py-40 flex-grow-1">
-                            <div className="flex-align gap-8 mb-20">
-                              <span className="text-gray-900 flex-shrink-0">
-                                5
-                              </span>
-                              <div
-                                className="progress w-100 bg-gray-100 rounded-pill h-8"
-                                role="progressbar"
-                                aria-label="Basic example"
-                                aria-valuenow={70}
-                                aria-valuemin={0}
-                                aria-valuemax={100}
-                              >
-                                <div
-                                  className="progress-bar bg-main-600 rounded-pill"
-                                  style={{ width: "70%" }}
-                                />
-                              </div>
-                              <div className="flex-align gap-4">
-                                <span className="text-xs fw-medium text-warning-600 d-flex">
-                                  <i className="ph-fill ph-star" />
-                                </span>
-                                <span className="text-xs fw-medium text-warning-600 d-flex">
-                                  <i className="ph-fill ph-star" />
-                                </span>
-                                <span className="text-xs fw-medium text-warning-600 d-flex">
-                                  <i className="ph-fill ph-star" />
-                                </span>
-                                <span className="text-xs fw-medium text-warning-600 d-flex">
-                                  <i className="ph-fill ph-star" />
-                                </span>
-                                <span className="text-xs fw-medium text-warning-600 d-flex">
-                                  <i className="ph-fill ph-star" />
-                                </span>
-                              </div>
-                              <span className="text-gray-900 flex-shrink-0">
-                                124
-                              </span>
-                            </div>
-                            <div className="flex-align gap-8 mb-20">
-                              <span className="text-gray-900 flex-shrink-0">
-                                4
-                              </span>
-                              <div
-                                className="progress w-100 bg-gray-100 rounded-pill h-8"
-                                role="progressbar"
-                                aria-label="Basic example"
-                                aria-valuenow={50}
-                                aria-valuemin={0}
-                                aria-valuemax={100}
-                              >
-                                <div
-                                  className="progress-bar bg-main-600 rounded-pill"
-                                  style={{ width: "50%" }}
-                                />
-                              </div>
-                              <div className="flex-align gap-4">
-                                <span className="text-xs fw-medium text-warning-600 d-flex">
-                                  <i className="ph-fill ph-star" />
-                                </span>
-                                <span className="text-xs fw-medium text-warning-600 d-flex">
-                                  <i className="ph-fill ph-star" />
-                                </span>
-                                <span className="text-xs fw-medium text-warning-600 d-flex">
-                                  <i className="ph-fill ph-star" />
-                                </span>
-                                <span className="text-xs fw-medium text-warning-600 d-flex">
-                                  <i className="ph-fill ph-star" />
-                                </span>
-                                <span className="text-xs fw-medium text-warning-600 d-flex">
-                                  <i className="ph-fill ph-star" />
-                                </span>
-                              </div>
-                              <span className="text-gray-900 flex-shrink-0">
-                                52
-                              </span>
-                            </div>
-                            <div className="flex-align gap-8 mb-20">
-                              <span className="text-gray-900 flex-shrink-0">
-                                3
-                              </span>
-                              <div
-                                className="progress w-100 bg-gray-100 rounded-pill h-8"
-                                role="progressbar"
-                                aria-label="Basic example"
-                                aria-valuenow={35}
-                                aria-valuemin={0}
-                                aria-valuemax={100}
-                              >
-                                <div
-                                  className="progress-bar bg-main-600 rounded-pill"
-                                  style={{ width: "35%" }}
-                                />
-                              </div>
-                              <div className="flex-align gap-4">
-                                <span className="text-xs fw-medium text-warning-600 d-flex">
-                                  <i className="ph-fill ph-star" />
-                                </span>
-                                <span className="text-xs fw-medium text-warning-600 d-flex">
-                                  <i className="ph-fill ph-star" />
-                                </span>
-                                <span className="text-xs fw-medium text-warning-600 d-flex">
-                                  <i className="ph-fill ph-star" />
-                                </span>
-                                <span className="text-xs fw-medium text-warning-600 d-flex">
-                                  <i className="ph-fill ph-star" />
-                                </span>
-                                <span className="text-xs fw-medium text-warning-600 d-flex">
-                                  <i className="ph-fill ph-star" />
-                                </span>
-                              </div>
-                              <span className="text-gray-900 flex-shrink-0">
-                                12
-                              </span>
-                            </div>
-                            <div className="flex-align gap-8 mb-20">
-                              <span className="text-gray-900 flex-shrink-0">
-                                2
-                              </span>
-                              <div
-                                className="progress w-100 bg-gray-100 rounded-pill h-8"
-                                role="progressbar"
-                                aria-label="Basic example"
-                                aria-valuenow={20}
-                                aria-valuemin={0}
-                                aria-valuemax={100}
-                              >
-                                <div
-                                  className="progress-bar bg-main-600 rounded-pill"
-                                  style={{ width: "20%" }}
-                                />
-                              </div>
-                              <div className="flex-align gap-4">
-                                <span className="text-xs fw-medium text-warning-600 d-flex">
-                                  <i className="ph-fill ph-star" />
-                                </span>
-                                <span className="text-xs fw-medium text-warning-600 d-flex">
-                                  <i className="ph-fill ph-star" />
-                                </span>
-                                <span className="text-xs fw-medium text-warning-600 d-flex">
-                                  <i className="ph-fill ph-star" />
-                                </span>
-                                <span className="text-xs fw-medium text-warning-600 d-flex">
-                                  <i className="ph-fill ph-star" />
-                                </span>
-                                <span className="text-xs fw-medium text-warning-600 d-flex">
-                                  <i className="ph-fill ph-star" />
-                                </span>
-                              </div>
-                              <span className="text-gray-900 flex-shrink-0">
-                                5
-                              </span>
-                            </div>
-                            <div className="flex-align gap-8 mb-0">
-                              <span className="text-gray-900 flex-shrink-0">
-                                1
-                              </span>
-                              <div
-                                className="progress w-100 bg-gray-100 rounded-pill h-8"
-                                role="progressbar"
-                                aria-label="Basic example"
-                                aria-valuenow={5}
-                                aria-valuemin={0}
-                                aria-valuemax={100}
-                              >
-                                <div
-                                  className="progress-bar bg-main-600 rounded-pill"
-                                  style={{ width: "5%" }}
-                                />
-                              </div>
-                              <div className="flex-align gap-4">
-                                <span className="text-xs fw-medium text-warning-600 d-flex">
-                                  <i className="ph-fill ph-star" />
-                                </span>
-                                <span className="text-xs fw-medium text-warning-600 d-flex">
-                                  <i className="ph-fill ph-star" />
-                                </span>
-                                <span className="text-xs fw-medium text-warning-600 d-flex">
-                                  <i className="ph-fill ph-star" />
-                                </span>
-                                <span className="text-xs fw-medium text-warning-600 d-flex">
-                                  <i className="ph-fill ph-star" />
-                                </span>
-                                <span className="text-xs fw-medium text-warning-600 d-flex">
-                                  <i className="ph-fill ph-star" />
-                                </span>
-                              </div>
-                              <span className="text-gray-900 flex-shrink-0">
-                                2
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </section>

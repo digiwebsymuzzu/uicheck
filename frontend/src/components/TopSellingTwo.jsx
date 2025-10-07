@@ -95,7 +95,7 @@ const TopSellingTwo = () => {
     }
   };
 
-  // ✅ Run on component mount
+  // Run on component mount
   useEffect(() => {
     fetchProducts();
   }, []);
