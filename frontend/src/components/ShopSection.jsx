@@ -75,32 +75,6 @@ const ShopSection = () => {
     }
   };
 
-  // ✅ Fetch products from backend
-  // const fetchProducts = async () => {
-  //   try {
-  //     const res = await fetch("https://udemandme.cloud/api/products", {
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //     });
-
-  //     const data = await res.json();
-
-  //     if (data.success) {
-  //       setProducts(data.products);
-  //       setOriginalProducts(data.products);
-  //     } else {
-  //       console.error(data.message || "Failed to fetch products");
-  //     }
-  //   } catch (err) {
-  //     console.error("Error fetching products:", err);
-  //   }
-  // };
-
-  // // ✅ Run on component mount
-  // useEffect(() => {
-  //   fetchProducts();
-  // }, []);
   const fetchProducts = async (page) => {
     setLoading(true);
     try {
@@ -356,12 +330,6 @@ const handleFilterSelect = (group, value) => {
                   </button>
                 </div>
                 <div className="position-relative text-gray-500 flex-align gap-4 text-14">
-                  {/* <label
-                    htmlFor="sorting"
-                    className="text-inherit flex-shrink-0"
-                  >
-                    Sort by:{" "}
-                  </label> */}
                   <select
                     value={sortOption}
                     onChange={handleSort}
@@ -402,9 +370,7 @@ const handleFilterSelect = (group, value) => {
                       alt={product.productName}
                       className="w-auto max-w-unset product-img"
                     />
-                    {/* <span className="product-card__badge bg-primary-600 px-8 py-4 text-sm text-white position-absolute inset-inline-start-0 inset-block-start-0">
-                      New 
-                    </span> */}
+                   
                     {new Date(product.createdAt) >
                       new Date(Date.now() - 7 * 24 * 60 * 60 * 1000) && (
                       <span className="product-card__badge bg-primary-600 px-8 py-4 text-sm text-white position-absolute inset-inline-start-0 inset-block-start-0">
@@ -428,36 +394,7 @@ const handleFilterSelect = (group, value) => {
                       </Link>
                     </h6>
 
-                    {/* <div className="flex-align mb-20 mt-16 gap-6"> */}
-                    {/* <span className="text-xs fw-medium text-gray-500">
-                        {product.rating || 4.5}
-                      </span> */}
-                    {/* <span className="text-15 fw-medium text-warning-600 d-flex">
-                        <i className="ph-fill ph-star" />
-                      </span> */}
-                    {/* <span className="text-xs fw-medium text-gray-500">
-                        (17k)
-                      </span> */}
-                    {/* </div> */}
-
-                    {/* <div className="mt-8">
-                      <div
-                        className="progress w-100 bg-color-three rounded-pill h-4"
-                        role="progressbar"
-                        aria-label="Basic example"
-                        aria-valuenow={35}
-                        aria-valuemin={0}
-                        aria-valuemax={100}
-                      >
-                        <div
-                          className="progress-bar bg-main-two-600 rounded-pill"
-                          style={{ width: "35%" }}
-                        />
-                      </div>
-                      <span className="text-gray-900 text-xs fw-medium mt-8">
-                        Sold: {product.stockStatus || 0} 
-                      </span>
-                    </div> */}
+                     
                     {/* ✅ Stock Status */}
                     <div className="mt-8">
                       <div

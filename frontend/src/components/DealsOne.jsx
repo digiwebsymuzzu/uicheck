@@ -223,14 +223,14 @@ const DealsOne = () => {
                         </span>
                       </div>
 
-                      <div className="custom-flex-wrapper">
+                      <div className="w-full flex flex-col items-stretch">
                         <button
                           onClick={() => {
                             if (!product?._id) {
                               toast.error("Product not available");
                               return;
                             }
-                            // Shop page: attributes nahi, bas sale price bhejna
+                            
                             addToCart(
                               product,
                               1,
@@ -251,7 +251,7 @@ const DealsOne = () => {
                                 : null
                             );
                           }}
-                          className="product-card__cart btn bg-btn-primecolor text-light mx-2 hover-text-white py-11 px-10 rounded-8 flex-center gap-8 fw-medium"
+                          className="product-card__cart btn bg-dark text-light hover-bg-main-600 hover-text-white py-3 rounded-8 flex justify-center items-center gap-2 fw-medium w-full text-center text-sm sm:text-base"
                         >
                           Add To Cart <i className="ph ph-shopping-cart" />
                         </button>
@@ -267,7 +267,7 @@ const DealsOne = () => {
                             )}`;
                             window.open(whatsappUrl, "_blank");
                           }}
-                          className="product-card__cart btn bg-success-btn text-light hover-text-white py-11 px-24 rounded-8 flex-center gap-8 fw-medium"
+                          className="product-card__cart btn bg-success-btn text-light hover-text-white py-3 rounded-8 flex justify-center items-center gap-2 fw-medium w-full text-center mt-3 sm:mt-3 text-sm sm:text-base"
                         >
                           <i className="ph ph-whatsapp-logo"></i>
                         </Link>
