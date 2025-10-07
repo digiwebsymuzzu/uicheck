@@ -648,7 +648,7 @@ const ProductDetailsOne = ({ productId }) => {
                 >
                   <div className="row g-4">
                       <div className="col-lg-12">
-                      <div className="d-flex align-items-start gap-24">
+                      <div className="align-items-start gap-24">
                         <div className="d-flex align-items-start gap-24 pb-44 border-bottom border-gray-100 mb-44">
                           <div>
                             {reviews.length === 0 ? (
