@@ -23,20 +23,54 @@ const ShopSection = () => {
   const [activeFilterGroup, setActiveFilterGroup] = useState(null);
   const [selectedFilters, setSelectedFilters] = useState([]);
 
-  useEffect(() => {
-    const fetchCategories = async () => {
-      try {
-        const res = await fetch("https://udemandme.cloud/api/categories");
-        const data = await res.json();
-        if (data.success) {
-          setCategories(data.data); // set categories
+
+    //REPLACE your current useEffect for fetching categories
+useEffect(() => {
+  const fetchCategories = async (pageNum = 1) => {
+    try {
+      const res = await fetch(`http://localhost:5000/api/categories?page=${pageNum}&limit=12`);
+      const data = await res.json();
+      if (data.success) {
+        if (pageNum === 1) {
+          setCategories(data.data);
+        } else {
+          setCategories(prev => [...prev, ...data.data]);
         }
-      } catch (err) {
-        console.error("Error fetching categories:", err);
+        setPages(data.pages || 1);
+        setPage(pageNum);
       }
-    };
-    fetchCategories();
-  }, []);
+    } catch (err) {
+      console.error("Error fetching categories:", err);
+    }
+  };
+  fetchCategories(1);
+}, []);
+
+// Observer to trigger category lazy load
+const categoryObserver = useRef();
+const lastCategoryRef = useCallback(
+  (node) => {
+    if (loading) return;
+    if (categoryObserver.current) categoryObserver.current.disconnect();
+    categoryObserver.current = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting && page < pages) {
+        fetch(`http://localhost:5000/api/categories?page=${page + 1}&limit=12`)
+          .then(res => res.json())
+          .then(data => {
+            if (data.success) {
+              setCategories(prev => [...prev, ...data.data]);
+              setPage(page + 1);
+            }
+          })
+          .catch(err => console.error("Error loading more categories:", err));
+      }
+    });
+    if (node) categoryObserver.current.observe(node);
+  },
+  [page, pages, loading]
+);
+
+
   //   for managing letter case by frontend
   const formatCategoryName = (name) => {
     return name
@@ -233,30 +267,34 @@ const handleFilterSelect = (group, value) => {
                   Product Category
                 </h6>
                 <ul className="max-h-540 overflow-y-auto scroll-sm">
-                  {categories.map((cat) => (
-                    <li key={cat._id} className="mb-24">
-                      <div className="form-check common-check">
-                        <input
-                          type="checkbox"
-                          id={`category-${cat._id}`}
-                          className="form-check-input"
-                          checked={
-                            activeFilterGroup === "category" &&
-                            selectedFilters.includes(cat.name)
-                          }
-                          disabled={activeFilterGroup && activeFilterGroup !== "category"}
-                          onChange={() => handleFilterSelect("category", cat.name)}
-                        />
-                        <label
-                          htmlFor={`category-${cat._id}`}
-                          className="form-check-label text-gray-900 hover-text-main-600"
-                        >
-                          {formatCategoryName(cat.name)}
-                        </label>
-                      </div>
-                    </li>
-                  ))}
-            </ul>
+  {categories.map((cat, index) => (
+    <li
+      key={cat._id}
+      className="mb-24"
+      ref={index === categories.length - 1 ? lastCategoryRef : null} // 👈 attach observer to last
+    >
+      <div className="form-check common-check">
+        <input
+          type="checkbox"
+          id={`category-${cat._id}`}
+          className="form-check-input"
+          checked={
+            activeFilterGroup === "category" &&
+            selectedFilters.includes(cat.name)
+          }
+          disabled={activeFilterGroup && activeFilterGroup !== "category"}
+          onChange={() => handleFilterSelect("category", cat.name)}
+        />
+        <label
+          htmlFor={`category-${cat._id}`}
+          className="form-check-label text-gray-900 hover-text-main-600"
+        >
+          {formatCategoryName(cat.name)}
+        </label>
+      </div>
+    </li>
+  ))}
+</ul>
               </div>
 
               {attributes.map((attr) => (
