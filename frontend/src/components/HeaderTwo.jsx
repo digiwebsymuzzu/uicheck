@@ -132,24 +132,7 @@ const HeaderTwo = ({ category }) => {
   const handleCatClick = (index) => {
     setActiveIndexCat(activeIndexCat === index ? null : index);
   };
-  // const fetchWishlistCount = async () => {
-  //   const token = localStorage.getItem("token");
-  //   if (!token) return;
-
-  //   try {
-  //     const res = await fetch("https://udemandme.cloud/api/whichlist", {
-  //       headers: { Authorization: `Bearer ${token}` },
-  //     });
-  //     const data = await res.json();
-  //     if (data.success) setWishlistCount(data.wishlist.length);
-  //   } catch (err) {
-  //     console.error(err);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   fetchWishlistCount();
-  // }, []);
+  
   useEffect(() => {
     fetchWishlist(); // Page load pe count fetch
   }, []);
@@ -510,172 +493,7 @@ const HeaderTwo = ({ category }) => {
               </Link>
             </div>
             {/* Logo End  */}
-            {/* form Category Start */}
-            <div className="flex-align gap-16">
-              <div className="select-dropdown-for-home-two d-lg-none d-block">
-                {/* Dropdown Select Start */}
-                {/* <ul className="header-top__right style-two flex-align flex-wrap">
-                  <li className="on-hover-item border-right-item border-right-item-sm-space has-submenu arrow-white">
-                 
-                    <Link
-                      to="#"
-                      className="selected-text text-heading text-sm py-8"
-                    >
-                      {selectedLanguage}
-                    </Link>
-                    <ul className="selectable-text-list on-hover-dropdown common-dropdown common-dropdown--sm max-h-200 scroll-sm px-0 py-8">
-                      <li>
-                        <Link
-                          to="#"
-                          className="hover-bg-gray-100 text-gray-500 text-xs py-6 px-16 flex-align gap-8 rounded-0"
-                          onClick={() => handleLanguageChange("English")}
-                        >
-                          <img
-                            src="assets/images/thumbs/flag1.png"
-                            alt="English"
-                            className="w-16 h-12 rounded-4 border border-gray-100"
-                          />
-                          English
-                        </Link>
-                      </li>
-                      <li>
-                        <Link
-                          to="#"
-                          className="hover-bg-gray-100 text-gray-500 text-xs py-6 px-16 flex-align gap-8 rounded-0"
-                          onClick={() => handleLanguageChange("UAE")}
-                        >
-                          <img
-                            src="assets/images/thumbs/flag2.png"
-                            alt="UAE"
-                            className="w-16 h-12 rounded-4 border border-gray-100"
-                          />
-                          UAE
-                        </Link>
-                      </li>
-                    </ul>
-                  </li>
-                  <li className="on-hover-item border-right-item border-right-item-sm-space has-submenu arrow-white">
-                   
-                    <Link
-                      to="#"
-                      className="selected-text text-heading text-sm py-8"
-                    >
-                      {selectedCurrency}
-                    </Link>
-                    <ul className="selectable-text-list on-hover-dropdown common-dropdown common-dropdown--sm max-h-200 scroll-sm px-0 py-8">
-                      <li>
-                        <Link
-                          to="#"
-                          className="hover-bg-gray-100 text-gray-500 text-xs py-6 px-16 flex-align gap-8 rounded-0"
-                          onClick={() => handleCurrencyChange("USD")}
-                        >
-                          <img
-                            src="assets/images/thumbs/flag1.png"
-                            alt="USD"
-                            className="w-16 h-12 rounded-4 border border-gray-100"
-                          />
-                          USD
-                        </Link>
-                      </li>
-                      <li>
-                        <Link
-                          to="#"
-                          className="hover-bg-gray-100 text-gray-500 text-xs py-6 px-16 flex-align gap-8 rounded-0"
-                          onClick={() => handleCurrencyChange("AED")}
-                        >
-                          <img
-                            src="assets/images/thumbs/flag2.png"
-                            alt="AED"
-                            className="w-16 h-12 rounded-4 border border-gray-100"
-                          />
-                          AED
-                        </Link>
-                      </li>
-                    </ul>
-                  </li>
-                </ul> */}
-              </div>
-              <form
-                ref={wrapperRef}
-                className="position-relative w-100"
-                onSubmit={(e) => e.preventDefault()}
-                style={{ maxWidth: "600px", margin: "0 auto" }}
-              >
-                <input
-                  type="text"
-                  className="form-control rounded-pill shadow-sm d-none d-md-block"
-                  placeholder="Search for a product or brand"
-                  value={searchTerm}
-                  onChange={handleChange}
-                  style={{ padding: "12px 20px", width: "60vh" }}
-                />
-
-                {dropdownOpen && searchTerm && (
-                  <div
-                    className="dropdown-menu show w-100 mt-2 shadow-sm d-none d-md-block"
-                    style={{
-                      maxHeight: "350px",
-                      overflowY: "auto",
-                      borderRadius: "0.5rem",
-                    }}
-                  >
-                    {loading && (
-                      <span className="dropdown-item text-muted">
-                        Loading...
-                      </span>
-                    )}
-
-                    {!loading && products.length === 0 && (
-                      <span className="dropdown-item text-muted">
-                        No products found
-                      </span>
-                    )}
-
-                    {!loading &&
-                      products.map((product) => (
-                        <div
-                          key={product._id}
-                          className="d-flex align-items-center p-3 mb-1 rounded shadow-sm"
-                          style={{ cursor: "pointer", backgroundColor: "#fff" }}
-                          onClick={() => handleProductClick(product)}
-                          onMouseEnter={(e) =>
-                            (e.currentTarget.style.backgroundColor = "#f1f3f5")
-                          }
-                          onMouseLeave={(e) =>
-                            (e.currentTarget.style.backgroundColor = "#fff")
-                          }
-                        >
-                          <img
-                            src={product.productMainImage || "/placeholder.png"}
-                            alt={product.productName}
-                            className="rounded me-3"
-                            style={{
-                              width: "60px",
-                              height: "60px",
-                              objectFit: "cover",
-                            }}
-                          />
-                          <div className="flex-grow-1">
-                            <div className="fw-semibold text-dark">
-                              {product.productName}
-                            </div>
-                            {product.productSalePriceInr > 0 ? (
-                              <div className="text-danger fw-bold">
-                                AED {product.productSalePriceInr}
-                              </div>
-                            ) : (
-                              <div className="text-muted">
-                                Price not available
-                              </div>
-                            )}
-                          </div>
-                        </div>
-                      ))}
-                  </div>
-                )}
-              </form>
-            </div>
-            {/* form Category start */}
+            
             {/* Header Middle Right start */}
             <div className="header-right flex-align d-lg-block d-none">
               <div className="header-two-activities flex-align flex-wrap gap-32">
@@ -687,18 +505,6 @@ const HeaderTwo = ({ category }) => {
                     <i className="ph ph-magnifying-glass" />
                   </span>
                 </button>
-                {/* <Link
-                  to="/account"
-                  className="flex-align flex-column gap-8 item-hover-two"
-                >
-                  <span className="text-2xl text-white d-flex position-relative item-hover__text">
-                    <i className="ph ph-user" />
-                  </span>
-
-                  <span className="text-md text-white item-hover__text d-none d-lg-flex">
-                    Profile
-                  </span>
-                </Link> */}
                 {/* if user login then show this  */}
                 {user ? (
                   <div
