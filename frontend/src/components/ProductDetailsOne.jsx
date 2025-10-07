@@ -39,8 +39,6 @@ const ProductDetailsOne = ({ productId }) => {
     focusOnSelect: true,
   };
 
-   
-
   const fetchProduct = async (id) => {
     try {
       const res = await fetch(`https://udemandme.cloud/api/products/${id}`, {
@@ -205,7 +203,11 @@ const ProductDetailsOne = ({ productId }) => {
     <section className="product-details py-80">
       <small style={{ display: "none" }}>Slug: {slug}</small>
       <div className="container container-lg">
+
         <div className="row gy-4">
+
+          {/*First COlumn*/}
+
           <div className="col-lg-9">
             <div className="row gy-4">
               <div className="col-xl-6">
@@ -395,6 +397,9 @@ const ProductDetailsOne = ({ productId }) => {
               </div>
             </div>
           </div>
+
+          {/*Second Column*/}
+
           <div className="col-lg-3">
             <div className="product-details__sidebar border border-gray-100 rounded-16 overflow-hidden">
               <div className="p-24">
@@ -486,7 +491,11 @@ const ProductDetailsOne = ({ productId }) => {
               </div>
             </div>
           </div>
+
         </div>
+
+        {/*Row end Product Up*/}
+
         <div className="pt-80">
           <div className="product-dContent border rounded-24">
             <div className="product-dContent__header border-bottom border-gray-100 flex-between flex-wrap gap-16">
@@ -531,6 +540,7 @@ const ProductDetailsOne = ({ productId }) => {
                 100% Satisfaction Guaranteed
               </Link>
             </div>
+
             <div className="product-dContent__box">
               <div className="tab-content" id="pills-tabContent">
                 <div
@@ -549,10 +559,6 @@ const ProductDetailsOne = ({ productId }) => {
                         ),
                       }}
                     />
-                    {/* <ul className="mt-32">
-                      <li className="text-gray-400 mb-4">Made in USA</li>
-                      <li className="text-gray-400 mb-4">Ready To Eat.</li>
-                    </ul> */}
                   </div>
                   <div className="mb-40">
                     <h6 className="mb-24">Product Specifications</h6>
@@ -621,15 +627,8 @@ const ProductDetailsOne = ({ productId }) => {
                     </ul>
                   </div>
                 </div>
-                <div
-                  className="tab-pane fade"
-                  id="pills-reviews"
-                  role="tabpanel"
-                  aria-labelledby="pills-reviews-tab"
-                  tabIndex={0}
-                >
-                  <div className="row g-4">
-                    <div className="col-lg-12">
+                <div className="row g-4">
+     <div className="col-lg-12">
                       <h6 className="mb-24">Product Description</h6>
                       <div className="d-flex align-items-start gap-24">
                         <div className="d-flex align-items-start gap-24 pb-44 border-bottom border-gray-100 mb-44">
@@ -667,6 +666,8 @@ const ProductDetailsOne = ({ productId }) => {
                             )}
                           </div>
                         </div>
+
+
                         <div className="reviews-list mt-48">
                           {displayedReviews.map((review) => (
                             <div
@@ -720,9 +721,10 @@ const ProductDetailsOne = ({ productId }) => {
                             </div>
                           ))}
                         </div>
-                      </div>
+                      
+
+
                       <div className="mt-56">
-                        <div className="">
                           <h6 className="mb-24">Write a Review</h6>
                           <span className="text-heading mb-8">
                             What is it like to Product?
@@ -741,7 +743,7 @@ const ProductDetailsOne = ({ productId }) => {
                                 onClick={() => setRating(star)}
                                 onMouseEnter={() => setHover(star)}
                                 onMouseLeave={() => setHover(0)}
-                                style={{ fontSize: "28px" }} // ⭐ star size yaha control kar rahe
+                                style={{ fontSize: "28px" }}
                               >
                                 <i className="ph-fill ph-star" />
                               </span>
@@ -755,6 +757,8 @@ const ProductDetailsOne = ({ productId }) => {
                             </p>
                           )}
                         </div>
+
+
                         <div className="mt-32">
                           <form onSubmit={handlereview}>
                             <div className="mb-32">
@@ -793,11 +797,24 @@ const ProductDetailsOne = ({ productId }) => {
                             </button>
                           </form>
                         </div>
-                      </div>
+
+
                     </div>
+
+                    {/*Row End Review*/}
+
+
         </div>
-      </div>
-    </section>
+</div>
+              </div>
+              </div>
+              </div>
+              </div>
+
+              </div>
+              </section>
+      
+   
   );
 };
 
