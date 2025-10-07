@@ -237,23 +237,19 @@ const TopSellingOne = () => {
                               className="text-gray-400 text-md fw-semibold text-decoration-line-through "
                               style={{ marginRight: "6px" }}
                             >
-                              ${product.productRegularPriceInr}
+                              AED {product.productRegularPriceInr}
                             </span>
                             <span className="text-heading text-md fw-semibold ">
-                              ${product.productSalePriceInr}
-                              {/* <span className="text-gray-500 fw-normal">
-															/Qty
-														</span>{" "} */}
+                              AED {product.productSalePriceInr}
                             </span>
                           </div>
-                          <div className="d-flex justify-content-between">
+                          <div className="w-full flex flex-col items-stretch">
                             <button
                               onClick={() => {
                                 if (!product?._id) {
                                   toast.error("Product not available");
                                   return;
                                 }
-                                // Shop page: attributes nahi, bas sale price bhejna
                                 addToCart(
                                   product,
                                   1,
@@ -274,7 +270,7 @@ const TopSellingOne = () => {
                                     : null
                                 );
                               }}
-                              className="product-card__cart btn bg-btn-primecolor text-light  hover-text-white py-11 px-10 rounded-8 flex-center gap-8 fw-medium"
+                              className="product-card__cart btn bg-dark text-light hover-bg-main-600 hover-text-white py-3 rounded-8 flex justify-center items-center gap-2 fw-medium w-full text-center text-sm sm:text-base"
                               tabIndex={0}
                             >
                               Add To Cart <i className="ph ph-shopping-cart" />
@@ -290,7 +286,7 @@ const TopSellingOne = () => {
                                 )}`;
                                 window.open(whatsappUrl, "_blank");
                               }}
-                              className="product-card__cart btn bg-success-btn text-light  hover-text-white py-11 px-15  rounded-8 flex-center gap-8 fw-medium"
+                              className="product-card__cart btn bg-success-btn text-light hover-text-white py-3 rounded-8 flex justify-center items-center gap-2 fw-medium w-full text-center mt-3 sm:mt-3 text-sm sm:text-base"
                               tabIndex={0}
                             >
                               <i className="ph ph-whatsapp-logo"></i>
