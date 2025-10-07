@@ -31,15 +31,6 @@ const Account = () => {
     userreference: "",
     usermessage: "",
   });
-  // const openModal = (order) => {
-  //   setSelectedOrder(order);
-  //   setIsModalOpen(true);
-  // };
-
-  // const closeModal = () => {
-  //   setSelectedOrder(null);
-  //   setIsModalOpen(false);
-  // };
 
   // Handle input change
   const handleQuotationInputChange = (e) => {
@@ -156,11 +147,11 @@ const Account = () => {
   useEffect(() => {
     const fetchProfile = async () => {
       try {
-        const response = await fetch("https://udemandme.cloud/auth/profile", {
+        const response = await fetch("https://udemandme.cloud/api/auth/profile", {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`, // 👈 pass token
+            Authorization: `Bearer ${token}`,
           },
         });
 
@@ -227,7 +218,7 @@ const Account = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch("https://udemandme.cloud/auth/updateprofile", {
+      const response = await fetch("https://udemandme.cloud/api/auth/updateprofile", {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
