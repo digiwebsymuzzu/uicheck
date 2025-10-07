@@ -116,3 +116,36 @@
     background-color: #000000 !important;
 }
 /* ================================= Button Css End =========================== */
+.whatsapp-float {
+  position: fixed;
+  transform: rotate(-90deg);
+  left: -110px;
+  width: 269px;
+  height: auto;
+  text-align: center;
+  padding: 10px;
+  z-index: 9999999;
+  bottom: 40%;
+  background-color: #25d366;
+  align-items: center !important;
+  display: inline-block !important;
+}
+ 
+.whatsapp-logo {
+  width: 28px;
+  height: 28px;
+}
+ 
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .whatsapp-float {
+    padding: 10px;
+    color: #fff;
+  }
+ 
+  .whatsapp-logo {
+    width: 24px;
+    height: 24px;
+  }
+ 
+}
