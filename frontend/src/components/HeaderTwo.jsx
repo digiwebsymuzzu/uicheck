@@ -941,7 +941,7 @@ const HeaderTwo = ({ category }) => {
                     <span className="text-2xl text-white d-flex position-relative me-6 mt-6 item-hover__text">
                       <i className="ph ph-shopping-cart-simple" />
                       <span className="w-16 h-16 flex-center rounded-circle bg-main-two-600 text-white text-xs position-absolute top-n6 end-n4">
-                        2
+                        {token ? cart.length : 0}
                       </span>
                     </span>
                     <span className="text-md text-white item-hover__text d-none d-lg-flex">
