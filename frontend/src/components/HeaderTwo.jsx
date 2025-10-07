@@ -617,17 +617,15 @@ const HeaderTwo = ({ category }) => {
                       <a className="dropdown-item" href="/account">
                         My Profile
                       </a>
-                      <a className="dropdown-item" href="/account">
-                        Orders
-                      </a>
                       <a className="dropdown-item" href="/wishlist">
                         Wishlist
                       </a>
                       <button
                         className="btn bg-btn-primecolor"
                         onClick={handleLogout}
+                        style={{marginLeft:"15px",marginTop:"10px"}}
                       >
-                        Logout
+                        Log Out
                       </button>
                     </div>
                   </div>
