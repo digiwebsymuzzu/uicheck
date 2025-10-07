@@ -493,6 +493,91 @@ const HeaderTwo = ({ category }) => {
               </Link>
             </div>
             {/* Logo End  */}
+
+            {/* Search Start */}
+            <div className="flex-align gap-16">
+   <form
+                ref={wrapperRef}
+                className="position-relative w-100"
+                onSubmit={(e) => e.preventDefault()}
+                style={{ maxWidth: "600px", margin: "0 auto" }}
+              >
+                <input
+                  type="text"
+                  className="form-control rounded-pill shadow-sm d-none d-md-block"
+                  placeholder="Search for a product or brand"
+                  value={searchTerm}
+                  onChange={handleChange}
+                  style={{ padding: "12px 20px", width: "60vh" }}
+                />
+ 
+                {dropdownOpen && searchTerm && (
+                  <div
+                    className="dropdown-menu show w-100 mt-2 shadow-sm d-none d-md-block"
+                    style={{
+                      maxHeight: "350px",
+                      overflowY: "auto",
+                      borderRadius: "0.5rem",
+                    }}
+                  >
+                    {loading && (
+                      <span className="dropdown-item text-muted">
+                        Loading...
+                      </span>
+                    )}
+ 
+                    {!loading && products.length === 0 && (
+                      <span className="dropdown-item text-muted">
+                        No products found
+                      </span>
+                    )}
+ 
+                    {!loading &&
+                      products.map((product) => (
+                        <div
+                          key={product._id}
+                          className="d-flex align-items-center p-3 mb-1 rounded shadow-sm"
+                          style={{ cursor: "pointer", backgroundColor: "#fff" }}
+                          onClick={() => handleProductClick(product)}
+                          onMouseEnter={(e) =>
+                            (e.currentTarget.style.backgroundColor = "#f1f3f5")
+                          }
+                          onMouseLeave={(e) =>
+                            (e.currentTarget.style.backgroundColor = "#fff")
+                          }
+                        >
+                          <img
+                            src={product.productMainImage || "/placeholder.png"}
+                            alt={product.productName}
+                            className="rounded me-3"
+                            style={{
+                              width: "60px",
+                              height: "60px",
+                              objectFit: "cover",
+                            }}
+                          />
+                          <div className="flex-grow-1">
+                            <div className="fw-semibold text-dark">
+                              {product.productName}
+                            </div>
+                            {product.productSalePriceInr > 0 ? (
+                              <div className="text-danger fw-bold">
+                                AED {product.productSalePriceInr}
+                              </div>
+                            ) : (
+                              <div className="text-muted">
+                                Price not available
+                              </div>
+                            )}
+                          </div>
+                        </div>
+                      ))}
+                  </div>
+                )}
+              </form>
+ 
+</div>
+
             
             {/* Header Middle Right start */}
             <div className="header-right flex-align d-lg-block d-none">
