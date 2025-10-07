@@ -114,13 +114,6 @@ const TopSellingTwo = () => {
                 <span className="h6 mb-20 text-white">
                   Unit Clampmeter Multimeter
                 </span>
-                {/* <div className="flex-center gap-12 text-white">
-                  <span className="">FROM</span>
-                  <h4 className="mb-8 text-white">$430</h4>
-                  <span className="badge-style-two position-relative me-8 bg-main-two-600 text-white text-sm py-2 px-8 rounded-4">
-                    20% off
-                  </span>
-                </div> */}
               </div>
               <img
                 src="assets/images/thumbs/sanitary.png"
@@ -183,31 +176,6 @@ const TopSellingTwo = () => {
                               {product.productName}
                             </Link>
                           </h6>
-                          {/* <div className="flex-align gap-6">
-													<div className="flex-align gap-8">
-														<span className="text-15 fw-medium text-warning-600 d-flex">
-															<i className="ph-fill ph-star" />
-														</span>
-														<span className="text-15 fw-medium text-warning-600 d-flex">
-															<i className="ph-fill ph-star" />
-														</span>
-														<span className="text-15 fw-medium text-warning-600 d-flex">
-															<i className="ph-fill ph-star" />
-														</span>
-														<span className="text-15 fw-medium text-warning-600 d-flex">
-															<i className="ph-fill ph-star" />
-														</span>
-														<span className="text-15 fw-medium text-warning-600 d-flex">
-															<i className="ph-fill ph-star" />
-														</span>
-													</div>
-													<span className="text-xs fw-medium text-gray-500">
-														4.8
-													</span>
-													<span className="text-xs fw-medium text-gray-500">
-														(12K)
-													</span>
-												</div> */}
                           <div className="mt-8">
                             <div
                               className="progress w-100 bg-color-three rounded-pill h-4"
