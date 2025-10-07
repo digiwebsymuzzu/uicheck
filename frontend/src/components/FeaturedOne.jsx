@@ -166,7 +166,7 @@ const FeaturedOne = () => {
                                   : "Out of Stock"}
                               </span>
                             </div>
-                            <span className="text-xs h6 primecolor border-bottom border-top pb-1">
+                            <span className="text-xs h6 primecolor pb-1">
                               {product.productCategories
                                 .slice(0, 2)
                                 .map((cat) => cat.name)
@@ -174,12 +174,13 @@ const FeaturedOne = () => {
                             </span>
                             <div className="product-card__price my-20">
                               {product.productRegularPriceInr && (
-                                <span className="text-dark text-md fw-semibold text-decoration-line-through">
-                                  ${product.productRegularPriceInr}
+                                <span className="text-dark text-md fw-semibold text-decoration-line-through"
+                                style={{ marginRight: "6px" }}>
+                                  AED {product.productRegularPriceInr}
                                 </span>
                               )}
                               <span className="text-gray-400 text-md fw-semibold">
-                                ${product.productSalePriceInr}{" "}
+                                AED {product.productSalePriceInr}{" "}
                               </span>
                             </div>
                             <div className="d-flex gap-10">

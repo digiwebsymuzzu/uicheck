@@ -244,9 +244,9 @@ const TopSellingTwo = () => {
                                 : "Out of Stock"}
                             </span>
                           </div>
-                          <span className="py-2 px-8 text-xs rounded-pill text-light bg-main-two-50 mt-16">
+                          <span className="text-xs h6 primecolor pb-1">
                             {product?.productCategories
-                              ?.slice(0, 2) // sirf pehli 2 categories
+                              ?.slice(0, 2)
                               .map((cat) => cat.name)
                               .join(", ")}
                           </span>
@@ -255,13 +255,10 @@ const TopSellingTwo = () => {
                               className="text-gray-400 text-md fw-semibold text-decoration-line-through "
                               style={{ marginRight: "6px" }}
                             >
-                              ${product.productRegularPriceInr}
+                              AED {product.productRegularPriceInr}
                             </span>
                             <span className="text-heading text-md fw-semibold ">
-                              ${product.productSalePriceInr}
-                              {/* <span className="text-gray-500 fw-normal">
-															/Qty
-														</span>{" "} */}
+                              AED {product.productSalePriceInr}
                             </span>
                           </div>
                           <div className="d-flex justify-content-between">
@@ -292,7 +289,7 @@ const TopSellingTwo = () => {
                                     : null
                                 );
                               }}
-                              className="product-card__cart btn bg-btn-primecolor text-light mx-2  hover-text-white py-11 px-10 rounded-8 flex-center gap-8 fw-medium"
+                              className="product-card__cart btn bg-dark text-light hover-bg-main-600 hover-text-white py-3 rounded-8 flex justify-center items-center gap-2 fw-medium w-full text-center text-sm sm:text-base"
                               tabIndex={0}
                             >
                               Add To Cart <i className="ph ph-shopping-cart" />
@@ -308,7 +305,7 @@ const TopSellingTwo = () => {
                                 )}`;
                                 window.open(whatsappUrl, "_blank");
                               }}
-                              className="product-card__cart btn bg-success-btn text-light  hover-text-white py-11 px-24 rounded-8 flex-center gap-8 fw-medium"
+                              className="product-card__cart btn bg-success-btn text-light hover-text-white py-3 rounded-8 flex justify-center items-center gap-2 fw-medium w-full text-center mt-3 sm:mt-3 text-sm sm:text-base"
                               tabIndex={0}
                             >
                               <i className="ph ph-whatsapp-logo"></i>
