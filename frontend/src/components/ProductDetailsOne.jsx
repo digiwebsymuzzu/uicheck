@@ -550,6 +550,9 @@ const ProductDetailsOne = ({ productId }) => {
                   aria-labelledby="pills-description-tab"
                   tabIndex={0}
                 >
+
+                  {/* Product Desc */}
+
                   <div className="mb-40">
                     <h6 className="mb-24">Product Description</h6>
                     <div
@@ -560,6 +563,10 @@ const ProductDetailsOne = ({ productId }) => {
                       }}
                     />
                   </div>
+
+
+                  {/* Product Specification */}
+
                   <div className="mb-40">
                     <h6 className="mb-24">Product Specifications</h6>
                     <ul className="mt-32">
@@ -626,10 +633,21 @@ const ProductDetailsOne = ({ productId }) => {
                       )}
                     </ul>
                   </div>
-                </div>
-                <div className="row g-4">
-     <div className="col-lg-12">
-                      <h6 className="mb-24">Product Description</h6>
+                  
+                  </div>
+
+
+
+
+                  <div
+                  className="tab-pane fade"
+                  id="pills-reviews"
+                  role="tabpanel"
+                  aria-labelledby="pills-reviews-tab"
+                  tabIndex={0}
+                >
+                  <div className="row g-4">
+                      <div className="col-lg-12">
                       <div className="d-flex align-items-start gap-24">
                         <div className="d-flex align-items-start gap-24 pb-44 border-bottom border-gray-100 mb-44">
                           <div>
@@ -805,11 +823,23 @@ const ProductDetailsOne = ({ productId }) => {
 
 
         </div>
-</div>
+                  </div>
+                </div>
+
+                     
+                
+                
               </div>
+
+
+
+              
               </div>
-              </div>
-              </div>
+
+
+
+            </div>
+          </div>
 
               </div>
               </section>
