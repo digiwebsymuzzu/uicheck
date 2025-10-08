@@ -226,7 +226,7 @@ const FooterTwo = () => {
             alt="WhatsApp"
             className="whatsapp-logo me-2"
           />
-          <span className=" d-md-inline fw-semibold">Connect With us</span>
+          <span className=" d-md-inline fw-semibold">Connect With Us</span>
         </a>
 
       </div>
