@@ -406,7 +406,7 @@ const handleFilterSelect = (group, value) => {
                         "assets/images/thumbs/productu.png" // fallback
                       }
                       alt={product.productName}
-                      className="w-auto max-w-unset product-img"
+                      className="w-auto"
                     />
                    
                     {new Date(product.createdAt) >
