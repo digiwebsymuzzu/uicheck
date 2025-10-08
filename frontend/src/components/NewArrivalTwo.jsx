@@ -154,7 +154,7 @@ const NewArrivalTwo = () => {
                     <Link
   to="#"
   onClick={() => {
-    const productUrl = `${window.location.origin}/product/${item.productSlug}`;
+    const productUrl = `${window.location.origin}/product-details/${item.productSlug}`;
     const message = `Check out this product:\n\n${item.productName}\n${productUrl}`;
 
     const whatsappUrl = `https://wa.me/971502530888?text=${encodeURIComponent(message)}`;
