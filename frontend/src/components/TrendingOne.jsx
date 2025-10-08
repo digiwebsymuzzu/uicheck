@@ -97,8 +97,8 @@ const TrendingOne = () => {
                         "assets/images/thumbs/productu.png"
                       }
                       alt={product.productName || "Product Image"}
-                      className="w-auto"
-                      style={{maxWidth:"50%!important"}}
+                      className="w-auto ok-ok"
+                      style={{ width: "50%!important", maxWidth: "50%!important" }}
                     />
                   </Link>
 
