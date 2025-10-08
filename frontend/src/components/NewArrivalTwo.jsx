@@ -151,20 +151,22 @@ const NewArrivalTwo = () => {
                       Add To Cart <i className="ph ph-shopping-cart" />
                     </button>
 
-                     <Link
-  to="#"
-  onClick={() => {
-    const productUrl = `${window.location.origin}/product-details/${product.productSlug}`;
-    const message = `Check out this product: ${product.productName}\n${productUrl}`;
+                    <Link
+                      to="/"
+                      onClick={() => {
+                        const productUrl = `${window.location.origin}/product/${item.slug}`;
+                        const message = `Check out this product:\n\n*${item.productName}*\n${productUrl}\n\nImage: ${item.productMainImage}`;
 
-    // WhatsApp link for a specific number
-    const whatsappUrl = `https://wa.me/971502530888?text=${encodeURIComponent(message)}`;
-    window.open(whatsappUrl, "_blank");
-  }}
-  className="product-card__cart btn bg-success-btn text-light hover-text-white py-3 rounded-8 flex justify-center items-center gap-2 fw-medium w-full text-center mt-3 sm:mt-3 text-sm sm:text-base"
->
-  <i className="ph ph-whatsapp-logo"></i>
-</Link>
+                        const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(
+                          message
+                        )}`;
+                        window.open(whatsappUrl, "_blank");
+                      }}
+                      className="product-card__cart btn bg-success-btn text-light hover-text-white py-3 rounded-8 flex justify-center items-center gap-2 fw-medium w-full text-center mt-3 sm:mt-3 text-sm sm:text-base"
+                      tabIndex={0}
+                    >
+                      <i className="ph ph-whatsapp-logo"></i>
+                    </Link>
                   </div>
                 </div>
               </div>
