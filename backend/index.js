@@ -5,8 +5,6 @@ require("dotenv").config();
 require("./Models/db");
 const bodyParser = require("body-parser");
 const cors = require("cors");
-const path = require("path");
-const __dirname1 = path.resolve();
 
 const AuthRouter = require("./Routes/AuthRouter.js");
 const categoryRoutes = require("./Routes/Category");
@@ -45,13 +43,6 @@ app.use("/api/dewalt", dewaltroutes);
 app.use("/api/safety", safetyroutes);
 app.use("/api/welding", weldingroutes);
 app.use("/api/brand", brandroutes);
-
-app.use(express.static(path.join(__dirname1, "/client/build")));
-
-app.get("*", (req, res) => {
-  res.sendFile(path.resolve(__dirname1, "client", "build", "index.html"));
-});
-
 
 app.get("/mohafiz", (req, res) => {
   res.send("hello mohafiz this is your world ");
