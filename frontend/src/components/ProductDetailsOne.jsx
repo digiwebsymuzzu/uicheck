@@ -378,7 +378,7 @@ const ProductDetailsOne = ({ productId }) => {
                       <Link
   to="#"
   onClick={() => {
-    const productUrl = `${window.location.origin}/product/${product.productSlug}`;
+    const productUrl = `${window.location.origin}/product-details/${product.productSlug}`;
     const message = `Check out this product:\n\n${product.productName}\n${productUrl}`;
 
     const whatsappUrl = `https://wa.me/971502530888?text=${encodeURIComponent(message)}`;
