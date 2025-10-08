@@ -165,21 +165,10 @@ const TopSellingOne = () => {
                               "assets/images/thumbs/productu.png"
                             }
                             alt={product.productName}
-                            className="w-auto max-w-unset product-img"
+                            className="w-auto"
                           />
                         </Link>
                         <div className="product-card__content mt-16">
-                          {/* <div className="flex-align gap-6">
-													<span className="text-xs fw-medium text-gray-500">
-														4.8
-													</span>
-													<span className="text-15 fw-medium text-warning-600 d-flex">
-														<i className="ph-fill ph-star" />
-													</span>
-													<span className="text-xs fw-medium text-gray-500">
-														(17k)
-													</span>
-												</div> */}
                           <h6 className="title text-lg fw-semibold mt-12 mb-8">
                             <Link
                               to={`/product-details/${product.productSlug}`}

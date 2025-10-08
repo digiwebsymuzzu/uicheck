@@ -98,6 +98,7 @@ const TrendingOne = () => {
                       }
                       alt={product.productName || "Product Image"}
                       className="w-auto"
+                      style={{maxWidth:"50%!important"}}
                     />
                   </Link>
 

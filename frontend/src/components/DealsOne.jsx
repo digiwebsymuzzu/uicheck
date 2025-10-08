@@ -150,7 +150,7 @@ const DealsOne = () => {
                           "assets/images/thumbs/productu.png"
                         }
                         alt={product.productName}
-                        className="w-auto max-w-unset product-img"
+                        className="w-auto"
                       />
                     </Link>
 
