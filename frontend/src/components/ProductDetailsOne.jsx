@@ -376,20 +376,19 @@ const ProductDetailsOne = ({ productId }) => {
                         <i className="ph ph-shopping-cart" /> Add To Cart
                       </button>
                       <Link
-                        to="#"
-                        onClick={() => {
-                          const productUrl = `${window.location.origin}/product/${product.slug}`;
-                          const message = `Check out this product:\n\n*${product.productName}*\n${productUrl}\n\nImage: ${product.productMainImage}`;
+  to="#"
+  onClick={() => {
+    const productUrl = `${window.location.origin}/product/${product.slug}`;
+    const message = `Check out this product:\n\n${product.productName}\n${productUrl}`;
 
-                          const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(
-                            message
-                          )}`;
-                          window.open(whatsappUrl, "_blank");
-                        }}
-                        className="btn bg-success-btn rounded-pill flex-align d-inline-flex gap-8 "
-                      >
-                        <i className="ph ph-whatsapp-logo" /> Order on WhatsApp
-                      </Link>
+    const whatsappUrl = `https://wa.me/971502530888?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, "_blank");
+  }}
+  className="btn bg-success-btn rounded-pill flex-align d-inline-flex gap-8"
+>
+  <i className="ph ph-whatsapp-logo" /> Order on WhatsApp
+</Link>
+
                     </div>
                   </div>
                   <span className="mt-32 pt-32 text-gray-700 border-top border-gray-100 d-block" />
