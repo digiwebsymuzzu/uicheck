@@ -108,11 +108,6 @@
     padding: 90px !important;
     margin-top: 18px !important;
   }
-
-  .macimg {
-    width: 50% !important;
-    max-width: 50% !important;
-  }
 }
 
 /* Mobile (≤768px) */
@@ -120,10 +115,6 @@
   .product-img {
     padding: 90px !important;
     margin-top: 16px !important;
-  }
-  .macimg {
-    width: 50% !important;
-    max-width: 50% !important;
   }
 }
 
@@ -133,15 +124,18 @@
     padding: 90px !important;
     margin-top: 12px !important;
   }
-  .macimg {
-    width: 50% !important;
-    max-width: 50% !important;
-  }
 }
 
 .macimg {
   width: 50% !important;
   max-width: 50% !important;
+}
+
+@media screen and (max-width: 1199px) {
+  .macimg {
+    width: 20% !important;
+    max-width: 50% !important;
+  }
 }
 
 /* ============================= Product Card Css End ========================== */
