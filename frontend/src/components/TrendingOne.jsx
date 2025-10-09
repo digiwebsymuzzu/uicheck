@@ -118,21 +118,6 @@ const TrendingOne = () => {
                       </Link>
                     </h6>
 
-                    <div className="flex-align gap-6">
-                      {/* <div className="flex-align gap-8">
-              {[...Array(5)].map((_, i) => (
-                <span key={i} className="text-15 fw-medium text-warning-600 d-flex">
-                  <i className="ph-fill ph-star" />
-                </span>
-              ))}
-            </div> */}
-                      {/* <span className="text-xs fw-medium text-gray-500">
-              {product.rating || 4.8}
-            </span>
-            <span className="text-xs fw-medium text-gray-500">
-              ({product.reviews || "12K"})
-            </span> */}
-                    </div>
                     <div className="mt-8">
                       <div
                         className="progress w-100 bg-color-three rounded-pill h-4"
@@ -218,20 +203,21 @@ const TrendingOne = () => {
                       </button>
 
                       <Link
-                        to="#"
-                        onClick={() => {
-                          const productUrl = `${window.location.origin}/product/${product.slug}`;
-                          const message = `Check out this product:\n\n*${product.productName}*\n${productUrl}\n\nImage: ${product.productMainImage}`;
+  to="#"
+  onClick={() => {
+    const productUrl = `${window.location.origin}/product-details/${product.slug}`;
+    const message = `Check out this product:\n\n*${product.productName}*\n${productUrl}`;
 
-                          const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(
-                            message
-                          )}`;
-                          window.open(whatsappUrl, "_blank");
-                        }}
-                        className="product-card__cart btn bg-success-btn text-light hover-text-white py-3 rounded-8 flex justify-center items-center gap-2 fw-medium w-full text-center mt-3 sm:mt-3 text-sm sm:text-base"
-                      >
-                        <i className="ph ph-whatsapp-logo"></i>
-                      </Link>
+    const whatsappUrl = `https://wa.me/971502530888?text=${encodeURIComponent(
+      message
+    )}`;
+    window.open(whatsappUrl, "_blank");
+  }}
+  className="product-card__cart btn bg-success-btn text-light hover-text-white py-3 rounded-8 flex justify-center items-center gap-2 fw-medium w-full text-center mt-3 sm:mt-3 text-sm sm:text-base"
+>
+  <i className="ph ph-whatsapp-logo"></i>
+</Link>
+
                     </div>
                   </div>
                 </div>
