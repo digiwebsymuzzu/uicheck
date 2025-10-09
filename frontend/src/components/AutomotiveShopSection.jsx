@@ -23,53 +23,57 @@ const ShopSection = () => {
   const [activeFilterGroup, setActiveFilterGroup] = useState(null);
   const [selectedFilters, setSelectedFilters] = useState([]);
 
-
-    //REPLACE your current useEffect for fetching categories
-useEffect(() => {
-  const fetchCategories = async (pageNum = 1) => {
-    try {
-      const res = await fetch(`http://localhost:5000/api/categories?page=${pageNum}&limit=12`);
-      const data = await res.json();
-      if (data.success) {
-        if (pageNum === 1) {
-          setCategories(data.data);
-        } else {
-          setCategories(prev => [...prev, ...data.data]);
+  //REPLACE your current useEffect for fetching categories
+  useEffect(() => {
+    const fetchCategories = async (pageNum = 1) => {
+      try {
+        const res = await fetch(
+          `https://udemandme.cloud/api/categories?page=${pageNum}&limit=12`
+        );
+        const data = await res.json();
+        if (data.success) {
+          if (pageNum === 1) {
+            setCategories(data.data);
+          } else {
+            setCategories((prev) => [...prev, ...data.data]);
+          }
+          setPages(data.pages || 1);
+          setPage(pageNum);
         }
-        setPages(data.pages || 1);
-        setPage(pageNum);
+      } catch (err) {
+        console.error("Error fetching categories:", err);
       }
-    } catch (err) {
-      console.error("Error fetching categories:", err);
-    }
-  };
-  fetchCategories(1);
-}, []);
+    };
+    fetchCategories(1);
+  }, []);
 
-// Observer to trigger category lazy load
-const categoryObserver = useRef();
-const lastCategoryRef = useCallback(
-  (node) => {
-    if (loading) return;
-    if (categoryObserver.current) categoryObserver.current.disconnect();
-    categoryObserver.current = new IntersectionObserver((entries) => {
-      if (entries[0].isIntersecting && page < pages) {
-        fetch(`http://localhost:5000/api/categories?page=${page + 1}&limit=12`)
-          .then(res => res.json())
-          .then(data => {
-            if (data.success) {
-              setCategories(prev => [...prev, ...data.data]);
-              setPage(page + 1);
-            }
-          })
-          .catch(err => console.error("Error loading more categories:", err));
-      }
-    });
-    if (node) categoryObserver.current.observe(node);
-  },
-  [page, pages, loading]
-);
-
+  // Observer to trigger category lazy load
+  const categoryObserver = useRef();
+  const lastCategoryRef = useCallback(
+    (node) => {
+      if (loading) return;
+      if (categoryObserver.current) categoryObserver.current.disconnect();
+      categoryObserver.current = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting && page < pages) {
+          fetch(
+            `https://udemandme.cloud/api/categories?page=${page + 1}&limit=12`
+          )
+            .then((res) => res.json())
+            .then((data) => {
+              if (data.success) {
+                setCategories((prev) => [...prev, ...data.data]);
+                setPage(page + 1);
+              }
+            })
+            .catch((err) =>
+              console.error("Error loading more categories:", err)
+            );
+        }
+      });
+      if (node) categoryObserver.current.observe(node);
+    },
+    [page, pages, loading]
+  );
 
   //   for managing letter case by frontend
   const formatCategoryName = (name) => {
@@ -109,42 +113,42 @@ const lastCategoryRef = useCallback(
     }
   };
 
-const fetchProducts = async (pageToLoad = 1) => {
-  setLoading(true);
-  try {
-    const superParentName = "automotive";
-    const limit = 40; // Load 40 products at a time
+  const fetchProducts = async (pageToLoad = 1) => {
+    setLoading(true);
+    try {
+      const superParentName = "automotive";
+      const limit = 40; // Load 40 products at a time
 
-    const res = await fetch(
-      `https://udemandme.cloud/api/products/superparent/${superParentName}?page=${pageToLoad}&limit=${limit}`,
-      {
-        headers: {
-          "Content-Type": "application/json",
-        },
+      const res = await fetch(
+        `https://udemandme.cloud/api/products/superparent/${superParentName}?page=${pageToLoad}&limit=${limit}`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      const data = await res.json();
+
+      if (data.success) {
+        const formattedProducts = data.products.map((product) => ({
+          ...product,
+          productCategories: product.categories || [], // consistent mapping
+        }));
+
+        // Append new products to existing list
+        setProducts((prev) => [...prev, ...formattedProducts]);
+        setPages(data.pages); // total pages from API
+        setPage(data.page); // current page from API
+      } else {
+        console.error(data.message || "Failed to fetch products");
       }
-    );
-
-    const data = await res.json();
-
-    if (data.success) {
-      const formattedProducts = data.products.map((product) => ({
-        ...product,
-        productCategories: product.categories || [], // consistent mapping
-      }));
-
-      // Append new products to existing list
-      setProducts((prev) => [...prev, ...formattedProducts]);
-      setPages(data.pages); // total pages from API
-      setPage(data.page); // current page from API
-    } else {
-      console.error(data.message || "Failed to fetch products");
+    } catch (err) {
+      console.error("Error fetching products:", err);
+    } finally {
+      setLoading(false);
     }
-  } catch (err) {
-    console.error("Error fetching products:", err);
-  } finally {
-    setLoading(false);
-  }
-};
+  };
 
   useEffect(() => {
     fetchProducts(page);
@@ -192,60 +196,58 @@ const fetchProducts = async (pageToLoad = 1) => {
     [loading, page, pages]
   );
 
-
   // Filter
-const handleFilterSelect = (group, value) => {
-  if (!activeFilterGroup || activeFilterGroup === group) {
-    let newSelected = [];
-    if (selectedFilters.includes(value)) {
-      newSelected = selectedFilters.filter(v => v !== value); // deselect
-    } else {
-      newSelected = [...selectedFilters, value]; // select
-    }
-    setSelectedFilters(newSelected);
+  const handleFilterSelect = (group, value) => {
+    if (!activeFilterGroup || activeFilterGroup === group) {
+      let newSelected = [];
+      if (selectedFilters.includes(value)) {
+        newSelected = selectedFilters.filter((v) => v !== value); // deselect
+      } else {
+        newSelected = [...selectedFilters, value]; // select
+      }
+      setSelectedFilters(newSelected);
 
-    if (newSelected.length === 0) {
-      setActiveFilterGroup(null); // reset if nothing selected
+      if (newSelected.length === 0) {
+        setActiveFilterGroup(null); // reset if nothing selected
+      } else {
+        setActiveFilterGroup(group);
+      }
     } else {
+      // switching to a new group
       setActiveFilterGroup(group);
+      setSelectedFilters([value]);
     }
-  } else {
-    // switching to a new group
-    setActiveFilterGroup(group);
-    setSelectedFilters([value]);
-  }
-};
+  };
 
+  useEffect(() => {
+    if (activeFilterGroup && selectedFilters.length > 0) {
+      const params = new URLSearchParams({
+        page: 1,
+        limit: 20,
+      });
 
- useEffect(() => {
-  if (activeFilterGroup && selectedFilters.length > 0) {
-    const params = new URLSearchParams({
-      page: 1,
-      limit: 20,
-    });
+      if (activeFilterGroup === "category") {
+        params.append("category", selectedFilters.join(","));
+      } else {
+        params.append("attribute", activeFilterGroup);
+        params.append("values", selectedFilters.join(","));
+      }
 
-    if (activeFilterGroup === 'category') {
-      params.append('category', selectedFilters.join(','));
-    } else {
-      params.append('attribute', activeFilterGroup);
-      params.append('values', selectedFilters.join(','));
+      fetch(`https://udemandme.cloud/api/products/filter?${params.toString()}`)
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.success) {
+            setProducts(data.products);
+            setPages(data.pages);
+            setPage(1);
+          }
+        })
+        .catch((err) => console.error(err));
+    } else if (!activeFilterGroup) {
+      // No filter → fetch default products
+      fetchProducts(1);
     }
-
-    fetch(`http://localhost:5000/api/products/filter?${params.toString()}`)
-      .then(res => res.json())
-      .then(data => {
-        if (data.success) {
-          setProducts(data.products);
-          setPages(data.pages);
-          setPage(1);
-        }
-      })
-      .catch(err => console.error(err));
-  } else if (!activeFilterGroup) {
-    // No filter → fetch default products
-    fetchProducts(1);
-  }
-}, [selectedFilters, activeFilterGroup]);
+  }, [selectedFilters, activeFilterGroup]);
 
   return (
     <section className="shop py-80">
@@ -284,34 +286,41 @@ const handleFilterSelect = (group, value) => {
                   Product Category
                 </h6>
                 <ul className="max-h-540 overflow-y-auto scroll-sm">
-  {categories.map((cat, index) => (
-    <li
-      key={cat._id}
-      className="mb-24"
-      ref={index === categories.length - 1 ? lastCategoryRef : null} // 👈 attach observer to last
-    >
-      <div className="form-check common-check">
-        <input
-          type="checkbox"
-          id={`category-${cat._id}`}
-          className="form-check-input"
-          checked={
-            activeFilterGroup === "category" &&
-            selectedFilters.includes(cat.name)
-          }
-          disabled={activeFilterGroup && activeFilterGroup !== "category"}
-          onChange={() => handleFilterSelect("category", cat.name)}
-        />
-        <label
-          htmlFor={`category-${cat._id}`}
-          className="form-check-label text-gray-900 hover-text-main-600"
-        >
-          {formatCategoryName(cat.name)}
-        </label>
-      </div>
-    </li>
-  ))}
-</ul>
+                  {categories.map((cat, index) => (
+                    <li
+                      key={cat._id}
+                      className="mb-24"
+                      ref={
+                        index === categories.length - 1 ? lastCategoryRef : null
+                      } // 👈 attach observer to last
+                    >
+                      <div className="form-check common-check">
+                        <input
+                          type="checkbox"
+                          id={`category-${cat._id}`}
+                          className="form-check-input"
+                          checked={
+                            activeFilterGroup === "category" &&
+                            selectedFilters.includes(cat.name)
+                          }
+                          disabled={
+                            activeFilterGroup &&
+                            activeFilterGroup !== "category"
+                          }
+                          onChange={() =>
+                            handleFilterSelect("category", cat.name)
+                          }
+                        />
+                        <label
+                          htmlFor={`category-${cat._id}`}
+                          className="form-check-label text-gray-900 hover-text-main-600"
+                        >
+                          {formatCategoryName(cat.name)}
+                        </label>
+                      </div>
+                    </li>
+                  ))}
+                </ul>
               </div>
 
               {attributes.map((attr) => (
@@ -322,36 +331,38 @@ const handleFilterSelect = (group, value) => {
                   <h6 className="text-xl border-bottom border-gray-100 pb-24 mb-24">
                     Filter by {displayName(attr.name)}
                   </h6>
-                   <ul className="max-h-540 overflow-y-auto scroll-sm">
-      {attr.items.map((item, index) => (
-        <li key={item.id || index} className="mb-24">
-          <div className="form-check common-check">
-            <input
-              type="checkbox"
-              id={`${attr.slug}-${index}`}
-              className="form-check-input"
-              checked={
-                activeFilterGroup === attr.name &&
-                selectedFilters.includes(item.name)
-              }
-              disabled={
-                activeFilterGroup && activeFilterGroup !== attr.name
-              }
-              onChange={() => handleFilterSelect(attr.name, item.name)}
-            />
-            <label
-              htmlFor={`${attr.slug}-${index}`}
-              className="form-check-label"
-            >
-              {item.name}
-            </label>
-          </div>
-        </li>
-      ))}
-    </ul>
+                  <ul className="max-h-540 overflow-y-auto scroll-sm">
+                    {attr.items.map((item, index) => (
+                      <li key={item.id || index} className="mb-24">
+                        <div className="form-check common-check">
+                          <input
+                            type="checkbox"
+                            id={`${attr.slug}-${index}`}
+                            className="form-check-input"
+                            checked={
+                              activeFilterGroup === attr.name &&
+                              selectedFilters.includes(item.name)
+                            }
+                            disabled={
+                              activeFilterGroup &&
+                              activeFilterGroup !== attr.name
+                            }
+                            onChange={() =>
+                              handleFilterSelect(attr.name, item.name)
+                            }
+                          />
+                          <label
+                            htmlFor={`${attr.slug}-${index}`}
+                            className="form-check-label"
+                          >
+                            {item.name}
+                          </label>
+                        </div>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               ))}
-
             </div>
           </div>
           {/* Sidebar End */}
@@ -425,7 +436,7 @@ const handleFilterSelect = (group, value) => {
                       alt={product.productName}
                       className="w-auto"
                     />
-                   
+
                     {new Date(product.createdAt) >
                       new Date(Date.now() - 7 * 24 * 60 * 60 * 1000) && (
                       <span className="product-card__badge bg-primary-600 px-8 py-4 text-sm text-white position-absolute inset-inline-start-0 inset-block-start-0">
@@ -449,7 +460,6 @@ const handleFilterSelect = (group, value) => {
                       </Link>
                     </h6>
 
-                     
                     {/* ✅ Stock Status */}
                     <div className="mt-8">
                       <div
@@ -532,27 +542,26 @@ const handleFilterSelect = (group, value) => {
                       </button>
 
                       <Link
-  to="#"
-  onClick={() => {
-    const productUrl = `${window.location.origin}/product-details/${product.productSlug}`;
-    const message = `Check out this product: ${product.productName}\n${productUrl}`;
+                        to="#"
+                        onClick={() => {
+                          const productUrl = `${window.location.origin}/product-details/${product.productSlug}`;
+                          const message = `Check out this product: ${product.productName}\n${productUrl}`;
 
-    // WhatsApp link for a specific number
-    const whatsappUrl = `https://wa.me/971502530888?text=${encodeURIComponent(message)}`;
-    window.open(whatsappUrl, "_blank");
-  }}
-  className="product-card__cart btn bg-success-btn text-light hover-text-white py-3 rounded-8 flex justify-center items-center gap-2 fw-medium w-full text-center mt-3 sm:mt-3 text-sm sm:text-base"
->
-  <i className="ph ph-whatsapp-logo"></i>
-</Link>
+                          // WhatsApp link for a specific number
+                          const whatsappUrl = `https://wa.me/971502530888?text=${encodeURIComponent(
+                            message
+                          )}`;
+                          window.open(whatsappUrl, "_blank");
+                        }}
+                        className="product-card__cart btn bg-success-btn text-light hover-text-white py-3 rounded-8 flex justify-center items-center gap-2 fw-medium w-full text-center mt-3 sm:mt-3 text-sm sm:text-base"
+                      >
+                        <i className="ph ph-whatsapp-logo"></i>
+                      </Link>
                     </div>
                   </div>
                 </div>
               ))}
-    
-    </div>
-
-
+            </div>
 
             {/* Pagination Start */}
             <div>
