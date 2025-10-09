@@ -39,35 +39,34 @@ const ProductDetailsOne = ({ productId }) => {
     focusOnSelect: true,
   };
 
-  const fetchProduct = async (id) => {
-    try {
-      const res = await fetch(`https://udemandme.cloud/api/products/${id}`, {
-        headers: { "Content-Type": "application/json" },
-      });
+ const fetchProduct = async () => {
+  try {
+    const res = await fetch(`http://localhost:5000/api/products/slug/${slug}`, {
+      headers: { "Content-Type": "application/json" },
+    });
 
-      const data = await res.json();
+    const data = await res.json();
 
-      if (data.success) {
-        setProduct(data.product);
-        // Set main image from DB
-        if (data.product.productImages?.length > 0) {
-          setMainImage(data.product.productImages[0]);
-        } else {
-          setMainImage(data.product.productMainImage || "");
-        }
+    if (data.success) {
+      setProduct(data.product);
+
+      // Set main image from DB
+      if (data.product.productImages?.length > 0) {
+        setMainImage(data.product.productImages[0]);
       } else {
-        console.error(data.message || "Failed to fetch product");
+        setMainImage(data.product.productMainImage || "");
       }
-    } catch (err) {
-      console.error("Error fetching product:", err);
+    } else {
+      console.error(data.message || "Failed to fetch product");
     }
-  };
+  } catch (err) {
+    console.error("Error fetching product:", err);
+  }
+};
 
-  useEffect(() => {
-    if (id) {
-      fetchProduct(id);
-    }
-  }, [id]);
+useEffect(() => {
+  fetchProduct();
+}, [slug]);
 
   const handleAddToCart = () => {
     const selectedAttrs = Object.entries(selectedAttributes).map(
