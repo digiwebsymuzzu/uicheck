@@ -67,9 +67,35 @@ const ProductDetailsOne = ({ productId }) => {
     }
   };
 
+  const fetchReviews = async (productId) => {
+    try {
+      const res = await axios.get(
+        `https://udemandme.cloud/api/reviews/product/${productId}`
+      );
+
+      if (res.data.success) {
+        setReviews(res.data.reviews);
+        console.log("✅ Reviews fetched:", res.data.reviews);
+      } else {
+        console.error("❌ Failed to fetch reviews:", res.data.message);
+      }
+    } catch (err) {
+      console.error(
+        "❌ Error fetching reviews:",
+        err.response?.data || err.message
+      );
+    }
+  };
+
   useEffect(() => {
     fetchProduct();
   }, [slug]);
+
+  useEffect(() => {
+    if (product?._id) {
+      fetchReviews(product._id);
+    }
+  }, [product]);
 
   const handleAddToCart = () => {
     const selectedAttrs = Object.entries(selectedAttributes).map(
@@ -642,16 +668,17 @@ const ProductDetailsOne = ({ productId }) => {
                   <div className="row g-4">
                     <div className="col-lg-12">
                       <div className="align-items-start gap-24">
-                        <div className="d-flex align-items-start gap-24 pb-44 border-bottom border-gray-100 mb-44">
-                          <div>
-                            {reviews.length === 0 ? (
-                              <p className="text-muted">No reviews yet.</p>
-                            ) : (
-                              reviews.slice(0, 2).map((review) => (
-                                <div
-                                  key={review._id}
-                                  className="flex-grow-1 border-bottom pb-32 mb-32"
-                                >
+                        <div className="reviews-list mt-48">
+                          {displayedReviews.map((review) => (
+                            <div
+                              key={review._id}
+                              className="flex-grow-1 border-bottom pb-32 mb-32"
+                            >
+                              <div className="flex-between align-items-start gap-8">
+                                <div>
+                                  <h6 className="mb-12 text-md">
+                                    {review.user?.firstName || "Anonymous"}
+                                  </h6>
                                   <div className="flex-align gap-8">
                                     {[1, 2, 3, 4, 5].map((star) => (
                                       <span
@@ -666,16 +693,17 @@ const ProductDetailsOne = ({ productId }) => {
                                       </span>
                                     ))}
                                   </div>
-                                  <h6 className="mb-14 text-md mt-24">
-                                    {review.reviewTitle}
-                                  </h6>
-                                  <p className="text-gray-700">
-                                    {review.reviewText}
-                                  </p>
                                 </div>
-                              ))
-                            )}
-                          </div>
+                              </div>
+
+                              <h6 className="mb-14 text-md mt-24">
+                                {review.reviewTitle}
+                              </h6>
+                              <p className="text-gray-700">
+                                {review.reviewText}
+                              </p>
+                            </div>
+                          ))}
                         </div>
 
                         <div className="reviews-list mt-48">

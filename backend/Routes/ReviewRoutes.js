@@ -8,7 +8,8 @@ const { authMiddleware } = require("../Middlewares/Auth");
 
 // Add new review
 router.post("/add", authMiddleware, addReview);
-// GET => get all reviews for a product
-router.get("/:productId", getReviewsByProduct);
+
+// Get reviews by product ID
+router.get("/product/:productId", getReviewsByProduct);
 
 module.exports = router;
