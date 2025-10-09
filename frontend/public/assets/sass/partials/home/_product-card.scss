@@ -108,6 +108,11 @@
     padding: 90px !important;
     margin-top: 18px !important;
   }
+
+  .macimg {
+    width: 50% !important;
+    max-width: 50% !important;
+  }
 }
 
 /* Mobile (≤768px) */
@@ -116,6 +121,10 @@
     padding: 90px !important;
     margin-top: 16px !important;
   }
+  .macimg {
+    width: 50% !important;
+    max-width: 50% !important;
+  }
 }
 
 /* Small Mobile (≤480px) */
@@ -123,6 +132,10 @@
   .product-img {
     padding: 90px !important;
     margin-top: 12px !important;
+  }
+  .macimg {
+    width: 50% !important;
+    max-width: 50% !important;
   }
 }
 
