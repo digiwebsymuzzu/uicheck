@@ -265,16 +265,15 @@ const TopSellingTwo = () => {
                             <Link
                               to="#"
                               onClick={() => {
-                                const productUrl = `${window.location.origin}/product/${product.slug}`;
-                                const message = `Check out this product:\n\n*${product.productName}*\n${productUrl}\n\nImage: ${product.productMainImage}`;
+                                const productUrl = `${window.location.origin}/product-details/${product.productSlug}`;
+                                const message = `Check out this product:\n\n*${product.productName}*\n${productUrl}`;
 
-                                const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(
+                                const whatsappUrl = `https://wa.me/971502530888?text=${encodeURIComponent(
                                   message
                                 )}`;
                                 window.open(whatsappUrl, "_blank");
                               }}
                               className="product-card__cart btn bg-success-btn text-light hover-text-white py-3 rounded-8 flex justify-center items-center gap-2 fw-medium w-full text-center mt-3 sm:mt-3 text-sm sm:text-base"
-                              tabIndex={0}
                             >
                               <i className="ph ph-whatsapp-logo"></i>
                             </Link>

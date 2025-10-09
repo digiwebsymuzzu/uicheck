@@ -230,7 +230,7 @@ const DealsOne = () => {
                               toast.error("Product not available");
                               return;
                             }
-                            
+
                             addToCart(
                               product,
                               1,
@@ -259,10 +259,10 @@ const DealsOne = () => {
                         <Link
                           to="#"
                           onClick={() => {
-                            const productUrl = `${window.location.origin}/product/${product.slug}`;
-                            const message = `Check out this product:\n\n*${product.productName}*\n${productUrl}\n\nImage: ${product.productMainImage}`;
+                            const productUrl = `${window.location.origin}/product-details/${product.productSlug}`;
+                            const message = `Check out this product:\n\n*${product.productName}*\n${productUrl}`;
 
-                            const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(
+                            const whatsappUrl = `https://wa.me/971502530888?text=${encodeURIComponent(
                               message
                             )}`;
                             window.open(whatsappUrl, "_blank");
