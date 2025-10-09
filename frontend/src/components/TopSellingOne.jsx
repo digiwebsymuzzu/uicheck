@@ -202,18 +202,6 @@ const TopSellingOne = () => {
                                 }}
                               />
                             </div>
-
-                            <span
-                              className={`text-xs fw-medium mt-8 d-block ${
-                                product.productStock > 0
-                                  ? "text-success"
-                                  : "text-danger"
-                              }`}
-                            >
-                              {product.productStock > 0
-                                ? "In Stock"
-                                : "Out of Stock"}
-                            </span>
                           </div>
                           <span className="text-xs h6 primecolor  pb-1">
                             {product?.productCategories
