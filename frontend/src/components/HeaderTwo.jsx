@@ -132,7 +132,7 @@ const HeaderTwo = ({ category }) => {
   const handleCatClick = (index) => {
     setActiveIndexCat(activeIndexCat === index ? null : index);
   };
-  
+
   useEffect(() => {
     fetchWishlist(); // Page load pe count fetch
   }, []);
@@ -496,7 +496,7 @@ const HeaderTwo = ({ category }) => {
 
             {/* Search Start */}
             <div className="flex-align gap-16">
-   <form
+              <form
                 ref={wrapperRef}
                 className="position-relative w-100"
                 onSubmit={(e) => e.preventDefault()}
@@ -510,7 +510,7 @@ const HeaderTwo = ({ category }) => {
                   onChange={handleChange}
                   style={{ padding: "12px 20px", width: "60vh" }}
                 />
- 
+
                 {dropdownOpen && searchTerm && (
                   <div
                     className="dropdown-menu show w-100 mt-2 shadow-sm d-none d-md-block"
@@ -525,13 +525,13 @@ const HeaderTwo = ({ category }) => {
                         Loading...
                       </span>
                     )}
- 
+
                     {!loading && products.length === 0 && (
                       <span className="dropdown-item text-muted">
                         No products found
                       </span>
                     )}
- 
+
                     {!loading &&
                       products.map((product) => (
                         <div
@@ -575,10 +575,8 @@ const HeaderTwo = ({ category }) => {
                   </div>
                 )}
               </form>
- 
-</div>
+            </div>
 
-            
             {/* Header Middle Right start */}
             <div className="header-right flex-align d-lg-block d-none">
               <div className="header-two-activities flex-align flex-wrap gap-32">
@@ -623,7 +621,7 @@ const HeaderTwo = ({ category }) => {
                       <button
                         className="btn bg-btn-primecolor"
                         onClick={handleLogout}
-                        style={{marginLeft:"15px",marginTop:"10px"}}
+                        style={{ marginLeft: "15px", marginTop: "10px" }}
                       >
                         Log Out
                       </button>
@@ -682,7 +680,6 @@ const HeaderTwo = ({ category }) => {
                     </div>
                   </div>
                 )}
-                
 
                 <Link
                   to="/wishlist"

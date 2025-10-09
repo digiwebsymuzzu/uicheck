@@ -159,8 +159,10 @@ const TrendingOne = () => {
 
                     <div className="product-card__price mt-16 mb-30">
                       {product.productRegularPriceInr && (
-                        <span className="text-gray-400 text-md fw-semibold text-decoration-line-through"
-                        style={{ marginRight: "6px" }}>
+                        <span
+                          className="text-gray-400 text-md fw-semibold text-decoration-line-through"
+                          style={{ marginRight: "6px" }}
+                        >
                           AED {product.productRegularPriceInr}
                         </span>
                       )}
@@ -203,21 +205,20 @@ const TrendingOne = () => {
                       </button>
 
                       <Link
-  to="#"
-  onClick={() => {
-    const productUrl = `${window.location.origin}/product-details/${product.slug}`;
-    const message = `Check out this product:\n\n*${product.productName}*\n${productUrl}`;
+                        to="#"
+                        onClick={() => {
+                          const productUrl = `${window.location.origin}/product-details/${product.productSlug}`;
+                          const message = `Check out this product:\n\n*${product.productName}*\n${productUrl}`;
 
-    const whatsappUrl = `https://wa.me/971502530888?text=${encodeURIComponent(
-      message
-    )}`;
-    window.open(whatsappUrl, "_blank");
-  }}
-  className="product-card__cart btn bg-success-btn text-light hover-text-white py-3 rounded-8 flex justify-center items-center gap-2 fw-medium w-full text-center mt-3 sm:mt-3 text-sm sm:text-base"
->
-  <i className="ph ph-whatsapp-logo"></i>
-</Link>
-
+                          const whatsappUrl = `https://wa.me/971502530888?text=${encodeURIComponent(
+                            message
+                          )}`;
+                          window.open(whatsappUrl, "_blank");
+                        }}
+                        className="product-card__cart btn bg-success-btn text-light hover-text-white py-3 rounded-8 flex justify-center items-center gap-2 fw-medium w-full text-center mt-3 sm:mt-3 text-sm sm:text-base"
+                      >
+                        <i className="ph ph-whatsapp-logo"></i>
+                      </Link>
                     </div>
                   </div>
                 </div>

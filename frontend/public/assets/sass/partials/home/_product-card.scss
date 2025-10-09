@@ -4,7 +4,7 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;
- 
+
   &__cart {
     width: 100%; // ✅ full width on all screens
     text-align: center;
@@ -12,33 +12,33 @@
     padding: 12px 0 !important; // ✅ no horizontal padding dependency
     border-radius: 8px;
     transition: all 0.3s ease;
- 
+
     // Hover effect like Flipkart
     &:hover {
       transform: translateY(-2px);
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     }
- 
+
     @include md-screen {
       font-size: 14px;
       padding: 12px 0 !important;
     }
- 
+
     @include xxl-screen {
       font-size: 15px;
       padding: 14px 0 !important;
     }
   }
- 
+
   &__badge {
     border-radius: 16px 0 16px 0;
   }
- 
+
   &__thumb {
     height: 232px;
     width: 100%;
     transition: 0s !important;
- 
+
     img {
       max-width: 160px;
       width: 100%;
@@ -46,19 +46,19 @@
       object-fit: contain;
     }
   }
- 
+
   &.style-two {
     flex-direction: row;
- 
+
     .product-card {
       &__thumb {
         width: 260px;
         height: 190px;
- 
+
         @include md-screen {
           width: 190px;
         }
- 
+
         @include msm-screen {
           width: 124px;
         }
@@ -66,7 +66,7 @@
     }
   }
 }
- 
+
 @include lg-screen {
   .product-card {
     &__thumb {
@@ -90,7 +90,7 @@
     }
   }
 }
- 
+
 /* ✅ Product Image Styling (Responsive) */
 .product-img {
   display: block; /* image ko line-break force karega */
@@ -101,7 +101,7 @@
   margin-top: 22px !important;
   margin-bottom: 10px !important;
 }
- 
+
 /* Tablet (≤1024px) */
 @media (max-width: 1024px) {
   .product-img {
@@ -109,7 +109,7 @@
     margin-top: 18px !important;
   }
 }
- 
+
 /* Mobile (≤768px) */
 @media (max-width: 768px) {
   .product-img {
@@ -117,7 +117,7 @@
     margin-top: 16px !important;
   }
 }
- 
+
 /* Small Mobile (≤480px) */
 @media (max-width: 480px) {
   .product-img {
@@ -126,9 +126,9 @@
   }
 }
 
-.macimg{
-  width: 50%!important;
-  max-width: 50%!important;
+.macimg {
+  width: 50% !important;
+  max-width: 50% !important;
 }
 
 /* ============================= Product Card Css End ========================== */
