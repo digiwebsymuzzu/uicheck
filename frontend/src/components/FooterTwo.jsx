@@ -21,6 +21,32 @@ const FooterTwo = () => {
                 products—from electronics and fashion to everyday
                 essentials—delivered right to your doorstep.
               </p>
+              <ul class="flex-align gap-16">
+                <li>
+                  <a
+                    class="w-44 h-44 flex-center bg-main-two-50 text-main-two-600 text-xl rounded-8 hover-bg-main-two-600 hover-text-white"
+                    href="https://www.facebook.com/photo/?fbid=122104726082963804&set=a.122104732628963804"
+                  >
+                    <i class="ph-fill ph-facebook-logo"></i>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    class="w-44 h-44 flex-center bg-main-two-50 text-main-two-600 text-xl rounded-8 hover-bg-main-two-600 hover-text-white"
+                    href="https://www.instagram.com/p/DNBGAqwzwd0/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="
+                  >
+                    <i class="ph-fill ph-instagram-logo"></i>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    class="w-44 h-44 flex-center bg-main-two-50 text-main-two-600 text-xl rounded-8 hover-bg-main-two-600 hover-text-white"
+                    href="https://www.linkedin.com/posts/udemandme2_gasregulator-ajman-dubai-activity-7358867910699737088-KEAi?utm_source=share&utm_medium=member_desktop&rcm=ACoAAF0vXbcBJ25p_EZfNmvL94sCT8HxieOiINQ"
+                  >
+                    <i class="ph-fill ph-linkedin-logo"></i>
+                  </a>
+                </li>
+              </ul>
             </div>
           </div>
 
@@ -228,7 +254,6 @@ const FooterTwo = () => {
           />
           <span className=" d-md-inline fw-semibold">Connect With Us</span>
         </a>
-
       </div>
     </footer>
   );
