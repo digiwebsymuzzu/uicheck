@@ -41,7 +41,7 @@ const ProductDetailsOne = ({ productId }) => {
 
   const fetchProduct = async (id) => {
     try {
-      const res = await fetch(`https://udemandme.com/api/products/${id}`, {
+      const res = await fetch(`https://udemandme.cloud/api/products/${id}`, {
         headers: { "Content-Type": "application/json" },
       });
 
