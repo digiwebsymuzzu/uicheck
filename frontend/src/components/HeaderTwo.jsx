@@ -933,6 +933,18 @@ const HeaderTwo = ({ category }) => {
                   {/* Login Dropdown */}
 
                   <Link
+                    to="/login"
+                    className="flex-align flex-column gap-8 item-hover-two"
+                  >
+                    <span className="text-2xl text-white d-flex position-relative item-hover__text">
+                      <i className="ph ph-user" />
+                    </span>
+                    <span className="text-md text-white item-hover__text d-none d-lg-flex">
+                      Profile
+                    </span>
+                  </Link>
+
+                  <Link
                     to="/cart"
                     className="flex-align flex-column gap-8 item-hover-two"
                   >
