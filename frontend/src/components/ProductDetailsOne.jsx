@@ -69,6 +69,32 @@ const ProductDetailsOne = ({ productId }) => {
     }
   }, [id]);
 
+  const fetchReviews = async (productId) => {
+    try {
+      const res = await axios.get(
+        `https://udemandme.cloud/api/reviews/product/${productId}`
+      );
+
+      if (res.data.success) {
+        setReviews(res.data.reviews);
+        console.log("✅ Reviews fetched:", res.data.reviews);
+      } else {
+        console.error("❌ Failed to fetch reviews:", res.data.message);
+      }
+    } catch (err) {
+      console.error(
+        "❌ Error fetching reviews:",
+        err.response?.data || err.message
+      );
+    }
+  };
+
+  useEffect(() => {
+    if (product?._id) {
+      fetchReviews(product._id);
+    }
+  }, [product]);
+
   const handleAddToCart = () => {
     const selectedAttrs = Object.entries(selectedAttributes).map(
       ([attrName, val]) => ({

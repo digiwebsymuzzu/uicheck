@@ -24,4 +24,20 @@ router.get("/:id", getProductById);
 // GET /api/products/search?name=iphone
 router.get("/product/search", searchProducts);
 
+router.get("/slug/:slug", async (req, res) => {
+  try {
+    const product = await Product.findOne({ productSlug: req.params.slug });
+    if (!product) {
+      return res
+        .status(404)
+        .json({ success: false, message: "Product not found" });
+    }
+
+    res.status(200).json({ success: true, product });
+  } catch (error) {
+    console.error("Error fetching product by slug:", error);
+    res.status(500).json({ success: false, message: "Server error" });
+  }
+});
+
 module.exports = router;
