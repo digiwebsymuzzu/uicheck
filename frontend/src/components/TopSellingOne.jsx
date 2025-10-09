@@ -179,33 +179,19 @@ const TopSellingOne = () => {
                               {product.productName}
                             </Link>
                           </h6>
-                          <div className="mt-8">
-                            <div
-                              className="progress w-100 bg-color-three rounded-pill h-4"
-                              role="progressbar"
-                              aria-label="Stock"
-                              aria-valuenow={product.productStock}
-                              aria-valuemin={0}
-                              aria-valuemax={100}
-                            >
-                              <div
-                                className={`progress-bar rounded-pill ${
-                                  product.productStock > 0
-                                    ? "bg-success"
-                                    : "bg-danger"
-                                }`}
-                                style={{
-                                  width: `${Math.min(
-                                    product.productStock,
-                                    100
-                                  )}%`,
-                                }}
-                              />
-                            </div>
+
+                          <div class="flex-align gap-4">
+                            <span class="text-tertiary-600 text-md d-flex">
+                              <i class="ph-fill ph-storefront"></i>
+                            </span>
+                            <span class="text-gray-500 text-xs">
+                              By UdemandMe
+                            </span>
                           </div>
+
                           <span className="text-xs h6 primecolor  pb-1">
                             {product?.productCategories
-                              ?.slice(0, 2) // sirf pehli 2 categories
+                              ?.slice(0, 2)
                               .map((cat) => cat.name)
                               .join(", ")}
                           </span>
