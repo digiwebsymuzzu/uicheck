@@ -39,34 +39,37 @@ const ProductDetailsOne = ({ productId }) => {
     focusOnSelect: true,
   };
 
- const fetchProduct = async () => {
-  try {
-    const res = await fetch(`http://localhost:5000/api/products/slug/${slug}`, {
-      headers: { "Content-Type": "application/json" },
-    });
+  const fetchProduct = async () => {
+    try {
+      const res = await fetch(
+        `https://udemandme.cloud/api/products/slug/${slug}`,
+        {
+          headers: { "Content-Type": "application/json" },
+        }
+      );
 
-    const data = await res.json();
+      const data = await res.json();
 
-    if (data.success) {
-      setProduct(data.product);
+      if (data.success) {
+        setProduct(data.product);
 
-      // Set main image from DB
-      if (data.product.productImages?.length > 0) {
-        setMainImage(data.product.productImages[0]);
+        // Set main image from DB
+        if (data.product.productImages?.length > 0) {
+          setMainImage(data.product.productImages[0]);
+        } else {
+          setMainImage(data.product.productMainImage || "");
+        }
       } else {
-        setMainImage(data.product.productMainImage || "");
+        console.error(data.message || "Failed to fetch product");
       }
-    } else {
-      console.error(data.message || "Failed to fetch product");
+    } catch (err) {
+      console.error("Error fetching product:", err);
     }
-  } catch (err) {
-    console.error("Error fetching product:", err);
-  }
-};
+  };
 
-useEffect(() => {
-  fetchProduct();
-}, [slug]);
+  useEffect(() => {
+    fetchProduct();
+  }, [slug]);
 
   const handleAddToCart = () => {
     const selectedAttrs = Object.entries(selectedAttributes).map(
@@ -202,9 +205,7 @@ useEffect(() => {
     <section className="product-details py-80">
       <small style={{ display: "none" }}>Slug: {slug}</small>
       <div className="container container-lg">
-
         <div className="row gy-4">
-
           {/*First COlumn*/}
 
           <div className="col-lg-9">
@@ -375,20 +376,20 @@ useEffect(() => {
                         <i className="ph ph-shopping-cart" /> Add To Cart
                       </button>
                       <Link
-  to="#"
-  onClick={() => {
-    const productUrl = `${window.location.origin}/product-details/${product.productSlug}`;
-    const message = `Check out this product:\n\n${product.productName}\n${productUrl}`;
+                        to="#"
+                        onClick={() => {
+                          const productUrl = `${window.location.origin}/product-details/${product.productSlug}`;
+                          const message = `Check out this product:\n\n${product.productName}\n${productUrl}`;
 
-    const whatsappUrl = `https://wa.me/971502530888?text=${encodeURIComponent(message)}`;
-    window.open(whatsappUrl, "_blank");
-  }}
-  className="btn bg-success-btn rounded-pill flex-align d-inline-flex gap-8"
->
-  <i className="ph ph-whatsapp-logo" /> Order on WhatsApp
-</Link>
-
-
+                          const whatsappUrl = `https://wa.me/971502530888?text=${encodeURIComponent(
+                            message
+                          )}`;
+                          window.open(whatsappUrl, "_blank");
+                        }}
+                        className="btn bg-success-btn rounded-pill flex-align d-inline-flex gap-8"
+                      >
+                        <i className="ph ph-whatsapp-logo" /> Order on WhatsApp
+                      </Link>
                     </div>
                   </div>
                   <span className="mt-32 pt-32 text-gray-700 border-top border-gray-100 d-block" />
@@ -490,7 +491,6 @@ useEffect(() => {
               </div>
             </div>
           </div>
-
         </div>
 
         {/*Row end Product Up*/}
@@ -549,7 +549,6 @@ useEffect(() => {
                   aria-labelledby="pills-description-tab"
                   tabIndex={0}
                 >
-
                   {/* Product Desc */}
 
                   <div className="mb-40">
@@ -562,7 +561,6 @@ useEffect(() => {
                       }}
                     />
                   </div>
-
 
                   {/* Product Specification */}
 
@@ -632,13 +630,9 @@ useEffect(() => {
                       )}
                     </ul>
                   </div>
-                  
-                  </div>
+                </div>
 
-
-
-
-                  <div
+                <div
                   className="tab-pane fade"
                   id="pills-reviews"
                   role="tabpanel"
@@ -646,7 +640,7 @@ useEffect(() => {
                   tabIndex={0}
                 >
                   <div className="row g-4">
-                      <div className="col-lg-12">
+                    <div className="col-lg-12">
                       <div className="align-items-start gap-24">
                         <div className="d-flex align-items-start gap-24 pb-44 border-bottom border-gray-100 mb-44">
                           <div>
@@ -683,7 +677,6 @@ useEffect(() => {
                             )}
                           </div>
                         </div>
-
 
                         <div className="reviews-list mt-48">
                           {displayedReviews.map((review) => (
@@ -738,10 +731,8 @@ useEffect(() => {
                             </div>
                           ))}
                         </div>
-                      
 
-
-                      <div className="mt-56">
+                        <div className="mt-56">
                           <h6 className="mb-24">Write a Review</h6>
                           <span className="text-heading mb-8">
                             What is it like to Product?
@@ -774,7 +765,6 @@ useEffect(() => {
                             </p>
                           )}
                         </div>
-
 
                         <div className="mt-32">
                           <form onSubmit={handlereview}>
@@ -814,36 +804,18 @@ useEffect(() => {
                             </button>
                           </form>
                         </div>
+                      </div>
 
-
+                      {/*Row End Review*/}
                     </div>
-
-                    {/*Row End Review*/}
-
-
-        </div>
                   </div>
                 </div>
-
-                     
-                
-                
               </div>
-
-
-
-              
-              </div>
-
-
-
             </div>
           </div>
-
-              </div>
-              </section>
-      
-   
+        </div>
+      </div>
+    </section>
   );
 };
 
