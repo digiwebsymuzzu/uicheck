@@ -39,20 +39,16 @@ const ProductDetailsOne = ({ productId }) => {
     focusOnSelect: true,
   };
 
-  const fetchProduct = async () => {
+  const fetchProduct = async (id) => {
     try {
-      const res = await fetch(
-        `https://udemandme.cloud/api/products/slug/${slug}`,
-        {
-          headers: { "Content-Type": "application/json" },
-        }
-      );
+      const res = await fetch(`https://udemandme.com/api/products/${id}`, {
+        headers: { "Content-Type": "application/json" },
+      });
 
       const data = await res.json();
 
       if (data.success) {
         setProduct(data.product);
-
         // Set main image from DB
         if (data.product.productImages?.length > 0) {
           setMainImage(data.product.productImages[0]);
@@ -66,6 +62,12 @@ const ProductDetailsOne = ({ productId }) => {
       console.error("Error fetching product:", err);
     }
   };
+
+  useEffect(() => {
+    if (id) {
+      fetchProduct(id);
+    }
+  }, [id]);
 
   const fetchReviews = async (productId) => {
     try {
@@ -86,10 +88,6 @@ const ProductDetailsOne = ({ productId }) => {
       );
     }
   };
-
-  useEffect(() => {
-    fetchProduct();
-  }, [slug]);
 
   useEffect(() => {
     if (product?._id) {
