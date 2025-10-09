@@ -180,7 +180,10 @@ const TopSellingOne = () => {
                             </Link>
                           </h6>
 
-                          <div class="flex-align gap-4">
+                          <div
+                            class="flex-align gap-4"
+                            style={{ marginTop: "20px", marginBottom: "10px" }}
+                          >
                             <span class="text-tertiary-600 text-md d-flex">
                               <i class="ph-fill ph-storefront"></i>
                             </span>
@@ -195,7 +198,7 @@ const TopSellingOne = () => {
                               .map((cat) => cat.name)
                               .join(", ")}
                           </span>
-                          <div className="product-card__price my-20">
+                          <div className="product-card__price mb-20">
                             <span
                               className="text-gray-400 text-md fw-semibold text-decoration-line-through "
                               style={{ marginRight: "6px" }}
