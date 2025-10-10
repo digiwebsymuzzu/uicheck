@@ -708,7 +708,7 @@ const ProductDetailsOne = ({ productId }) => {
                           ))}
                         </div>
 
-                        <div className="reviews-list mt-48">
+                        {/* <div className="reviews-list mt-48">
                           {displayedReviews.map((review) => (
                             <div
                               key={review._id}
@@ -749,7 +749,7 @@ const ProductDetailsOne = ({ productId }) => {
                               </p>
                             </div>
                           ))}
-                        </div>
+                        </div> */}
 
                         <div className="mt-56">
                           <h6 className="mb-24">Write a Review</h6>
