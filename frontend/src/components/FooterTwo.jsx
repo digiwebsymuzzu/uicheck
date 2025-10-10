@@ -25,7 +25,7 @@ const FooterTwo = () => {
                 <li>
                   <a
                     class="w-44 h-44 flex-center bg-main-two-50 text-white text-xl rounded-8 hover-bg-main-two-600 hover-text-white"
-                    href="https://www.facebook.com/photo/?fbid=122104726082963804&set=a.122104732628963804"
+                    href="https://www.facebook.com/share/1A92seP43P/?mibextid=wwXIfr"
                   >
                     <i class="ph-fill ph-facebook-logo"></i>
                   </a>
@@ -33,7 +33,7 @@ const FooterTwo = () => {
                 <li>
                   <a
                     class="w-44 h-44 flex-center bg-main-two-50 text-white text-xl rounded-8 hover-bg-main-two-600 hover-text-white"
-                    href="https://www.instagram.com/p/DNBGAqwzwd0/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="
+                    href="https://www.instagram.com/u_demandme?igsh=ZmI3ZzQyNGdzOWo0"
                   >
                     <i class="ph-fill ph-instagram-logo"></i>
                   </a>
@@ -41,7 +41,7 @@ const FooterTwo = () => {
                 <li>
                   <a
                     class="w-44 h-44 flex-center bg-main-two-50 text-white text-xl rounded-8 hover-bg-main-two-600 hover-text-white"
-                    href="https://www.linkedin.com/posts/udemandme2_gasregulator-ajman-dubai-activity-7358867910699737088-KEAi?utm_source=share&utm_medium=member_desktop&rcm=ACoAAF0vXbcBJ25p_EZfNmvL94sCT8HxieOiINQ"
+                    href="https://www.linkedin.com/company/udemandme2/"
                   >
                     <i class="ph-fill ph-linkedin-logo"></i>
                   </a>
