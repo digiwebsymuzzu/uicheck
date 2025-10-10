@@ -679,7 +679,7 @@ const ProductDetailsOne = ({ productId }) => {
                               <div className="flex-between align-items-start gap-8">
                                 <div>
                                   <h6 className="mb-12 text-md">
-                                    {review.user?.firstName || "Anonymous"}
+                                    {review.user?.firstName}
                                   </h6>
                                   <div className="flex-align gap-8">
                                     {[1, 2, 3, 4, 5].map((star) => (
@@ -717,7 +717,7 @@ const ProductDetailsOne = ({ productId }) => {
                               <div className="flex-between align-items-start gap-8">
                                 <div>
                                   <h6 className="mb-12 text-md">
-                                    {review.userId?.name || "Anonymous"}
+                                    {review.userId?.name}
                                   </h6>
                                   <div className="flex-align gap-8">
                                     {[1, 2, 3, 4, 5].map((star) => (
@@ -747,17 +747,6 @@ const ProductDetailsOne = ({ productId }) => {
                               <p className="text-gray-700">
                                 {review.reviewText}
                               </p>
-
-                              <div className="flex-align gap-20 mt-44">
-                                <button className="flex-align gap-12 text-gray-700 hover-text-main-600">
-                                  <i className="ph-bold ph-thumbs-up" />
-                                  Like
-                                </button>
-                                <span className="flex-align gap-12 text-gray-700">
-                                  <i className="ph-bold ph-arrow-bend-up-left" />
-                                  Reply
-                                </span>
-                              </div>
                             </div>
                           ))}
                         </div>
