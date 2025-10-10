@@ -147,13 +147,16 @@ const Account = () => {
   useEffect(() => {
     const fetchProfile = async () => {
       try {
-        const response = await fetch("https://udemandme.cloud/api/auth/profile", {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-        });
+        const response = await fetch(
+          "https://udemandme.cloud/api/auth/profile",
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
 
         if (!response.ok) {
           throw new Error("Unauthorized or expired token");
@@ -218,19 +221,22 @@ const Account = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch("https://udemandme.cloud/api/auth/updateprofile", {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({
-          firstName: user.firstName,
-          lastName: user.lastName,
-          dob: user.dob,
-          phone: phone,
-        }),
-      });
+      const response = await fetch(
+        "https://udemandme.cloud/api/auth/updateprofile",
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({
+            firstName: user.firstName,
+            lastName: user.lastName,
+            dob: user.dob,
+            phone: phone,
+          }),
+        }
+      );
 
       const result = await response.json();
       if (result.success) {
@@ -520,6 +526,7 @@ const Account = () => {
                         value={phone} // 👈 state value = database field "phone"
                         onChange={(newPhone) => setPhone(newPhone)} // 👈 update phone state
                         containerClass="w-100"
+                        inputClass="phone-custom-input"
                         inputProps={{
                           id: "phone",
                           name: "phone", // 👈 keep same as database field
@@ -908,6 +915,7 @@ const Account = () => {
                     onChange={handleQuotationPhoneChange}
                     inputProps={{ name: "userphone", required: true }}
                     containerClass="w-100"
+                    inputClass="phone-custom-input"
                   />
                 </div>
 

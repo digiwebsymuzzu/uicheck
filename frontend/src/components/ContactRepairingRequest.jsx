@@ -57,7 +57,7 @@ const ContactRepairingRequest = () => {
                           country={"ae"} // Default country (India in this case)
                           value={phone}
                           onChange={(phone) => setPhone(phone)}
-                          inputClass=""
+                          inputClass="phone-custom-input"
                           containerClass="w-100"
                           inputProps={{
                             name: "phone",
