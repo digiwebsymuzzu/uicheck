@@ -68,10 +68,8 @@ const ProductDetailsOne = ({ productId }) => {
   };
 
   useEffect(() => {
-    if (id) {
-      fetchProduct(id);
-    }
-  }, [id]);
+    fetchProduct();
+  }, [slug]);
 
   const fetchReviews = async (productId) => {
     try {
@@ -707,49 +705,6 @@ const ProductDetailsOne = ({ productId }) => {
                             </div>
                           ))}
                         </div>
-
-                        {/* <div className="reviews-list mt-48">
-                          {displayedReviews.map((review) => (
-                            <div
-                              key={review._id}
-                              className="flex-grow-1 border-bottom pb-32 mb-32"
-                            >
-                              <div className="flex-between align-items-start gap-8">
-                                <div>
-                                  <h6 className="mb-12 text-md">
-                                    {review.userId?.name}
-                                  </h6>
-                                  <div className="flex-align gap-8">
-                                    {[1, 2, 3, 4, 5].map((star) => (
-                                      <span
-                                        key={star}
-                                        className={`text-15 fw-medium d-flex ${
-                                          review.rating >= star
-                                            ? "text-warning-600"
-                                            : "text-gray-400"
-                                        }`}
-                                      >
-                                        <i className="ph-fill ph-star" />
-                                      </span>
-                                    ))}
-                                  </div>
-                                </div>
-                                <span className="text-gray-800 text-xs">
-                                  {new Date(
-                                    review.createdAt
-                                  ).toLocaleDateString()}
-                                </span>
-                              </div>
-
-                              <h6 className="mb-14 text-md mt-24">
-                                {review.reviewTitle}
-                              </h6>
-                              <p className="text-gray-700">
-                                {review.reviewText}
-                              </p>
-                            </div>
-                          ))}
-                        </div> */}
 
                         <div className="mt-56">
                           <h6 className="mb-24">Write a Review</h6>
