@@ -878,7 +878,7 @@ const HeaderTwo = ({ category }) => {
                   </li>
                   <li className="on-hover-item nav-menu__item ">
                     <Link to="/sanitary" className="nav-menu__link">
-                      Sanitary
+                      Electronics
                     </Link>
                   </li>
                   <li
