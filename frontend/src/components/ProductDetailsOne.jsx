@@ -21,6 +21,35 @@ const ProductDetailsOne = ({ productId }) => {
   const [hover, setHover] = useState(0); // Hover highlight ke liye
   const [reviews, setReviews] = useState([]);
 
+  // Descp Design
+  const cleanHTML = DOMPurify.sanitize(product?.productShortDescription || "", {
+    ALLOWED_TAGS: [
+      "p",
+      "br",
+      "b",
+      "strong",
+      "i",
+      "em",
+      "ul",
+      "ol",
+      "li",
+      "a",
+      "table",
+      "thead",
+      "tbody",
+      "tr",
+      "th",
+      "td",
+      "span",
+      "div",
+      "button",
+      "colgroup",
+      "col",
+    ],
+    ALLOWED_ATTR: ["href", "rel", "target", "src", "alt", "title"], // keep useful attributes
+    FORBID_ATTR: ["style", "class", "id"], // remove inline styles and classes
+  });
+
   // sirf first 2 reviews
   const displayedReviews = reviews.slice(0, 2);
 
@@ -288,10 +317,9 @@ const ProductDetailsOne = ({ productId }) => {
                   <span className="mt-32 pt-32 text-gray-700 border-top border-gray-100 d-block" />
                   <h6 className="mb-24">Product Short Description</h6>
                   <div
+                    className="proshortdesp"
                     dangerouslySetInnerHTML={{
-                      __html: DOMPurify.sanitize(
-                        product?.productShortDescription
-                      ),
+                      __html: cleanHTML,
                     }}
                   />
 
