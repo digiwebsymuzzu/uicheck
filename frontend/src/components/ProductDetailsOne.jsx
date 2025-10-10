@@ -306,7 +306,7 @@ const ProductDetailsOne = ({ productId }) => {
               </div>
               <div className="col-xl-6">
                 <div className="product-details__content">
-                  <h5 className="mb-12">{product?.productName}</h5>
+                  <h5 className="mb-12 prodtit">{product?.productName}</h5>
                   <div className="flex-align flex-wrap gap-12">
                     <span className="text-gray-900">
                       {" "}
@@ -314,7 +314,7 @@ const ProductDetailsOne = ({ productId }) => {
                       {product?.productSku}{" "}
                     </span>
                   </div>
-                  <span className="mt-32 pt-32 text-gray-700 border-top border-gray-100 d-block" />
+                  <span className="mt-12 pt-12 text-gray-700 border-top border-gray-100 d-block" />
                   <h6 className="mb-24">Product Short Description</h6>
                   <div
                     className="proshortdesp"
