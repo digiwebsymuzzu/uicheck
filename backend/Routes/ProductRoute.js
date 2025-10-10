@@ -18,12 +18,7 @@ router.get("/", getProducts);
 // Explicit super parent category route — put BEFORE /:id
 router.get("/superparent/:superParentName", getProductsBySuperparent);
 
-// @route GET /api/products/:id
-router.get("/:id", getProductById);
-
-// GET /api/products/search?name=iphone
-router.get("/product/search", searchProducts);
-
+// URL
 router.get("/slug/:slug", async (req, res) => {
   try {
     const product = await Product.findOne({ productSlug: req.params.slug });
@@ -39,5 +34,11 @@ router.get("/slug/:slug", async (req, res) => {
     res.status(500).json({ success: false, message: "Server error" });
   }
 });
+
+// @route GET /api/products/:id
+router.get("/:id", getProductById);
+
+// GET /api/products/search?name=iphone
+router.get("/product/search", searchProducts);
 
 module.exports = router;
