@@ -1,119 +1,125 @@
 /* ================================= Button Css Start =========================== */
-.btn-check:checked+.btn, .btn.active, .btn.show, .btn:first-child:active, :not(.btn-check)+.btn:active {
-    color: none;
-    background-color: none;
-    border-color: none;
+.btn-check:checked + .btn,
+.btn.active,
+.btn.show,
+.btn:first-child:active,
+:not(.btn-check) + .btn:active {
+  color: none;
+  background-color: none;
+  border-color: none;
 }
 
 .btn {
-    position: relative;
-    border-radius: 5px;
-    border: 1px solid transparent;
-    font-weight: 500;
-    font-family: var(--body-font);
+  position: relative;
+  border-radius: 5px;
+  border: 1px solid transparent;
+  font-weight: 500;
+  font-family: var(--body-font);
+  color: hsl(var(--white)) !important;
+  z-index: 1;
+  line-height: 1;
+  padding: 13px 24px;
+  &:hover,
+  &:focus,
+  &:focus-visible {
+    box-shadow: none !important;
+  }
+  @include xl-screen {
+    padding: 10px 20px;
+    font-size: rem(14px);
+  }
+  &-sm {
+    padding: 10px 16px !important;
+  }
+  &:active {
+    transform: scale(1.01);
+  }
+  // ============= Different Color Button Start ==================
+  &-main {
+    background-color: #bc0101 !important;
+    border-color: hsl(var(--main)) !important;
+    &:hover {
+      background-color: black !important;
+      border-color: black !important;
+    }
+  }
+  &-outline-main {
+    background-color: transparent !important;
+    border-color: hsl(var(--main)) !important;
+    color: hsl(var(--main)) !important;
+    &:hover {
+      background-color: hsl(var(--main) / 0.15) !important;
+      border-color: hsl(var(--main) / 0.4) !important;
+    }
+  }
+  &-main-two {
+    background-color: hsl(var(--main-two)) !important;
+    border-color: hsl(var(--main-two)) !important;
     color: hsl(var(--white)) !important;
-    z-index: 1;
-    line-height: 1;
-    padding: 13px 24px;
-    &:hover, &:focus, &:focus-visible {
-        box-shadow: none !important;
+    &:hover {
+      background-color: var(--main-two-800) !important;
+      border-color: var(--main-two-800) !important;
     }
-    @include xl-screen {
-        padding: 10px 20px;         
-        font-size: rem(14px);
+  }
+  &-outline-main-two {
+    background-color: transparent !important;
+    border-color: hsl(var(--main-two)) !important;
+    color: hsl(var(--main-two)) !important;
+    &:hover {
+      background-color: hsl(var(--main-two) / 0.15) !important;
+      border-color: hsl(var(--main-two) / 0.4) !important;
     }
-    &-sm {
-        padding: 10px 16px !important;
+  }
+  &-white {
+    background-color: hsl(var(--white)) !important;
+    border-color: hsl(var(--white)) !important;
+    color: hsl(var(--heading-color)) !important;
+    &:hover {
+      background-color: hsl(var(--white) / 0.9) !important;
+      border-color: hsl(var(--white) / 0.9) !important;
     }
-    &:active {
-        transform: scale(1.01);
+  }
+  &-outline-white {
+    background-color: transparent !important;
+    border-color: hsl(var(--white)) !important;
+    color: hsl(var(--white)) !important;
+    &:hover {
+      background-color: hsl(var(--white)) !important;
+      border-color: hsl(var(--white)) !important;
+      color: hsl(var(--heading-color)) !important;
     }
-    // ============= Different Color Button Start ==================
-    &-main {
-        background-color: #bc0101 !important;
-        border-color: hsl(var(--main)) !important;
-        &:hover {
-            background-color: black !important;
-            border-color: black !important;
-        }
+  }
+  &-black {
+    background-color: hsl(var(--black)) !important;
+    border-color: hsl(var(--black)) !important;
+    color: hsl(var(--white)) !important;
+    &:hover {
+      background-color: hsl(var(--black) / 0.8) !important;
+      border-color: hsl(var(--black) / 0.8) !important;
     }
-    &-outline-main {
-        background-color: transparent!important;
-        border-color: hsl(var(--main)) !important;
-        color: hsl(var(--main)) !important;
-        &:hover {
-            background-color: hsl(var(--main)/.15) !important;
-            border-color: hsl(var(--main)/.4) !important;
-        }
+  }
+  &-outline-black {
+    background-color: transparent !important;
+    border-color: hsl(var(--black)) !important;
+    color: hsl(var(--black)) !important;
+    &:hover {
+      background-color: hsl(var(--black)) !important;
+      border-color: hsl(var(--black)) !important;
+      color: hsl(var(--white)) !important;
     }
-    &-main-two {
-        background-color: hsl(var(--main-two)) !important;
-        border-color: hsl(var(--main-two)) !important;
-        color: hsl(var(--white)) !important;
-        &:hover {
-            background-color: var(--main-two-800) !important;
-            border-color: var(--main-two-800) !important;
-        }
-    }
-    &-outline-main-two {
-        background-color: transparent!important;
-        border-color: hsl(var(--main-two)) !important;
-        color: hsl(var(--main-two)) !important;
-        &:hover {
-            background-color: hsl(var(--main-two)/.15) !important;
-            border-color: hsl(var(--main-two)/.4) !important;
-        }
-    }
-    &-white {
-        background-color: hsl(var(--white)) !important;
-        border-color: hsl(var(--white)) !important;
-        color: hsl(var(--heading-color)) !important;
-        &:hover {
-            background-color: hsl(var(--white)/.9) !important;
-            border-color: hsl(var(--white)/.9) !important;
-        }
-    }
-    &-outline-white {
-        background-color: transparent!important;
-        border-color: hsl(var(--white)) !important;
-        color: hsl(var(--white)) !important;
-        &:hover {
-            background-color: hsl(var(--white)) !important;
-            border-color: hsl(var(--white)) !important;
-            color: hsl(var(--heading-color)) !important;
-        }
-    }
-    &-black {
-        background-color: hsl(var(--black)) !important;
-        border-color: hsl(var(--black)) !important;
-        color: hsl(var(--white)) !important;
-        &:hover {
-            background-color: hsl(var(--black)/.8) !important;
-            border-color: hsl(var(--black)/.8) !important;
-        }
-    }
-    &-outline-black {
-        background-color: transparent!important;
-        border-color: hsl(var(--black)) !important;
-        color: hsl(var(--black)) !important;
-        &:hover {
-            background-color: hsl(var(--black)) !important;
-            border-color: hsl(var(--black)) !important;
-            color: hsl(var(--white)) !important;
-        }
-    }
+  }
 }
-.bg-btn-primecolor{
+.bg-btn-primecolor {
   background-color: #bc0101 !important;
 }
 .bg-btn-primecolor:hover {
   background-color: #000000 !important;
 }
-.bg-success-btn{
-    background-color: #44c055;
+.bg-success-btn {
+  background-color: #44c055;
 }
-.bg-success-btn:hover{
-    background-color: #000000 !important;
+.bg-success-btn:hover {
+  background-color: #000000 !important;
 }
 /* ================================= Button Css End =========================== */
 .whatsapp-float {
@@ -130,22 +136,21 @@
   align-items: center !important;
   display: inline-block !important;
 }
- 
+
 .whatsapp-logo {
   width: 28px;
   height: 28px;
 }
- 
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .whatsapp-float {
     padding: 10px;
     color: #fff;
   }
- 
+
   .whatsapp-logo {
     width: 24px;
     height: 24px;
   }
- 
 }
