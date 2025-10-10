@@ -434,7 +434,7 @@ const ShopSection = () => {
                         "assets/images/thumbs/productu.png" // fallback
                       }
                       alt={product.productName}
-                      className="w-auto"
+                      className="w-auto macimg"
                     />
 
                     {new Date(product.createdAt) >
