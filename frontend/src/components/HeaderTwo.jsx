@@ -682,6 +682,18 @@ const HeaderTwo = ({ category }) => {
                 )}
 
                 <Link
+                  to="/contact-enquiry"
+                  class="flex-align flex-column gap-8 item-hover-two"
+                >
+                  <span class="text-2xl text-white d-flex position-relative item-hover__text">
+                    <i class="ph ph-receipt"></i>
+                  </span>
+                  <span class="text-md text-white item-hover__text d-none d-lg-flex">
+                    Get A Quote
+                  </span>
+                </Link>
+
+                <Link
                   to="/wishlist"
                   className="flex-align flex-column gap-8 item-hover-two"
                 >
@@ -824,6 +836,19 @@ const HeaderTwo = ({ category }) => {
                           Annular Cutter (Portable Cutter)
                         </NavLink>
                       </li>
+
+                      <li className="common-dropdown__item nav-submenu__item">
+                        <NavLink
+                          to="/blog"
+                          className={(navData) =>
+                            navData.isActive
+                              ? "common-dropdown__link nav-submenu__link hover-bg-neutral-100 activePage"
+                              : "common-dropdown__link nav-submenu__link hover-bg-neutral-100"
+                          }
+                        >
+                          Blog
+                        </NavLink>
+                      </li>
                     </ul>
                   </li>
                   <li className="on-hover-item nav-menu__item">
@@ -854,12 +879,6 @@ const HeaderTwo = ({ category }) => {
                   <li className="on-hover-item nav-menu__item ">
                     <Link to="/sanitary" className="nav-menu__link">
                       Sanitary
-                    </Link>
-                  </li>
-
-                  <li className="on-hover-item nav-menu__item ">
-                    <Link to="/blog" className="nav-menu__link">
-                      Blog
                     </Link>
                   </li>
                   <li
