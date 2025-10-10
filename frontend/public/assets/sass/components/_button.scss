@@ -122,21 +122,29 @@
   background-color: #000000 !important;
 }
 /* ================================= Button Css End =========================== */
+/* WhatsApp Circle Button */
 .whatsapp-float {
   position: fixed;
-  transform: rotate(-90deg);
-  left: -110px;
-  width: 269px;
-  height: auto;
-  text-align: center;
-  padding: 10px;
-  z-index: 9999999;
-  bottom: 40%;
+  right: 30px; /* left se gap */
+  bottom: 100px; /* bottom se gap */
+  width: 60px; /* circle width */
+  height: 60px; /* circle height */
+  border-radius: 50%; /* fully round */
   background-color: #25d366;
-  align-items: center !important;
-  display: inline-block !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s;
 }
 
+/* Hover effect */
+.whatsapp-float:hover {
+  transform: scale(1.1);
+}
+
+/* Logo inside circle */
 .whatsapp-logo {
   width: 28px;
   height: 28px;
@@ -145,8 +153,8 @@
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .whatsapp-float {
-    padding: 10px;
-    color: #fff;
+    width: 50px;
+    height: 50px;
   }
 
   .whatsapp-logo {
