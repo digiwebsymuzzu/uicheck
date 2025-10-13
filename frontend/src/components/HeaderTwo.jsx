@@ -686,7 +686,7 @@ const HeaderTwo = ({ category }) => {
                   class="flex-align flex-column gap-8 item-hover-two"
                 >
                   <span class="text-2xl text-white d-flex position-relative item-hover__text">
-                    <i class="ph ph-receipt"></i>
+                    <i style={{ fontSize: "30px" }} class="ph ph-receipt"></i>
                   </span>
                   <span class="text-md text-white item-hover__text d-none d-lg-flex">
                     Get A Quote
