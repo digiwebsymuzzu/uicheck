@@ -1118,13 +1118,24 @@ const Account = () => {
                   <p>
                     <strong>Status:</strong>{" "}
                     <span
-                      className={`badge ${
-                        order.status === "Delivered"
-                          ? "bg-success"
+                      className={`badge px-18 py-10 rounded-4 text-14 ${
+                        order.cartItems.some(
+                          (item) => item.returnStatus === "Requested"
+                        )
+                          ? "bg-info text-dark"
+                          : order.cartItems.some(
+                              (item) => item.returnStatus === "Completed"
+                            )
+                          ? "bg-primary text-light"
+                          : order.status === "Delivered"
+                          ? "bg-success text-light"
                           : "bg-warning text-dark"
-                      } py-2 px-3`}
+                      }`}
                     >
-                      {order.status || "Pending"}
+                      {order.cartItems.find((item) => item.returnStatus)
+                        ?.returnStatus ||
+                        order.status ||
+                        "Pending"}
                     </span>
                   </p>
 
