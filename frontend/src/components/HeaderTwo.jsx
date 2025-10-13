@@ -313,6 +313,48 @@ const HeaderTwo = ({ category }) => {
                   Home
                 </Link>
               </li>
+
+              <li
+                onClick={() => handleMenuClick(1)}
+                className={`on-hover-item nav-menu__item  ${
+                  activeIndex === 1 ? "d-block" : ""
+                }`}
+              >
+                <Link to="/shop" className="nav-menu__link">
+                  Shop
+                </Link>
+              </li>
+              <li className="on-hover-item nav-menu__item ">
+                <Link to="/construction" className="nav-menu__link">
+                  Construction
+                </Link>
+              </li>
+              <li className="on-hover-item nav-menu__item ">
+                <Link to="/oil-and-gas" className="nav-menu__link">
+                  Oil and Gas
+                </Link>
+              </li>
+              <li className="on-hover-item nav-menu__item ">
+                <Link to="/machinery" className="nav-menu__link">
+                  Machinery
+                </Link>
+              </li>
+              <li className="on-hover-item nav-menu__item ">
+                <Link to="/automotive" className="nav-menu__link">
+                  Automotive
+                </Link>
+              </li>
+              <li className="on-hover-item nav-menu__item ">
+                <Link to="/sanitary" className="nav-menu__link">
+                  Sanitary
+                </Link>
+              </li>
+
+              <li className="on-hover-item nav-menu__item ">
+                <Link to="/blog" className="nav-menu__link">
+                  Blog
+                </Link>
+              </li>
               <li
                 onClick={() => handleMenuClick(4)}
                 className={`on-hover-item nav-menu__item has-submenu ${
@@ -391,47 +433,6 @@ const HeaderTwo = ({ category }) => {
                     </Link>
                   </li>
                 </ul>
-              </li>
-              <li
-                onClick={() => handleMenuClick(1)}
-                className={`on-hover-item nav-menu__item  ${
-                  activeIndex === 1 ? "d-block" : ""
-                }`}
-              >
-                <Link to="/shop" className="nav-menu__link">
-                  Shop
-                </Link>
-              </li>
-              <li className="on-hover-item nav-menu__item ">
-                <Link to="/construction" className="nav-menu__link">
-                  Construction
-                </Link>
-              </li>
-              <li className="on-hover-item nav-menu__item ">
-                <Link to="/oil-and-gas" className="nav-menu__link">
-                  Oil and Gas
-                </Link>
-              </li>
-              <li className="on-hover-item nav-menu__item ">
-                <Link to="/machinery" className="nav-menu__link">
-                  Machinery
-                </Link>
-              </li>
-              <li className="on-hover-item nav-menu__item ">
-                <Link to="/automotive" className="nav-menu__link">
-                  Automotive
-                </Link>
-              </li>
-              <li className="on-hover-item nav-menu__item ">
-                <Link to="/sanitary" className="nav-menu__link">
-                  Sanitary
-                </Link>
-              </li>
-
-              <li className="on-hover-item nav-menu__item ">
-                <Link to="/blog" className="nav-menu__link">
-                  Blog
-                </Link>
               </li>
               <li
                 onClick={() => handleMenuClick(7)}
@@ -746,6 +747,36 @@ const HeaderTwo = ({ category }) => {
                       Home
                     </Link>
                   </li>
+                  <li className="on-hover-item nav-menu__item">
+                    <Link to="/shop" className="nav-menu__link">
+                      Shop
+                    </Link>
+                  </li>
+                  <li className="on-hover-item nav-menu__item ">
+                    <Link to="/construction" className="nav-menu__link">
+                      Construction
+                    </Link>
+                  </li>
+                  <li className="on-hover-item nav-menu__item ">
+                    <Link to="/oil-and-gas" className="nav-menu__link">
+                      Oil and Gas
+                    </Link>
+                  </li>
+                  <li className="on-hover-item nav-menu__item ">
+                    <Link to="/machinery" className="nav-menu__link">
+                      Machinery
+                    </Link>
+                  </li>
+                  <li className="on-hover-item nav-menu__item ">
+                    <Link to="/automotive" className="nav-menu__link">
+                      Automotive
+                    </Link>
+                  </li>
+                  <li className="on-hover-item nav-menu__item ">
+                    <Link to="/sanitary" className="nav-menu__link">
+                      Electronics
+                    </Link>
+                  </li>
                   <li className="on-hover-item nav-menu__item has-submenu">
                     <Link to="/contact" className="nav-menu__link">
                       About
@@ -850,36 +881,6 @@ const HeaderTwo = ({ category }) => {
                         </NavLink>
                       </li>
                     </ul>
-                  </li>
-                  <li className="on-hover-item nav-menu__item">
-                    <Link to="/shop" className="nav-menu__link">
-                      Shop
-                    </Link>
-                  </li>
-                  <li className="on-hover-item nav-menu__item ">
-                    <Link to="/construction" className="nav-menu__link">
-                      Construction
-                    </Link>
-                  </li>
-                  <li className="on-hover-item nav-menu__item ">
-                    <Link to="/oil-and-gas" className="nav-menu__link">
-                      Oil and Gas
-                    </Link>
-                  </li>
-                  <li className="on-hover-item nav-menu__item ">
-                    <Link to="/machinery" className="nav-menu__link">
-                      Machinery
-                    </Link>
-                  </li>
-                  <li className="on-hover-item nav-menu__item ">
-                    <Link to="/automotive" className="nav-menu__link">
-                      Automotive
-                    </Link>
-                  </li>
-                  <li className="on-hover-item nav-menu__item ">
-                    <Link to="/sanitary" className="nav-menu__link">
-                      Electronics
-                    </Link>
                   </li>
                   <li
                     onClick={() => handleMenuClick(4)}

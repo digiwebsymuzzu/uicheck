@@ -243,14 +243,14 @@ const FooterTwo = () => {
 
         <a
           href="https://wa.me/971502530888?text=Hi%2C%20I%20want%20to%20know%20more%20about%20your%20services"
-          className="whatsapp-float"
+          className="whatsapp-float d-flex align-items-center text-decoration-none text-white"
           target="_blank"
           rel="noopener noreferrer"
         >
           <img
             src="https://upload.wikimedia.org/wikipedia/commons/5/5e/WhatsApp_icon.png"
             alt="WhatsApp"
-            className="whatsapp-logo"
+            className="whatsapp-logo me-2"
           />
         </a>
       </div>
