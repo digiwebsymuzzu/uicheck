@@ -109,10 +109,10 @@ const TopSellingOne = () => {
               <h5 className="mb-0">Oil and Gas</h5>
               <div className="flex-align mr-point gap-16">
                 <Link
-                  to="/shop"
+                  to="/oil-and-gas"
                   className="text-sm fw-medium text-gray-700 hover-text-main-600 hover-text-decoration-underline"
                 >
-                  View All Deals
+                  Visit Oil and Gas Shop
                 </Link>
               </div>
             </div>
@@ -180,25 +180,13 @@ const TopSellingOne = () => {
                             </Link>
                           </h6>
 
-                          <div
-                            class="flex-align gap-4"
-                            style={{ marginTop: "20px", marginBottom: "10px" }}
-                          >
-                            <span class="text-tertiary-600 text-md d-flex">
-                              <i class="ph-fill ph-storefront"></i>
-                            </span>
-                            <span class="text-gray-500 text-xs">
-                              By UdemandMe
-                            </span>
-                          </div>
-
-                          <span className="text-xs h6 primecolor  pb-1">
+                          <span className="text-xs h6 primecolor  ">
                             {product?.productCategories
                               ?.slice(0, 2)
                               .map((cat) => cat.name)
                               .join(", ")}
                           </span>
-                          <div className="product-card__price mb-20">
+                          <div className="product-card__price mb-12">
                             <span
                               className="text-gray-400 text-md fw-semibold text-decoration-line-through "
                               style={{ marginRight: "6px" }}

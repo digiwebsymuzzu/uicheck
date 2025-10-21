@@ -119,10 +119,10 @@ const DealsOne = () => {
               <h5 className="mb-0">Construction</h5>
               <div className="flex-align mr-point gap-16">
                 <Link
-                  to="/shop"
+                  to="/construction"
                   className="text-sm fw-medium text-gray-700 hover-text-main-600 hover-text-decoration-underline"
                 >
-                  View All Deals
+                  Visit Construction Shop
                 </Link>
               </div>
             </div>
@@ -164,7 +164,7 @@ const DealsOne = () => {
                           {product.productName}
                         </Link>
                       </h6>
-                      <div className="mt-8">
+                      {/* <div className="mt-8">
                         <div
                           className="progress w-100 bg-color-three rounded-pill h-4"
                           role="progressbar"
@@ -196,9 +196,9 @@ const DealsOne = () => {
                             ? "In Stock"
                             : "Out of Stock"}
                         </span>
-                      </div>
+                      </div> */}
 
-                      <span className="text-sm h6 primecolor pb-1">
+                      <span className="text-sm h6 primecolor">
                         {product?.productCategories
                           ?.slice(0, 2) // sirf pehli 2 categories
                           .map((cat) => cat.name)
@@ -211,7 +211,7 @@ const DealsOne = () => {
 												.join(", ")}
 											</span> */}
 
-                      <div className="product-card__price my-20">
+                      <div className="product-card__price mb-12">
                         <span
                           className="text-dark text-md fw-semibold text-decoration-line-through"
                           style={{ marginRight: "6px" }}

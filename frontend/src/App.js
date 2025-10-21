@@ -124,7 +124,7 @@ function App() {
         <Route exact path="/register" element={<RegisterPage />} />
         <Route exact path="/construction" element={<Construction />} />
         <Route exact path="/machinery" element={<Machinery />} />
-        <Route exact path="/sanitary" element={<Sanitary />} />
+        <Route exact path="/electrical-items" element={<Sanitary />} />
         <Route exact path="/automotive" element={<Automotive />} />
         <Route exact path="/oil-and-gas" element={<OilAndGas />} />
       </Routes>

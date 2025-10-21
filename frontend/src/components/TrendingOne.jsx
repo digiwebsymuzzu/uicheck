@@ -63,6 +63,14 @@ const TrendingOne = () => {
               <h6 className="mb-0 trending-products-box__title">
                 Best Machinery of All Time On Order Now
               </h6>
+              <div className=" mt-5 mr-point gap-16">
+                <Link
+                  to="/machinery"
+                  className="text-sm fw-medium text-gray-700 hover-text-main-600 hover-text-decoration-underline"
+                >
+                  Visit Machinery Shop
+                </Link>
+              </div>
             </div>
             <div className="d-md-block d-none pe-xxl-5 me-xxl-5 pe-md-4">
               <img
@@ -118,7 +126,7 @@ const TrendingOne = () => {
                       </Link>
                     </h6>
 
-                    <div className="mt-8">
+                    {/* <div className="mt-8">
                       <div
                         className="progress w-100 bg-color-three rounded-pill h-4"
                         role="progressbar"
@@ -148,16 +156,16 @@ const TrendingOne = () => {
                       >
                         {product.productStock > 0 ? "In Stock" : "Out of Stock"}
                       </span>
-                    </div>
+                    </div> */}
 
-                    <span className="text-xs h6 primecolor  pb-1">
+                    <span className="text-xs h6 primecolor">
                       {product?.productCategories
                         ?.slice(0, 2)
                         .map((cat) => cat.name)
                         .join(", ")}
                     </span>
 
-                    <div className="product-card__price mt-16 mb-30">
+                    <div className="product-card__price mb-12">
                       {product.productRegularPriceInr && (
                         <span
                           className="text-gray-400 text-md fw-semibold text-decoration-line-through"

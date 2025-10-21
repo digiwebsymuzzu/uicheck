@@ -27,7 +27,10 @@ const FooterTwo = () => {
                     class="w-44 h-44 flex-center bg-main-two-50 text-white text-xl rounded-8 hover-bg-main-two-600 hover-text-white"
                     href="https://www.facebook.com/share/1A92seP43P/?mibextid=wwXIfr"
                   >
-                    <i class="ph-fill ph-facebook-logo"></i>
+                    <i
+                      class="ph-fill ph-facebook-logo"
+                      style={{ fontSize: "30px" }}
+                    ></i>
                   </a>
                 </li>
                 <li>
@@ -35,7 +38,10 @@ const FooterTwo = () => {
                     class="w-44 h-44 flex-center bg-main-two-50 text-white text-xl rounded-8 hover-bg-main-two-600 hover-text-white"
                     href="https://www.instagram.com/udemand_me?igsh=MTZncWpvMzBwcXA2eA=="
                   >
-                    <i class="ph-fill ph-instagram-logo"></i>
+                    <i
+                      class="ph-fill ph-instagram-logo"
+                      style={{ fontSize: "30px" }}
+                    ></i>
                   </a>
                 </li>
                 <li>
@@ -43,7 +49,10 @@ const FooterTwo = () => {
                     class="w-44 h-44 flex-center bg-main-two-50 text-white text-xl rounded-8 hover-bg-main-two-600 hover-text-white"
                     href="https://www.linkedin.com/company/udemandme2/"
                   >
-                    <i class="ph-fill ph-linkedin-logo"></i>
+                    <i
+                      class="ph-fill ph-linkedin-logo"
+                      style={{ fontSize: "30px" }}
+                    ></i>
                   </a>
                 </li>
               </ul>

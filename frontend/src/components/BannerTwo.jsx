@@ -16,6 +16,12 @@ const BannerTwo = () => {
 
   const slides = [
     {
+      bg: "assets/images/bg/dewalt-new-banner.png",
+      title: "Premium Headphones With 40% Off",
+      subtitle: "Limited Time Offer",
+      btnText: "Explore Now",
+    },
+    {
       bg: "assets/images/bg/banner-two-bg.png",
       title: "Get The Sound You Love For Less",
       subtitle: "Starting at only $250",

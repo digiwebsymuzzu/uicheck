@@ -345,8 +345,8 @@ const HeaderTwo = ({ category }) => {
                 </Link>
               </li>
               <li className="on-hover-item nav-menu__item ">
-                <Link to="/sanitary" className="nav-menu__link">
-                  Sanitary
+                <Link to="/electrical-items" className="nav-menu__link">
+                  Electrical Items
                 </Link>
               </li>
 
@@ -773,8 +773,8 @@ const HeaderTwo = ({ category }) => {
                     </Link>
                   </li>
                   <li className="on-hover-item nav-menu__item ">
-                    <Link to="/sanitary" className="nav-menu__link">
-                      Electronics
+                    <Link to="/electrical-items" className="nav-menu__link">
+                      Electrical Items
                     </Link>
                   </li>
                   <li className="on-hover-item nav-menu__item has-submenu">
