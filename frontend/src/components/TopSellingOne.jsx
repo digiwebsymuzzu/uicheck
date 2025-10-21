@@ -126,8 +126,10 @@ const TopSellingOne = () => {
                   className="position-absolute inset-block-start-0 inset-inline-start-0 z-n1 w-100 h-100"
                 />
                 <div className="py-xl-4">
-                  <h6 className="mb-4 fw-semibold">Container Locks</h6>
-                  <h5 className="mb-40 fw-semibold">Secure Container Locks</h5>
+                  <h6 className="mb-4 fw-semibold">Gas Regulator</h6>
+                  <h5 className="mb-40 fw-semibold">
+                    Heavy & Meduim Duty Regulators
+                  </h5>
                   <Link
                     to="/shop"
                     className="btn text-heading border-neutral-600 hover-bg-neutral-600 hover-text-white py-16 px-24 flex-center d-inline-flex rounded-pill gap-8 fw-medium"
