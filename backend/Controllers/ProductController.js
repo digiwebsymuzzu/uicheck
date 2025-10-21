@@ -2,7 +2,6 @@ const Product = require("../Models/Product");
 const Brand = require("../Models/Brand"); // required for populate("brands")
 const Category = require("../Models/Category"); // required for populate("categories")
 
-
 const getProducts = async (req, res) => {
   try {
     const page = parseInt(req.query.page) || 1; // current page, default 1
@@ -55,10 +54,8 @@ const getProductById = async (req, res) => {
 
 const getProductsBySuperparent = async (req, res) => {
   try {
-
-    const page = parseInt(req.query.page) || 1; 
+    const page = parseInt(req.query.page) || 1;
     const limit = parseInt(req.query.limit) || 10;
-
 
     const superParentName = req.params.superParentName?.toLowerCase();
 
@@ -96,9 +93,9 @@ const getProductsBySuperparent = async (req, res) => {
     const products = await Product.find({
       "productCategories.name": { $in: categoryNames },
     })
-    .skip((page - 1) * limit)
-    .limit(limit)
-    .lean(); // .lean() ensures we get plain JS objects
+      .skip((page - 1) * limit)
+      .limit(limit)
+      .lean(); // .lean() ensures we get plain JS objects
 
     console.log("Products fetched:", products.length);
 
@@ -134,19 +131,22 @@ const getProductsBySuperparent = async (req, res) => {
 
     console.log("Filtered products count:", filteredProducts.length);
 
-
-     const totalProducts = await Product.countDocuments({
+    const totalProducts = await Product.countDocuments({
       "productCategories.name": { $in: categoryNames },
     });
 
-
-    return res.json({ success: true, products: filteredProducts, total: totalProducts, page, pages: Math.ceil(totalProducts / limit)});
+    return res.json({
+      success: true,
+      products: filteredProducts,
+      total: totalProducts,
+      page,
+      pages: Math.ceil(totalProducts / limit),
+    });
   } catch (error) {
     console.error("Error in getProductsBySuperparent:", error);
     return res.status(500).json({ success: false, message: "Server Error" });
   }
 };
-
 
 const searchProducts = async (req, res) => {
   try {
@@ -167,7 +167,6 @@ const searchProducts = async (req, res) => {
     res.status(500).json({ success: false, message: "Server Error" });
   }
 };
-
 
 // Filter
 const getFilteredProducts = async (req, res) => {
@@ -194,7 +193,12 @@ const getFilteredProducts = async (req, res) => {
     // ---------- ATTRIBUTE FILTER ----------
     else if (attribute && values) {
       const valuesArray = values.split(",").map((v) => v.trim());
-      console.log("Filtering by attribute:", attribute, "with values:", valuesArray);
+      console.log(
+        "Filtering by attribute:",
+        attribute,
+        "with values:",
+        valuesArray
+      );
 
       query["productAttributes"] = {
         $elemMatch: {
@@ -227,7 +231,6 @@ const getFilteredProducts = async (req, res) => {
     return res.status(500).json({ success: false, message: "Server Error" });
   }
 };
-
 
 module.exports = {
   getProducts,

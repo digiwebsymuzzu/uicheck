@@ -140,19 +140,6 @@ const Checkout = () => {
   return (
     <section className="checkout py-80">
       <div className="container container-lg">
-        {/* Coupon */}
-        <div className="border border-gray-100 rounded-8 px-30 py-20 mb-40">
-          <span>
-            Have a coupon?{" "}
-            <Link
-              to="/cart"
-              className="fw-semibold text-gray-900 hover-text-decoration-underline hover-text-main-600"
-            >
-              Click here to enter your code
-            </Link>
-          </span>
-        </div>
-
         <div className="row">
           {/* Billing Form */}
           <div className="col-xl-9 col-lg-8">
@@ -387,7 +374,7 @@ const Checkout = () => {
                     </div>
                     {selectedPayment === "cash payment" && (
                       <div className="payment-item__content px-16 py-24 rounded-8 bg-main-50 position-relative d-block">
-                        <p className="text-gray-800">
+                        <p className="text-white">
                           Pay cash when your order is delivered at your
                           doorstep.
                         </p>
@@ -401,7 +388,7 @@ const Checkout = () => {
                     Your personal data will be used to process your order,
                     support your experience, and for purposes described in our{" "}
                     <Link
-                      to="#"
+                      to="/privacy-policy"
                       className="text-main-600 text-decoration-underline"
                     >
                       privacy policy

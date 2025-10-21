@@ -50,7 +50,7 @@ const BannerTwo = () => {
 
                     {/* 🔥 Black Overlay */}
                     <div
-                      className="position-absolute top-0 start-0 w-100 h-100"
+                      className="position-absolute top-0 start-0 w-100 h-100 rounded-24"
                       style={{
                         background: "rgba(0, 0, 0, 0.5)", // adjust darkness here (0.5 = 50%)
                         zIndex: 0,
