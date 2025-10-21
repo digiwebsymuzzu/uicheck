@@ -15,8 +15,10 @@ const DaySaleOne = () => {
             <img src="assets/images/thumbs/day-sale-img1.png" alt="" />
           </div>
           <div className="day-sale-box__content d-block w-100 text-start py-32 ps-lg-0 ps-24">
-            <h3 className="text-white fw-medium mb-24">CHECK OUR COLLECTION</h3>
-            <h6 className="text-white fw-medium mb-8">DEWALT & ESAB</h6>
+            <h3 className="text-white fw-medium mb-24">
+              SHIPPING CONTAINERS &
+            </h3>
+            <h6 className="text-white fw-medium mb-8">HINGES</h6>
             <Link
               to="/shop"
               className="btn btn-outline-white flex-align d-inline-flex rounded-pill gap-8 mt-28"
