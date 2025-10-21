@@ -22,67 +22,66 @@ import ColorInit from "../helper/ColorInit";
 import ScrollToTop from "react-scroll-to-top";
 
 const HomePageTwo = () => {
-	return (
-		<>
-		
-			{/* ColorInit */}
-			<ColorInit color={true} />
+  return (
+    <>
+      {/* ColorInit */}
+      <ColorInit color={true} />
 
-			{/* ScrollToTop */}
-			<ScrollToTop smooth color="#FA6400" />
+      {/* ScrollToTop */}
+      <ScrollToTop smooth color="#FA6400" />
 
-			{/* Preloader */}
-			<Preloader />
+      {/* Preloader */}
+      <Preloader />
 
-			{/* HeaderTwo */}
-			<HeaderTwo category={true} />
+      {/* HeaderTwo */}
+      <HeaderTwo category={true} />
 
-			{/* BannerTwo */}
-			<BannerTwo />
+      {/* BannerTwo */}
+      <BannerTwo />
 
-			{/* PromotionalTwo */}
-			<PromotionalTwo />
+      {/* PromotionalTwo */}
+      <PromotionalTwo />
 
-			{/* DealsOne */}
-			<DealsOne />
+      {/* DealsOne */}
+      <DealsOne />
 
-			{/* TopSellingOne */}
-			<TopSellingOne />
+      {/* TopSellingOne */}
+      <TopSellingOne />
 
-			{/* TrendingOne */}
-			<TrendingOne />
+      {/* TrendingOne */}
+      <TrendingOne />
 
-			{/* DiscountOne */}
-			<DiscountOne />
+      {/* DiscountOne */}
+      <DiscountOne />
 
-			{/* FeaturedOne */}
-			<FeaturedOne />
+      {/* FeaturedOne */}
+      <FeaturedOne />
 
-			{/* BigDealOne */}
-			<BigDealOne />
+      {/* BigDealOne */}
+      <BigDealOne />
 
-			{/* TopSellingTwo */}
-			<TopSellingTwo />
+      {/* TopSellingTwo */}
+      <TopSellingTwo />
 
-			{/* DaySaleOne */}
-			<DaySaleOne />
+      {/* DaySaleOne */}
+      <DaySaleOne />
 
-			{/* BrandTwo */}
-			<BrandTwo />
+      {/* BrandTwo */}
+      <BrandTwo />
 
-			{/* ShippingTwo */}
-			<ShippingOne />
+      {/* ShippingTwo */}
+      <ShippingOne />
 
-			{/* NewsletterTwo */}
-			<NewsletterTwo />
+      {/* NewsletterTwo */}
+      <NewsletterTwo />
 
-			{/* FooterTwo */}
-			<FooterTwo />
+      {/* FooterTwo */}
+      <FooterTwo />
 
-			{/* BottomFooter */}
-			<BottomFooter />
-		</>
-	);
+      {/* BottomFooter */}
+      <BottomFooter />
+    </>
+  );
 };
 
 export default HomePageTwo;

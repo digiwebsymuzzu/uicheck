@@ -7,7 +7,7 @@ const FooterTwo = () => {
       <div className="container container-lg">
         <div className="row gy-3">
           {/* Column 1: Logo & Contact */}
-          <div className="col-lg-3 col-md-12 ">
+          <div className="col-lg-4 col-md-12 ">
             <div className="footer-item ">
               <div className="footer-item__logo mb-3">
                 <Link to="/">
@@ -33,7 +33,7 @@ const FooterTwo = () => {
                 <li>
                   <a
                     class="w-44 h-44 flex-center bg-main-two-50 text-white text-xl rounded-8 hover-bg-main-two-600 hover-text-white"
-                    href="https://www.instagram.com/u_demandme?igsh=ZmI3ZzQyNGdzOWo0"
+                    href="https://www.instagram.com/udemand_me?igsh=MTZncWpvMzBwcXA2eA=="
                   >
                     <i class="ph-fill ph-instagram-logo"></i>
                   </a>
@@ -51,7 +51,7 @@ const FooterTwo = () => {
           </div>
 
           {/* Column 2: About Us */}
-          <div className="col-lg-2 col-md-6">
+          {/* <div className="col-lg-2 col-md-6">
             <div className="footer-item">
               <h6 className="footer-item__title primecolor">About Us</h6>
               <ul className="footer-menu">
@@ -113,13 +113,37 @@ const FooterTwo = () => {
                 </li>
               </ul>
             </div>
-          </div>
+          </div> */}
 
           {/* Column 3: Policies */}
           <div className="col-lg-2 col-md-6">
             <div className="footer-item">
-              <h6 className="footer-item__title primecolor">Policies</h6>
+              <h6 className="footer-item__title primecolor">Information</h6>
               <ul className="footer-menu">
+                <li className="mb-2">
+                  <Link
+                    to="/about-udemandme"
+                    className="text-light hover-text-main-600"
+                  >
+                    About Us
+                  </Link>
+                </li>
+                <li className="mb-2">
+                  <Link
+                    to="/contact"
+                    className="text-light hover-text-main-600"
+                  >
+                    Contact Us
+                  </Link>
+                </li>
+                <li className="mb-2">
+                  <Link
+                    to="/return-policy"
+                    className="text-light hover-text-main-600"
+                  >
+                    Return & Refund Policy
+                  </Link>
+                </li>
                 <li className="mb-2">
                   <Link
                     to="/privacy-policy"
@@ -134,30 +158,6 @@ const FooterTwo = () => {
                     className="text-light hover-text-main-600"
                   >
                     Terms and Condition
-                  </Link>
-                </li>
-                <li className="mb-2">
-                  <Link
-                    to="/return-policy"
-                    className="text-light hover-text-main-600"
-                  >
-                    Return & Refund Policy
-                  </Link>
-                </li>
-                <li className="mb-2">
-                  <Link
-                    to="/payment-policy"
-                    className="text-light hover-text-main-600"
-                  >
-                    Payment Policy
-                  </Link>
-                </li>
-                <li className="mb-2">
-                  <Link
-                    to="/shipping-delivery"
-                    className="text-light hover-text-main-600"
-                  >
-                    Shipping Delivery
                   </Link>
                 </li>
               </ul>
@@ -208,9 +208,6 @@ const FooterTwo = () => {
           <div className="col-lg-3 col-md-6">
             <div className="footer-item">
               <h6 className="footer-item__title primecolor">Shop on The Go</h6>
-              <p className="mb-2 mx-3 text-light">
-                Udemandme App is available. Get it now
-              </p>
               <div className="d-flex align-items-center gap-2 mb-2 mt-5">
                 <i className="ph-fill ph-phone-call primecolor fs-5" />
                 <Link

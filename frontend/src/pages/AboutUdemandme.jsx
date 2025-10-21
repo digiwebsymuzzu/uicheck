@@ -9,32 +9,32 @@ import BottomFooter from "../components/BottomFooter";
 import ScrollToTop from "react-scroll-to-top";
 import AboutUdemandmeCom from "../components/AboutUdemandmeCom";
 const AboutUdemandme = () => {
-	return (
-		<>
-			{/* ColorInit */}
-			<ColorInit color={true} />
+  return (
+    <>
+      {/* ColorInit */}
+      <ColorInit color={true} />
 
-			{/* ScrollToTop */}
-			<ScrollToTop smooth color="#bc0101" />
+      {/* ScrollToTop */}
+      <ScrollToTop smooth color="#bc0101" />
 
-			{/* Preloader */}
-			<Preloader />
+      {/* Preloader */}
+      <Preloader />
 
-			{/* HeaderTwo */}
-			<HeaderTwo category={true} />
+      {/* HeaderTwo */}
+      <HeaderTwo category={true} />
 
-			{/* Breadcrumb */}
-			<Breadcrumb title={"About Udemandme"} />
+      {/* Breadcrumb */}
+      <Breadcrumb title={"About Udemandme"} />
 
-			{/* About*/}
-			<AboutUdemandmeCom />
+      {/* About*/}
+      <AboutUdemandmeCom />
 
-			{/* FooterTwo */}
-			<FooterTwo />
+      {/* FooterTwo */}
+      <FooterTwo />
 
-			{/* BottomFooter */}
-			<BottomFooter />
-		</>
-	);
+      {/* BottomFooter */}
+      <BottomFooter />
+    </>
+  );
 };
 export default AboutUdemandme;
