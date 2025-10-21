@@ -164,8 +164,8 @@ const HeaderTwo = ({ category }) => {
     fetchProducts(value);
   };
   const handleProductClick = (product) => {
-    navigate(`/product-details/${product._id}`, {
-      state: { id: product._id }, // id ke through details page
+    navigate(`/product-details/${product.productSlug}`, {
+      state: { id: product.productSlug },
     });
     setSearchTerm("");
   };
@@ -206,7 +206,7 @@ const HeaderTwo = ({ category }) => {
             <input
               type="text"
               className="form-control py-16 px-24 text-xl rounded-pill pe-64"
-              placeholder="Search for a product or brandsds"
+              placeholder="Search for a product"
               value={searchTerm}
               onChange={handleChange}
             />
@@ -506,7 +506,7 @@ const HeaderTwo = ({ category }) => {
                 <input
                   type="text"
                   className="form-control rounded-pill shadow-sm d-none d-md-block"
-                  placeholder="Search for a product or brand"
+                  placeholder="Search for a product"
                   value={searchTerm}
                   onChange={handleChange}
                   style={{ padding: "12px 20px", width: "60vh" }}
