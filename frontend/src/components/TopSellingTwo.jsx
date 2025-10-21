@@ -110,16 +110,30 @@ const TopSellingTwo = () => {
                 alt=""
                 className="position-absolute inset-block-start-0 inset-inline-start-0 z-n1 w-100 h-100 cover-img"
               />
+
               <div className="py-xl-4 text-center">
                 <span className="h6 mb-20 text-white">
-                  Unit Clampmeter Multimeter
+                  UNIT CLAMPMETER MULTIMETER
                 </span>
               </div>
+
               <img
-                src="assets/images/thumbs/sanitary.png"
+                src="assets/images/thumbs/electrical-items.png"
                 alt=""
                 className="mt-48 d-xxl-block d-none"
+                style={{ display: "block", margin: "0 auto" }}
               />
+
+              {/* Shop Now Button */}
+              <div className="text-center mt-4">
+                <Link
+                  class="btn btn-outline-white rounded-pill gap-8 mt-20"
+                  tabindex="0"
+                  to="/shop"
+                >
+                  Shop Now
+                </Link>
+              </div>
             </div>
           </div>
           <div className="col-xxl-8">

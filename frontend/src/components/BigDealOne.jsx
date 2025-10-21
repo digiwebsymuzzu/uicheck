@@ -15,7 +15,7 @@ const BigDealOne = () => {
               <img src="assets/images/thumbs/big-deal1.png" alt="" />
             </div>
             <div className="col-md-6 big-deal-box__content text-center">
-              <h4 className="mb-20 text-uppercase">UDEMAND ME</h4>
+              <h4 className="mb-20 text-uppercase">UDEMAND ME Hand </h4>
               <p className="text-heading fw-medium">Home Of DEWALT Products</p>
             </div>
             <div className="col-md-3 text-center d-md-block d-none">

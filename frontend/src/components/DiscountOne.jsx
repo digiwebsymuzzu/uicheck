@@ -18,9 +18,7 @@ const DiscountOne = () => {
                   <span className="fw-semibold text-tertiary-600 mb-20">
                     CHECK OUR PRODUCTS
                   </span>
-                  <h6 className="mb-20">
-                    Best Products in the Market Right Now
-                  </h6>
+                  <h6 className="mb-20">Hope Saw Cutter and Drill Bits</h6>
                   <Link
                     to="/shop"
                     className="btn btn-outline-black rounded-pill gap-8"
@@ -49,9 +47,7 @@ const DiscountOne = () => {
                   <span className="fw-semibold text-tertiary-600 mb-20">
                     CHECK OUR PRODUCTS
                   </span>
-                  <h6 className="mb-20">
-                    Best Products in the Market Right Now
-                  </h6>
+                  <h6 className="mb-20">HDPE Sheets and Nylon Rods</h6>
                   <Link
                     to="/shop"
                     className="btn btn-outline-black rounded-pill gap-8"
