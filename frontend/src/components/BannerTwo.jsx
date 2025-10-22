@@ -45,11 +45,7 @@ const BannerTwo = () => {
     ),
   };
 
-  const slides = [
-    { bg: "assets/images/bg/banner-image2.png" },
-    { bg: "assets/images/bg/banner-two-bg.png" },
-    { bg: "assets/images/bg/dewalt-new-banner.png" },
-  ];
+  const slides = [{ bg: "assets/images/bg/demo-banner.png" }];
 
   return (
     <div
