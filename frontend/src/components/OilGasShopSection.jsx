@@ -461,7 +461,7 @@ const ShopSection = () => {
                     </h6>
 
                     {/* ✅ Stock Status */}
-                    <div className="mt-8">
+                    {/* <div className="mt-8">
                       <div
                         className="progress w-100 bg-color-three rounded-pill h-4"
                         role="progressbar"
@@ -491,15 +491,15 @@ const ShopSection = () => {
                       >
                         {product.productStock > 0 ? "In Stock" : "Out of Stock"}
                       </span>
-                    </div>
-                    <span className="text-sm h6 primecolor pb-1 mt-4">
+                    </div> */}
+                    <span className="text-sm h6 primecolor">
                       {product?.productCategories
                         ?.slice(0, 2) // sirf pehli 2 categories
                         .map((cat) => cat.name)
                         .join(", ")}
                     </span>
 
-                    <div className="product-card__price my-20">
+                    <div className="product-card__price mb-12">
                       <span
                         className="text-gray-400 text-md fw-semibold text-decoration-line-through"
                         style={{ marginRight: "10px" }}

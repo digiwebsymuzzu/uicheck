@@ -108,3 +108,14 @@
 a.banner.btn.btn-outline-white.d-inline-flex.align-items-center.rounded-pill.gap-8.mt-48 {
   margin-top: 30vh !important;
 }
+.slick-slider,
+.slick-list,
+.slick-track,
+.slick-slide {
+  margin: 0 !important;
+  padding: 0 !important;
+  box-sizing: border-box !important;
+}
+.slick-slide {
+  float: left;
+}

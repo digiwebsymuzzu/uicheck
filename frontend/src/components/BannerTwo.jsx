@@ -1,6 +1,7 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 const BannerTwo = () => {
   const settings = {
@@ -11,81 +12,79 @@ const BannerTwo = () => {
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 3000,
-    fade: true, // smooth background transition
+    fade: true,
+    arrows: false,
+    appendDots: (dots) => (
+      <div
+        style={{
+          position: "absolute",
+          bottom: "20px",
+          left: "50%",
+          transform: "translateX(-50%)",
+          display: "flex",
+          justifyContent: "center",
+          gap: "8px",
+          zIndex: 2,
+        }}
+      >
+        <ul style={{ margin: 0, padding: 0, display: "flex", gap: "8px" }}>
+          {dots}
+        </ul>
+      </div>
+    ),
+    customPaging: () => (
+      <div
+        style={{
+          width: "10px",
+          height: "10px",
+          borderRadius: "50%",
+          background: "rgba(255,255,255,0.5)",
+          transition: "all 0.3s ease",
+        }}
+      ></div>
+    ),
   };
 
   const slides = [
-    {
-      bg: "assets/images/bg/dewalt-new-banner.png",
-      title: "Premium Headphones With 40% Off",
-      subtitle: "Limited Time Offer",
-      btnText: "Explore Now",
-    },
-    {
-      bg: "assets/images/bg/banner-two-bg.png",
-      title: "Get The Sound You Love For Less",
-      subtitle: "Starting at only $250",
-      btnText: "Shop Now",
-    },
-    {
-      bg: "assets/images/bg/banner-image2.png",
-      title: "Premium Headphones With 40% Off",
-      subtitle: "Limited Time Offer",
-      btnText: "Explore Now",
-    },
+    { bg: "assets/images/bg/banner-image2.png" },
+    { bg: "assets/images/bg/banner-two-bg.png" },
+    { bg: "assets/images/bg/dewalt-new-banner.png" },
   ];
 
   return (
-    <div className="banner-two mt-24">
-      <div className="container container-lg">
-        <div className="banner-two-wrapper d-flex align-items-start">
-          <div className="banner-item-two-wrapper rounded-24 overflow-hidden position-relative arrow-center flex-grow-1 mb-0">
-            <div className="banner-item-two__slider">
-              <Slider {...settings}>
-                {slides.map((slide, index) => (
-                  <div
-                    key={index}
-                    className="banner-item-two position-relative"
-                  >
-                    {/* 🔥 Background image */}
-                    <img
-                      src={slide.bg}
-                      alt={`Banner ${index + 1}`}
-                      className="position-absolute inset-block-start-0 inset-inline-start-0 w-100 h-100 z-n1 object-fit-cover rounded-24 img-fluid"
-                    />
-
-                    {/* 🔥 Black Overlay */}
-                    <div
-                      className="position-absolute top-0 start-0 w-100 h-100 rounded-24"
-                      style={{
-                        background: "rgba(0, 0, 0, 0.5)", // adjust darkness here (0.5 = 50%)
-                        zIndex: 0,
-                      }}
-                    ></div>
-
-                    {/* 🔥 Content */}
-                    <div className="banner-item-two__content position-relative text-white z-1">
-                      <span className="mb-8 h6 d-block">{slide.subtitle}</span>
-                      <h2 className="banner-item-two__title bounce text-white">
-                        {slide.title}
-                      </h2>
-                      <Link
-                        to="/shop"
-                        className="btn btn-outline-white d-inline-flex align-items-center rounded-pill gap-8 mt-48"
-                      >
-                        {slide.btnText}
-                        <span className="icon text-xl d-flex">
-                          <i className="ph ph-shopping-cart-simple" />
-                        </span>
-                      </Link>
-                    </div>
-                  </div>
-                ))}
-              </Slider>
-            </div>
+    <div
+      style={{
+        width: "100%",
+        overflow: "hidden",
+        position: "relative",
+      }}
+    >
+      <Slider {...settings}>
+        {slides.map((slide, index) => (
+          <div
+            key={index}
+            style={{
+              position: "relative",
+              width: "100%",
+              height: "70vh",
+              display: "flex", // ✅ flex to remove inline-block gaps
+            }}
+          >
+            <img
+              src={slide.bg}
+              alt={`Slide ${index + 1}`}
+              style={{
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+                display: "block",
+              }}
+            />
           </div>
-        </div>
-      </div>
+        ))}
+      </Slider>
+
+      {/* 🔥 Remove slick-slider gaps completely */}
     </div>
   );
 };
