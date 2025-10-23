@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const FooterTwo = () => {
   return (
     <footer className="footer py-80 bg-dark">
-      <div className="container container-lg">
+      <div className="container container-lg footer">
         <div className="row gy-3">
           {/* Column 1: Logo & Contact */}
           <div className="col-lg-4 col-md-12 ">
@@ -126,7 +126,7 @@ const FooterTwo = () => {
 
           {/* Column 3: Policies */}
           <div className="col-lg-2 col-md-6">
-            <div className="footer-item">
+            <div className="footer-item main">
               <h6 className="footer-item__title primecolor">Information</h6>
               <ul className="footer-menu">
                 <li className="mb-2">
@@ -175,7 +175,7 @@ const FooterTwo = () => {
 
           {/* Column 4: My Account */}
           <div className="col-lg-2 col-md-6">
-            <div className="footer-item">
+            <div className="footer-item main">
               <h6 className="footer-item__title primecolor">My Account</h6>
               <ul className="footer-menu">
                 <li className="mb-2">
@@ -215,7 +215,7 @@ const FooterTwo = () => {
 
           {/* Column 5: Shop on The Go */}
           <div className="col-lg-3 col-md-6">
-            <div className="footer-item">
+            <div className="footer-item main">
               <h6 className="footer-item__title primecolor">Shop on The Go</h6>
               <div className="d-flex align-items-center gap-2 mb-2 mt-5">
                 <i className="ph-fill ph-phone-call primecolor fs-5" />

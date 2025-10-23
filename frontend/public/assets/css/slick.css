@@ -108,3 +108,19 @@
 a.banner.btn.btn-outline-white.d-inline-flex.align-items-center.rounded-pill.gap-8.mt-48 {
   margin-top: 30vh !important;
 }
+.container.container-lg.footer {
+  max-width: 1800px !important;
+}
+.footer-item.main {
+  margin-left: 5vh;
+}
+@media (max-width: 768px) {
+  .footer-item.main {
+    margin-left: 0vh !important;
+  }
+}
+@media (max-width: 480px) {
+  .footer-item.main {
+    margin-left: 0vh !important;
+  }
+}
