@@ -5,7 +5,7 @@ import "slick-carousel/slick/slick-theme.css";
 
 const BannerTwo = () => {
   const settings = {
-    dots: true,
+    dots: false, // ✅ Dots removed
     infinite: true,
     speed: 1000,
     slidesToShow: 1,
@@ -13,74 +13,58 @@ const BannerTwo = () => {
     autoplay: true,
     autoplaySpeed: 3000,
     fade: true,
-    arrows: false,
-    appendDots: (dots) => (
-      <div
-        style={{
-          position: "absolute",
-          bottom: "20px",
-          left: "50%",
-          transform: "translateX(-50%)",
-          display: "flex",
-          justifyContent: "center",
-          gap: "8px",
-          zIndex: 2,
-        }}
-      >
-        <ul style={{ margin: 0, padding: 0, display: "flex", gap: "8px" }}>
-          {dots}
-        </ul>
-      </div>
-    ),
-    customPaging: () => (
-      <div
-        style={{
-          width: "10px",
-          height: "10px",
-          borderRadius: "50%",
-          background: "rgba(255,255,255,0.5)",
-          transition: "all 0.3s ease",
-        }}
-      ></div>
-    ),
+    pauseOnHover: false,
+    arrows: false, // ✅ Arrows hidden for clean look
   };
 
   const slides = [{ bg: "assets/images/bg/demo-banner.png" }];
 
   return (
-    <div
-      style={{
-        width: "100%",
-        overflow: "hidden",
-        position: "relative",
-      }}
-    >
-      <Slider {...settings}>
-        {slides.map((slide, index) => (
+    <div className="banner-two mt-24">
+      <div className="container container-lg">
+        <div className="banner-two-wrapper d-flex align-items-start">
+          {/* ✅ Responsive height & rounded edges */}
           <div
-            key={index}
+            className="banner-item-two-wrapper position-relative flex-grow-1 mb-0"
             style={{
-              position: "relative",
-              width: "100%",
-              height: "70vh",
-              display: "flex", // ✅ flex to remove inline-block gaps
+              overflow: "hidden",
+              height: "100%",
+              borderRadius: "24px",
             }}
           >
-            <img
-              src={slide.bg}
-              alt={`Slide ${index + 1}`}
-              style={{
-                width: "100%",
-                height: "100%",
-                objectFit: "cover",
-                display: "block",
-              }}
-            />
+            <Slider {...settings}>
+              {slides.map((slide, index) => (
+                <div key={index} className="position-relative w-100 h-100">
+                  {/* ✅ Full-cover responsive image */}
+                  <img
+                    src={slide.bg}
+                    alt={`Banner ${index + 1}`}
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover",
+                      borderRadius: "24px",
+                    }}
+                  />
+                  {/* ✅ Overlay */}
+                  <div
+                    style={{
+                      position: "absolute",
+                      top: 0,
+                      left: 0,
+                      width: "100%",
+                      height: "100%",
+                      borderRadius: "24px",
+                    }}
+                  ></div>
+                </div>
+              ))}
+            </Slider>
           </div>
-        ))}
-      </Slider>
+        </div>
+      </div>
 
-      {/* 🔥 Remove slick-slider gaps completely */}
+      {/* ✅ Responsive styles */}
     </div>
   );
 };
