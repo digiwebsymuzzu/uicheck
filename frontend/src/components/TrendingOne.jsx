@@ -61,14 +61,14 @@ const TrendingOne = () => {
             </div>
             <div className="trending-products-box__content px-4 d-block w-100 text-center py-32">
               <h6 className="mb-0 trending-products-box__title">
-                Best Machinery of All Time On Order Now
+                Industrial Machinery
               </h6>
               <div className=" mt-5 mr-point gap-16">
                 <Link
                   to="/machinery"
                   className="text-sm fw-medium text-gray-700 hover-text-main-600 hover-text-decoration-underline"
                 >
-                  Visit Machinery Shop
+                  Explore Now
                 </Link>
               </div>
             </div>
