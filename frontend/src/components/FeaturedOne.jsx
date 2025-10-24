@@ -253,7 +253,7 @@ const FeaturedOne = () => {
           <div className="col-xxl-4">
             <div className="position-relative rounded-16 bg-light-purple overflow-hidden p-28 pb-0 z-1 text-center h-100">
               <img
-                src="assets/images/bg/featured-product-bg.png"
+                src="assets/images/bg/deal-bg.png"
                 alt=""
                 className="position-absolute inset-block-start-0 inset-inline-start-0 z-n1 w-100 h-100 cover-img"
               />

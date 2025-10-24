@@ -16,7 +16,7 @@ const DaySaleOne = () => {
           </div>
           <div className="day-sale-box__content d-block w-100 text-center py-32 ps-lg-0 ps-24">
             <h3 className="text-white fw-medium mb-24">
-              Container Locks and Hingers
+              Container Locks and Hinges
             </h3>
             <h6 className="text-white fw-medium mb-8">
               Available in MS SS and GI
