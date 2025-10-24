@@ -14,7 +14,9 @@ const BigDealOne = () => {
 
           <div className="row gy-4 align-items-center">
             <div className="col-md-12 text-center d-md-block d-none">
-              <h4 className="mb-20 text-uppercase">Idustrial Hand Tools</h4>
+              <h4 className="mb-20 text-uppercase">
+                Hands tools and Equipment
+              </h4>
             </div>
           </div>
 
