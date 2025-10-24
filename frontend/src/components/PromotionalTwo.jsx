@@ -21,7 +21,7 @@ const PromotionalTwo = () => {
     {
       bg: "promo-bg-img3.png",
       thumb: "promo-bg-img323.png",
-      title: "Cutting Tips",
+      title: "Welding Accessories",
       //   subtitle: "Start From $250",
     },
     {

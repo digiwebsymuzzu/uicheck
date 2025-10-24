@@ -258,12 +258,16 @@ const FeaturedOne = () => {
                 className="position-absolute inset-block-start-0 inset-inline-start-0 z-n1 w-100 h-100 cover-img"
               />
               <div className="py-xl-4 text-center">
-                <span className="h6 mb-20 text-white">
+                <span className="h6 mb-0 text-white">
                   Automotive Smart Deal
                 </span>
-                <div className="flex-center gap-12 text-white">
-                  <br></br>
-                </div>
+              </div>
+              <img
+                src="assets/images/thumbs/featured-product-img.png"
+                alt=""
+                className="d-xxl-inline-flex d-none"
+              />
+              <div className="mb-40">
                 <Link
                   to="/shop"
                   className="mt-16 mb-24 btn btn-main-two fw-medium d-inline-flex align-items-center rounded-pill gap-8"
@@ -274,11 +278,6 @@ const FeaturedOne = () => {
                   </span>
                 </Link>
               </div>
-              <img
-                src="assets/images/thumbs/featured-product-img.png"
-                alt=""
-                className="d-xxl-inline-flex d-none"
-              />
             </div>
           </div>
         </div>

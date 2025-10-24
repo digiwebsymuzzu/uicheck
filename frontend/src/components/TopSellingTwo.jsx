@@ -112,7 +112,7 @@ const TopSellingTwo = () => {
               />
 
               <div className="py-xl-4 text-center">
-                <span className="h6 mb-20 text-white">
+                <span className="h6 text-white">
                   UNIT CLAMPMETER MULTIMETER
                 </span>
               </div>
@@ -120,7 +120,7 @@ const TopSellingTwo = () => {
               <img
                 src="assets/images/thumbs/electrical-items.png"
                 alt=""
-                className="mt-48 d-xxl-block d-none"
+                className="d-xxl-block d-none"
                 style={{ display: "block", margin: "0 auto" }}
               />
 
