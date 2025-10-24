@@ -305,47 +305,6 @@ const ShopSection = () => {
                   ))}
                 </ul>
               </div>
-
-              {attributes.map((attr) => (
-                <div
-                  key={attr.id}
-                  className="shop-sidebar__box border border-gray-100 rounded-8 p-32 mb-32"
-                >
-                  <h6 className="text-xl border-bottom border-gray-100 pb-24 mb-24">
-                    Filter by {displayName(attr.name)}
-                  </h6>
-                  <ul className="max-h-540 overflow-y-auto scroll-sm">
-                    {attr.items.map((item, index) => (
-                      <li key={item.id || index} className="mb-24">
-                        <div className="form-check common-check">
-                          <input
-                            type="checkbox"
-                            id={`${attr.slug}-${index}`}
-                            className="form-check-input"
-                            checked={
-                              activeFilterGroup === attr.name &&
-                              selectedFilters.includes(item.name)
-                            }
-                            disabled={
-                              activeFilterGroup &&
-                              activeFilterGroup !== attr.name
-                            }
-                            onChange={() =>
-                              handleFilterSelect(attr.name, item.name)
-                            }
-                          />
-                          <label
-                            htmlFor={`${attr.slug}-${index}`}
-                            className="form-check-label"
-                          >
-                            {item.name}
-                          </label>
-                        </div>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
             </div>
           </div>
           {/* Sidebar End */}
