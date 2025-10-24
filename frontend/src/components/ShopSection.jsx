@@ -275,7 +275,7 @@ const ShopSection = () => {
                       className="mb-24"
                       ref={
                         index === categories.length - 1 ? lastCategoryRef : null
-                      } // 👈 attach observer to last
+                      }
                     >
                       <div className="form-check common-check">
                         <input
