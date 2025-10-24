@@ -15,11 +15,11 @@ const FooterTwo = () => {
                 </Link>
               </div>
               <p className="mb-24 mt-20 text-light">
-                UdemandMe is a fast-growing e-commerce platform designed to meet
-                the needs of modern shoppers with convenience, speed, and trust.
-                Based in the UAE, our platform offers a diverse range of
-                products—from electronics and fashion to everyday
-                essentials—delivered right to your doorstep.
+                UdemandMe is a UAE-based e-commerce platform designed for the
+                modern shopper, combining convenience, speed, and reliability.
+                We offer a comprehensive range of products—from industrial tools
+                and building materials to machinery and electrical supplies—all
+                available through one trusted online destination.
               </p>
               <ul class="flex-align gap-16">
                 <li>
