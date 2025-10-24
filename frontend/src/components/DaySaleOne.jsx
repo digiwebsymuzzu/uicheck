@@ -14,7 +14,7 @@ const DaySaleOne = () => {
           <div className="d-xl-block d-none">
             <img src="assets/images/thumbs/day-sale-img1.png" alt="" />
           </div>
-          <div className="day-sale-box__content d-block w-100 text-start py-32 ps-lg-0 ps-24">
+          <div className="day-sale-box__content d-block w-100 text-center py-32 ps-lg-0 ps-24">
             <h3 className="text-white fw-medium mb-24">
               Container Locks and Hingers
             </h3>

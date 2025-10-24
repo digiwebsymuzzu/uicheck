@@ -257,11 +257,6 @@ const FeaturedOne = () => {
                 alt=""
                 className="position-absolute inset-block-start-0 inset-inline-start-0 z-n1 w-100 h-100 cover-img"
               />
-              <div className="py-xl-4 text-center">
-                <span className="h6 mb-0 text-white">
-                  Automotive Smart Deal
-                </span>
-              </div>
               <img
                 src="assets/images/thumbs/featured-product-img.png"
                 alt=""
