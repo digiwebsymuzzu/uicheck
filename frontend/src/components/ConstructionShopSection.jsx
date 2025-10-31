@@ -286,13 +286,15 @@ const ShopSection = () => {
                   Product Category
                 </h6>
                 <ul className="max-h-540 overflow-y-auto scroll-sm">
-                  {categories.map((cat, index) => (
+                  {categories.slice(5).map((cat, index) => (
                     <li
                       key={cat._id}
                       className="mb-24"
                       ref={
-                        index === categories.length - 1 ? lastCategoryRef : null
-                      } // 👈 attach observer to last
+                        index === categories.slice(5).length - 1
+                          ? lastCategoryRef
+                          : null
+                      }
                     >
                       <div className="form-check common-check">
                         <input
