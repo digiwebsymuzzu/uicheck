@@ -319,7 +319,10 @@ const ProductDetailsOne = ({ productId }) => {
                   <div
                     className="proshortdesp"
                     dangerouslySetInnerHTML={{
-                      __html: cleanHTML,
+                      __html: cleanHTML.replace(
+                        /<table[\s\S]*?<\/table>/gi,
+                        ""
+                      ),
                     }}
                   />
 
@@ -605,7 +608,7 @@ const ProductDetailsOne = ({ productId }) => {
                 >
                   {/* Product Desc */}
 
-                  <div className="mb-40">
+                  {/* <div className="mb-40">
                     <h6 className="mb-24">Product Description</h6>
                     <div
                       dangerouslySetInnerHTML={{
@@ -614,7 +617,7 @@ const ProductDetailsOne = ({ productId }) => {
                         ),
                       }}
                     />
-                  </div>
+                  </div> */}
 
                   {/* Product Specification */}
 
