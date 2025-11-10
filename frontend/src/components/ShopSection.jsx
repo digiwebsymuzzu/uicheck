@@ -454,7 +454,7 @@ const ShopSection = () => {
                         AED {product.productSalePriceInr}{" "}
                       </span>
                     </div>
-                    <div className="w-full flex flex-col items-stretch">
+                    <div className="custom-flex-wrapper">
                       <button
                         onClick={() => {
                           if (!product?._id) {
@@ -480,7 +480,7 @@ const ShopSection = () => {
 
                           addToCart(product, 1, payload);
                         }}
-                        className="product-card__cart btn bg-dark text-light hover-bg-main-600 hover-text-white py-3 rounded-8 flex justify-center items-center gap-2 fw-medium w-full text-center text-sm sm:text-base"
+                        className="product-card__cart btn bg-btn-primecolor text-light hover-text-white py-11 rounded-8 flex-center gap-8 fw-medium"
                       >
                         Add To Cart <i className="ph ph-shopping-cart" />
                       </button>
@@ -497,7 +497,13 @@ const ShopSection = () => {
                           )}`;
                           window.open(whatsappUrl, "_blank");
                         }}
-                        className="product-card__cart btn bg-success-btn text-light hover-text-white py-3 rounded-8 flex justify-center items-center gap-2 fw-medium w-full text-center mt-3 sm:mt-3 text-sm sm:text-base"
+                        className="product-card__cart btn bg-success-btn text-light hover-text-white flex-center fw-medium"
+                        style={{
+                          width: "50px", // 👈 same width
+                          height: "50px", // 👈 same height
+                          borderRadius: "50%", // 👈 makes it circular
+                          padding: "0", // 👈 optional: centers content
+                        }}
                       >
                         <i className="ph ph-whatsapp-logo"></i>
                       </Link>
