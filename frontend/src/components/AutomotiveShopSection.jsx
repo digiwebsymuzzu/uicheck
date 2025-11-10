@@ -133,13 +133,19 @@ const ShopSection = () => {
       if (data.success) {
         const formattedProducts = data.products.map((product) => ({
           ...product,
-          productCategories: product.categories || [], // consistent mapping
+          productCategories: product.categories || [],
         }));
 
-        // Append new products to existing list
-        setProducts((prev) => [...prev, ...formattedProducts]);
+        if (pageToLoad === 1) {
+          // First page — replace existing products
+          setProducts(formattedProducts);
+        } else {
+          // Next pages — append only
+          setProducts((prev) => [...prev, ...formattedProducts]);
+        }
+
         setPages(data.pages); // total pages from API
-        setPage(data.page); // current page from API
+        // ❌ removed setPage(data.page) to stop duplicate fetch loop
       } else {
         console.error(data.message || "Failed to fetch products");
       }
@@ -151,8 +157,9 @@ const ShopSection = () => {
   };
 
   useEffect(() => {
-    fetchProducts(page);
-  }, [page]); // ✅ page add kar diya
+    fetchProducts(1);
+  }, []); // run only once on mount
+
   const [sortOption, setSortOption] = useState("default");
   const [originalProducts, setOriginalProducts] = useState([]);
 

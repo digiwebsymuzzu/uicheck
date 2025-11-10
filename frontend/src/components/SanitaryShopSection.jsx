@@ -136,10 +136,16 @@ const ShopSection = () => {
           productCategories: product.categories || [], // consistent mapping
         }));
 
-        // Append new products to existing list
-        setProducts((prev) => [...prev, ...formattedProducts]);
+        if (pageToLoad === 1) {
+          // 🧠 First page load — replace products
+          setProducts(formattedProducts);
+        } else {
+          // 🔁 Load more pages — append products
+          setProducts((prev) => [...prev, ...formattedProducts]);
+        }
+
         setPages(data.pages); // total pages from API
-        setPage(data.page); // current page from API
+        // ❌ Removed setPage(data.page) to avoid duplicate fetch loop
       } else {
         console.error(data.message || "Failed to fetch products");
       }
@@ -151,8 +157,9 @@ const ShopSection = () => {
   };
 
   useEffect(() => {
-    fetchProducts(page);
-  }, [page]); // ✅ page add kar diya
+    fetchProducts(1);
+  }, []);
+
   const [sortOption, setSortOption] = useState("default");
   const [originalProducts, setOriginalProducts] = useState([]);
 

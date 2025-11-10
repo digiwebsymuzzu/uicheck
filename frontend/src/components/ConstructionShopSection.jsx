@@ -133,13 +133,19 @@ const ShopSection = () => {
       if (data.success) {
         const formattedProducts = data.products.map((product) => ({
           ...product,
-          productCategories: product.categories || [], // consistent mapping
+          productCategories: product.categories || [],
         }));
 
-        // Append new products to existing list
-        setProducts((prev) => [...prev, ...formattedProducts]);
+        if (pageToLoad === 1) {
+          // 🧠 First load: replace
+          setProducts(formattedProducts);
+        } else {
+          // 🔁 Next pages: append only
+          setProducts((prev) => [...prev, ...formattedProducts]);
+        }
+
         setPages(data.pages); // total pages from API
-        setPage(data.page); // current page from API
+        // ❌ remove setPage(data.page) — this was the duplication cause
       } else {
         console.error(data.message || "Failed to fetch products");
       }
@@ -151,8 +157,9 @@ const ShopSection = () => {
   };
 
   useEffect(() => {
-    fetchProducts(page);
-  }, [page]); // ✅ page add kar diya
+    fetchProducts(1);
+  }, []); // only fetch once on mount
+
   const [sortOption, setSortOption] = useState("default");
   const [originalProducts, setOriginalProducts] = useState([]);
 
