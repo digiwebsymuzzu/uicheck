@@ -113,18 +113,24 @@ const ShopSection = () => {
     }
   };
 
-  const fetchProducts = async (page) => {
+  const fetchProducts = async (pageNum) => {
     setLoading(true);
     try {
       const res = await fetch(
-        `https://udemandme.cloud/api/products?page=${page}&limit=20`
+        `https://udemandme.cloud/api/products?page=${pageNum}&limit=20`
       );
       const data = await res.json();
 
       if (data.success) {
-        setProducts((prev) => [...prev, ...data.products]); // append new products
+        if (pageNum === 1) {
+          // first load — replace existing list
+          setProducts(data.products);
+        } else {
+          // next pages — append only
+          setProducts((prev) => [...prev, ...data.products]);
+        }
         setPages(data.pages);
-        setPage(data.page);
+        // ❌ removed setPage(data.page) — this was causing the duplication
       }
     } catch (err) {
       console.error(err);
@@ -134,8 +140,9 @@ const ShopSection = () => {
   };
 
   useEffect(() => {
-    fetchProducts(page);
-  }, [page]); // ✅ page add kar diya
+    fetchProducts(1);
+  }, []); // only run once on mount
+
   const [sortOption, setSortOption] = useState("default");
   const [originalProducts, setOriginalProducts] = useState([]);
 
