@@ -82,7 +82,7 @@ const BrandTwo = () => {
   useEffect(() => {
     const fetchBrands = async () => {
       try {
-        const res = await fetch("https://udemandme.cloud/api/brand");
+        const res = await fetch("https://udemandme.com/api/brand");
         const data = await res.json();
         if (data.success) {
           setBrands(data.data); // backend me "data" array return ho rha hai

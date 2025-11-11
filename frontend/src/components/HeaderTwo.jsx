@@ -30,7 +30,7 @@ const HeaderTwo = ({ category }) => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const res = await fetch("https://udemandme.cloud/api/categories");
+        const res = await fetch("https://udemandme.com/api/categories");
         const data = await res.json();
         if (data.success) {
           setCategories(data.data); // store categories in state
@@ -147,7 +147,7 @@ const HeaderTwo = ({ category }) => {
     setLoading(true);
     try {
       const res = await axios.get(
-        `https://udemandme.cloud/api/products/product/search?name=${query}`
+        `https://udemandme.com/api/products/product/search?name=${query}`
       );
       setProducts(res.data.products || []);
     } catch (err) {

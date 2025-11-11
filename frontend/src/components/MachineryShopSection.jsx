@@ -28,7 +28,7 @@ const ShopSection = () => {
     const fetchCategories = async (pageNum = 1) => {
       try {
         const res = await fetch(
-          `https://udemandme.cloud/api/categories?page=${pageNum}&limit=12`
+          `https://udemandme.com/api/categories?page=${pageNum}&limit=12`
         );
         const data = await res.json();
         if (data.success) {
@@ -56,7 +56,7 @@ const ShopSection = () => {
       categoryObserver.current = new IntersectionObserver((entries) => {
         if (entries[0].isIntersecting && page < pages) {
           fetch(
-            `https://udemandme.cloud/api/categories?page=${page + 1}&limit=12`
+            `https://udemandme.com/api/categories?page=${page + 1}&limit=12`
           )
             .then((res) => res.json())
             .then((data) => {
@@ -88,7 +88,7 @@ const ShopSection = () => {
   useEffect(() => {
     const fetchAttributes = async () => {
       try {
-        const res = await fetch("https://udemandme.cloud/api/attributes");
+        const res = await fetch("https://udemandme.com/api/attributes");
         const data = await res.json();
         if (data.success) {
           setAttributes(data.data);
@@ -120,7 +120,7 @@ const ShopSection = () => {
       const limit = 40; // Load 40 products at a time
 
       const res = await fetch(
-        `https://udemandme.cloud/api/products/superparent/${superParentName}?page=${pageToLoad}&limit=${limit}`,
+        `https://udemandme.com/api/products/superparent/${superParentName}?page=${pageToLoad}&limit=${limit}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -240,7 +240,7 @@ const ShopSection = () => {
         params.append("values", selectedFilters.join(","));
       }
 
-      fetch(`https://udemandme.cloud/api/products/filter?${params.toString()}`)
+      fetch(`https://udemandme.com/api/products/filter?${params.toString()}`)
         .then((res) => res.json())
         .then((data) => {
           if (data.success) {

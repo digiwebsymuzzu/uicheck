@@ -30,7 +30,7 @@ const WeldingTechniques = () => {
   useEffect(() => {
     const fetchVideos = async () => {
       try {
-        const res = await fetch("https://udemandme.cloud/api/welding");
+        const res = await fetch("https://udemandme.com/api/welding");
         const data = await res.json();
         if (data.success) setVideos(data.videos);
       } catch (err) {

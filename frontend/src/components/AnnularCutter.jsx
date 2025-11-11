@@ -31,7 +31,7 @@ const AnnularCutter = () => {
   useEffect(() => {
     const fetchVideos = async () => {
       try {
-        const res = await fetch("https://udemandme.cloud/api/annular");
+        const res = await fetch("https://udemandme.com/api/annular");
         const data = await res.json();
         if (data.success) setVideos(data.videos);
       } catch (err) {

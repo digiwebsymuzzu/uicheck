@@ -21,7 +21,7 @@ export const CartProvider = ({ children }) => {
     if (!token) return;
 
     try {
-      const res = await axios.get("https://udemandme.cloud/api/addToCart", {
+      const res = await axios.get("https://udemandme.com/api/addToCart", {
         headers: { Authorization: `Bearer ${token}` },
       });
       if (res.data.success) setCart(res.data.cart);
@@ -40,7 +40,7 @@ export const CartProvider = ({ children }) => {
 
   //   try {
   //     const res = await axios.post(
-  //       "https://udemandme.cloud/api/addToCart/add",
+  //       "https://udemandme.com/api/addToCart/add",
   //       { productId: product._id, qty, attribute },
   //       { headers: { Authorization: `Bearer ${token}` } }
   //     );
@@ -76,7 +76,7 @@ export const CartProvider = ({ children }) => {
 
     try {
       const res = await axios.post(
-        "https://udemandme.cloud/api/addToCart/add",
+        "https://udemandme.com/api/addToCart/add",
         {
           productId: product._id,
           qty,
@@ -101,7 +101,7 @@ export const CartProvider = ({ children }) => {
 
     try {
       const res = await axios.post(
-        "https://udemandme.cloud/api/addToCart/update",
+        "https://udemandme.com/api/addToCart/update",
         { cartId: cartItemId, qty },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -119,7 +119,7 @@ export const CartProvider = ({ children }) => {
 
     try {
       const res = await axios.delete(
-        `https://udemandme.cloud/api/addToCart/delete/${cartItemId}`,
+        `https://udemandme.com/api/addToCart/delete/${cartItemId}`,
         { headers: { Authorization: `Bearer ${token}` } }
       );
       if (res.data.success) fetchCart();
@@ -139,7 +139,7 @@ export const CartProvider = ({ children }) => {
     if (!token) return;
 
     try {
-      const res = await fetch("https://udemandme.cloud/api/whichlist", {
+      const res = await fetch("https://udemandme.com/api/whichlist", {
         headers: { Authorization: `Bearer ${token}` },
       });
       const data = await res.json();
@@ -158,7 +158,7 @@ export const CartProvider = ({ children }) => {
     if (!token) return navigate("/login");
 
     try {
-      const res = await fetch("https://udemandme.cloud/api/whichlist/add", {
+      const res = await fetch("https://udemandme.com/api/whichlist/add", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -184,7 +184,7 @@ export const CartProvider = ({ children }) => {
 
     try {
       const res = await fetch(
-        `https://udemandme.cloud/api/whichlist/delete/${wishlistId}`,
+        `https://udemandme.com/api/whichlist/delete/${wishlistId}`,
         {
           method: "DELETE",
           headers: { Authorization: `Bearer ${token}` },

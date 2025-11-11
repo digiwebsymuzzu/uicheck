@@ -71,7 +71,7 @@ const ProductDetailsOne = ({ productId }) => {
   const fetchProduct = async () => {
     try {
       const res = await fetch(
-        `https://udemandme.cloud/api/products/slug/${slug}`,
+        `https://udemandme.com/api/products/slug/${slug}`,
         {
           headers: { "Content-Type": "application/json" },
         }
@@ -103,7 +103,7 @@ const ProductDetailsOne = ({ productId }) => {
   const fetchReviews = async (productId) => {
     try {
       const res = await axios.get(
-        `https://udemandme.cloud/api/reviews/product/${productId}`
+        `https://udemandme.com/api/reviews/product/${productId}`
       );
 
       if (res.data.success) {
@@ -233,7 +233,7 @@ const ProductDetailsOne = ({ productId }) => {
 
     try {
       const res = await axios.post(
-        "https://udemandme.cloud/api/reviews/add",
+        "https://udemandme.com/api/reviews/add",
         {
           productId: product._id,
           rating,

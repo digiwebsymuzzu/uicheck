@@ -105,7 +105,7 @@ const Checkout = () => {
     };
 
     try {
-      const response = await fetch("https://udemandme.cloud/api/order/add", {
+      const response = await fetch("https://udemandme.com/api/order/add", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -12,7 +12,7 @@ const TrendingOne = () => {
     try {
       const superParentName = "machinery";
       const res = await fetch(
-        `https://udemandme.cloud/api/products/superparent/${superParentName}`,
+        `https://udemandme.com/api/products/superparent/${superParentName}`,
         {
           headers: {
             "Content-Type": "application/json",

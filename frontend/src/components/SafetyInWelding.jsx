@@ -34,7 +34,7 @@ const SafetyInWelding = () => {
   useEffect(() => {
     const fetchVideos = async () => {
       try {
-        const res = await fetch("https://udemandme.cloud/api/safety");
+        const res = await fetch("https://udemandme.com/api/safety");
         const data = await res.json();
         if (data.success) setVideos(data.videos);
       } catch (err) {

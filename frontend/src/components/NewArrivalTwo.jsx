@@ -10,7 +10,7 @@ const NewArrivalTwo = () => {
   // Fetch 5 random products on component render
   const fetchRandomProducts = async () => {
     try {
-      const res = await fetch("https://udemandme.cloud/api/products?limit=50");
+      const res = await fetch("https://udemandme.com/api/products?limit=50");
       const data = await res.json();
       if (data.success && data.products.length) {
         const shuffled = data.products.sort(() => 0.4 - Math.random());

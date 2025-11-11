@@ -9,7 +9,7 @@ const Blog = () => {
     const fetchBlogs = async () => {
       try {
         const response = await fetch(
-          "https://udemandme.cloud/api/allblogs/blogs"
+          "https://udemandme.com/api/allblogs/blogs"
         );
         const data = await response.json();
         if (data.success) {
