@@ -108,9 +108,10 @@ const BrandTwo = () => {
                 <div key={brand._id}>
                   <div className="top-brand__item flex-center rounded-8 border border-gray-100 hover-border-gray-200 transition-1 px-8">
                     <img
-                      src={brand.brand_img} // 👈 yaha backend se aayi image lagegi
+                      src={`https://udemandme.cloud/backend/uploads/brand/${brand.brand_img}`}
                       alt={brand.name}
                       className="img-fluid"
+                      style={{ height: "70px" }}
                     />
                   </div>
                 </div>

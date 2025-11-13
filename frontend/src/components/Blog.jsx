@@ -42,7 +42,7 @@ const Blog = () => {
                         className="w-100 h-100 rounded-16 overflow-hidden"
                       >
                         <img
-                          src={blog.blogImage}
+                          src={`https://udemandme.cloud/backend/${blog.blogImage}`}
                           alt={blog.blogtitle}
                           className="cover-img"
                         />

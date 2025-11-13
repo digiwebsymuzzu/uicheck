@@ -252,7 +252,13 @@ const HeaderTwo = ({ category }) => {
                       }}
                     >
                       <img
-                        src={product.productMainImage || "/placeholder.png"}
+                        src={
+                          product.productMainImage?.startsWith(
+                            "/uploads/products"
+                          )
+                            ? `https://udemandme.cloud/backend${product.productMainImage}`
+                            : product.productMainImage
+                        }
                         alt={product.productName}
                         className="rounded me-3"
                         style={{
@@ -261,6 +267,7 @@ const HeaderTwo = ({ category }) => {
                           objectFit: "cover",
                         }}
                       />
+
                       <div className="flex-grow-1">
                         <div className="fw-semibold text-dark">
                           {product.productName}
@@ -548,7 +555,13 @@ const HeaderTwo = ({ category }) => {
                           }
                         >
                           <img
-                            src={product.productMainImage || "/placeholder.png"}
+                            src={
+                              product.productMainImage?.startsWith(
+                                "/uploads/products"
+                              )
+                                ? `https://udemandme.cloud/backend${product.productMainImage}`
+                                : product.productMainImage
+                            }
                             alt={product.productName}
                             className="rounded me-3"
                             style={{
@@ -557,6 +570,7 @@ const HeaderTwo = ({ category }) => {
                               objectFit: "cover",
                             }}
                           />
+
                           <div className="flex-grow-1">
                             <div className="fw-semibold text-dark">
                               {product.productName}

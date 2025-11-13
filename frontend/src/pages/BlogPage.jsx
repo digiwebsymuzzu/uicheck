@@ -9,11 +9,7 @@ import ShippingOne from "../components/ShippingOne";
 import Blog from "../components/Blog";
 import ScrollToTop from "react-scroll-to-top";
 
-
 const BlogPage = () => {
-
-
-
   return (
     <>
       {/* ColorInit */}
@@ -42,8 +38,6 @@ const BlogPage = () => {
 
       {/* BottomFooter */}
       <BottomFooter />
-
-
     </>
   );
 };

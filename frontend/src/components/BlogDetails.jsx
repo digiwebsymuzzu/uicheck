@@ -75,7 +75,7 @@ const BlogDetails = () => {
               <div className="blog-item blog-border border-gray-100">
                 <div className="w-100 h-100 rounded-16 overflow-hidden">
                   <img
-                    src={blog.blogImage}
+                    src={`https://udemandme.cloud/backend/${blog.blogImage}`}
                     alt={blog.blogtitle}
                     className="cover-img"
                   />
@@ -195,7 +195,7 @@ const BlogDetails = () => {
                     className="w-100 h-100 rounded-4 overflow-hidden w-120 h-120 flex-shrink-0"
                   >
                     <img
-                      src={b.blogImage}
+                      src={`https://udemandme.cloud/backend/${b.blogImage}`}
                       alt={b.blogtitle}
                       className="cover-img"
                     />

@@ -270,8 +270,21 @@ const ProductDetailsOne = ({ productId }) => {
                   <div className="product-details__thumb-slider border border-gray-100 rounded-16">
                     <div className="">
                       <div className="product-details__thumb flex-center h-100">
+                        {console.log(
+                          "PRODUCT IMAGE:",
+                          product.productMainImage
+                        )}
+
                         <img
-                          src={product.productMainImage}
+                          src={
+                            product.productMainImage?.startsWith("http")
+                              ? product.productMainImage
+                              : product.productMainImage?.startsWith(
+                                  "/uploads/"
+                                )
+                              ? `https://udemandme.cloud/backend${product.productMainImage}`
+                              : `https://udemandme.cloud/backend/uploads/products/${product.productMainImage}`
+                          }
                           alt={product.productName}
                           onError={(e) => {
                             e.target.onerror = null;
@@ -293,7 +306,13 @@ const ProductDetailsOne = ({ productId }) => {
                             >
                               <img
                                 className="thum"
-                                src={image}
+                                src={
+                                  image?.startsWith("http")
+                                    ? image
+                                    : image?.startsWith("/uploads/")
+                                    ? `https://udemandme.cloud/backend${image}`
+                                    : `https://udemandme.cloud/backend/uploads/products/${image}`
+                                }
                                 alt={`Thumbnail ${index}`}
                               />
                             </div>
