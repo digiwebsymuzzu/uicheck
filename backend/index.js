@@ -46,7 +46,7 @@ app.use("/api/dewalt", dewaltroutes);
 app.use("/api/safety", safetyroutes);
 app.use("/api/welding", weldingroutes);
 app.use("/api/brand", brandroutes);
-app.use("/emailer", EmailerRoutes);
+app.use("/api/emailer", EmailerRoutes);
 
 app.listen(PORT, () => {
   console.log(`http://147.93.108.82:5000/ server is running on ${PORT}`);
