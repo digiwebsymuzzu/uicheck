@@ -57,7 +57,7 @@ const Contact = () => {
         toast.error("Unable to send message. Please try again.");
       }
     } catch (error) {
-      toast.error("Server error. Please try again later.");
+      toast.error("Server error. Please try again laters.");
     } finally {
       setLoading(false);
     }
