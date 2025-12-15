@@ -32,7 +32,7 @@ const Contact = () => {
     setLoading(true);
 
     try {
-      const response = await fetch("https://udemandme.com/api/contact.php", {
+      const response = await fetch("https://udemandme.com/emailer/contact", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
