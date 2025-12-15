@@ -36,12 +36,14 @@ import Machinery from "./pages/Machinery";
 import Sanitary from "./pages/Sanitary";
 import Automotive from "./pages/Automotive";
 import OilAndGas from "./pages/OilAndGas";
+import { Toaster } from "react-hot-toast";
 
 function App() {
   return (
     <>
       <RouteScrollToTop />
       <PhosphorIconInit />
+      <Toaster position="top-right" />
 
       <Routes>
         <Route exact path="/index-two" element={<HomePageOne />} />

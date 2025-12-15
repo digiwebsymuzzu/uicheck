@@ -1,108 +1,149 @@
 import { useState } from "react";
 import PhoneInput from "react-phone-input-2";
 import { Link } from "react-router-dom";
+import toast from "react-hot-toast";
 
 const Contact = () => {
   const [phone, setPhone] = useState("");
+  const [form, setForm] = useState({
+    name: "",
+    phone: "",
+    email: "",
+    message: "",
+  });
+
+  const [loading, setLoading] = useState(false);
+
+  // Handle text inputs
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setForm((prev) => ({ ...prev, [name]: value }));
+  };
+
+  // Submit handler
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (!form.name || !form.phone || !form.email || !form.message) {
+      toast.error("Please fill all required fields");
+      return;
+    }
+
+    setLoading(true);
+
+    try {
+      const response = await fetch("https://udemandme.com/api/contact.php", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(form),
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        toast.success(
+          "Thank you for your query, you will soon receive a reply via email or call"
+        );
+
+        setForm({
+          name: "",
+          phone: "",
+          email: "",
+          message: "",
+        });
+      } else {
+        toast.error("Unable to send message. Please try again.");
+      }
+    } catch (error) {
+      toast.error("Server error. Please try again later.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <section className="contact py-80">
       <div className="container container-lg">
         <div className="row gy-5">
           <div className="col-lg-6">
             <div className="contact-box border border-gray-100 rounded-16 px-24 py-40">
-              <form action="#">
+              <form onSubmit={handleSubmit} noValidate>
                 <h6 className="mb-32">Your Details</h6>
-                <div className="row gy-4">
-                  <div className="col-sm-12 ">
-                    <label
-                      htmlFor="name"
-                      className="flex-align gap-4 text-sm font-heading-two text-gray-900 fw-semibold mb-4"
-                    >
-                      Full Name{" "}
-                      <span className="text-danger text-xl line-height-1">
-                        *
-                      </span>{" "}
-                    </label>
-                    <input
-                      type="text"
-                      className="common-input px-16"
-                      id="name"
-                      placeholder="Full name"
-                    />
-                  </div>
-                  {/* Mobile Number with +971 */}
-                  <div className="col-sm-6 col-xs-6">
-                    <label
-                      htmlFor="phone"
-                      className="flex-align gap-4 text-sm font-heading-two text-gray-900 fw-semibold mb-4"
-                    >
-                      Mobile Number{" "}
-                      <span className="text-danger text-xl line-height-1">
-                        *
-                      </span>
-                    </label>
-                    <div className="d-flex">
-                      <PhoneInput
-                        country={"in"} // Default country (India in this case)
-                        value={phone}
-                        onChange={(phone) => setPhone(phone)}
-                        inputClass="phone-custom-input"
-                        containerClass="w-100"
-                        inputProps={{
-                          name: "phone",
-                          required: true,
-                          autoFocus: false,
-                        }}
-                      />
-                    </div>
-                  </div>
-                  <div className="col-sm-6 col-xs-6">
-                    <label
-                      htmlFor="email"
-                      className="flex-align gap-4 text-sm font-heading-two text-gray-900 fw-semibold mb-4"
-                    >
-                      Email Address{" "}
-                      <span className="text-danger text-xl line-height-1">
-                        *
-                      </span>{" "}
-                    </label>
-                    <input
-                      type="email"
-                      className="common-input px-16"
-                      id="email"
-                      placeholder="Email address"
-                    />
-                  </div>
-                  <h6 className="">How can we help?</h6>
-                  <p className="text-gray-700 mb-24">
-                    Feel free to ask a question or simply leave a comment.
-                  </p>
-                  <div className="col-sm-12">
-                    <label
-                      htmlFor="message"
-                      className="flex-align gap-4 text-sm font-heading-two text-gray-900 fw-semibold mb-4"
-                    >
-                      Message
-                      <span className="text-danger text-xl line-height-1">
-                        *
-                      </span>{" "}
-                    </label>
-                    <textarea
-                      className="common-input px-16"
-                      id="message"
-                      placeholder="Type your message"
-                      defaultValue={""}
-                    />
-                  </div>
-                  <div className="col-sm-12 mt-32">
-                    <button
-                      type="submit"
-                      className="btn btn-main py-18 px-32 rounded-8"
-                    >
-                      Submit
-                    </button>
-                  </div>
+
+                {/* FULL NAME */}
+                <div className="mb-16">
+                  <label className="text-sm fw-semibold mb-4">
+                    Full Name <span className="text-danger">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    name="name"
+                    className="common-input px-16"
+                    placeholder="Full name"
+                    value={form.name}
+                    onChange={handleChange}
+                    required
+                  />
                 </div>
+
+                {/* PHONE */}
+                <div className="mb-16">
+                  <label className="text-sm fw-semibold mb-4">
+                    Mobile Number <span className="text-danger">*</span>
+                  </label>
+                  <PhoneInput
+                    country={"in"}
+                    value={form.phone}
+                    onChange={(phone) =>
+                      setForm((prev) => ({ ...prev, phone }))
+                    }
+                    inputClass="phone-custom-input"
+                    containerClass="w-100"
+                    inputProps={{ required: true }}
+                  />
+                </div>
+
+                {/* EMAIL */}
+                <div className="mb-16">
+                  <label className="text-sm fw-semibold mb-4">
+                    Email Address <span className="text-danger">*</span>
+                  </label>
+                  <input
+                    type="email"
+                    name="email"
+                    className="common-input px-16"
+                    placeholder="Email address"
+                    value={form.email}
+                    onChange={handleChange}
+                    required
+                  />
+                </div>
+
+                {/* MESSAGE */}
+                <div className="mb-24">
+                  <label className="text-sm fw-semibold mb-4">
+                    Message <span className="text-danger">*</span>
+                  </label>
+                  <textarea
+                    name="message"
+                    className="common-input px-16"
+                    placeholder="Type your message"
+                    value={form.message}
+                    onChange={handleChange}
+                    required
+                  />
+                </div>
+
+                {/* SUBMIT */}
+                <button
+                  type="submit"
+                  className="btn btn-main py-18 px-32 rounded-8"
+                  disabled={loading}
+                >
+                  {loading ? "Sending..." : "Submit"}
+                </button>
               </form>
             </div>
           </div>
