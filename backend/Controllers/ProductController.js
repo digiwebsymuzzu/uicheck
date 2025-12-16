@@ -151,19 +151,38 @@ const getProductsBySuperparent = async (req, res) => {
 const searchProducts = async (req, res) => {
   try {
     const { name } = req.query;
-    if (!name) {
-      return res
-        .status(400)
-        .json({ success: false, message: "Search term required" });
+
+    if (!name || name.length < 3) {
+      return res.json({ success: true, products: [] });
     }
 
-    const products = await Product.find({
-      productName: { $regex: name, $options: "i" }, // note: productName
-    });
+    const products = await Product.aggregate([
+      {
+        $search: {
+          index: "productSearch",
+          autocomplete: {
+            query: name,
+            path: "productName",
+            fuzzy: { maxEdits: 1 },
+          },
+        },
+      },
+      { $limit: 10 },
+
+      // 🔥 THIS IS THE KEY FIX
+      {
+        $project: {
+          productName: 1,
+          productSlug: 1,
+          productMainImage: 1,
+          productSalePriceInr: 1,
+        },
+      },
+    ]);
 
     res.json({ success: true, products });
   } catch (err) {
-    console.error(err);
+    console.error("Search error:", err);
     res.status(500).json({ success: false, message: "Server Error" });
   }
 };

@@ -35,10 +35,10 @@ router.get("/slug/:slug", async (req, res) => {
   }
 });
 
-// @route GET /api/products/:id
-router.get("/:id", getProductById);
-
 // GET /api/products/search?name=iphone
 router.get("/product/search", searchProducts);
+
+// @route GET /api/products/:id
+router.get("/:id", getProductById);
 
 module.exports = router;
