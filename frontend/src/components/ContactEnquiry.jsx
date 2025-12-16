@@ -2,24 +2,98 @@ import React, { useState } from "react";
 import Select from "react-select";
 import { Link } from "react-router-dom";
 import PhoneInput from "react-phone-input-2";
+import toast from "react-hot-toast";
 import "react-phone-input-2/lib/bootstrap.css";
 
 const ContactEnquiry = () => {
-  const [requestType, setRequestType] = useState("");
-  const [phone, setPhone] = useState("");
-  const [subjectOptions, setSubjectOptions] = useState([]);
-  const [selectedSubjects, setSelectedSubjects] = useState([]);
+  const [loading, setLoading] = useState(false);
 
-  const subjectData = {
-    Sell: ["Property", "Vehicle", "Furniture", "Electronics"],
-    Repair: ["AC", "Washing Machine", "Refrigerator", "Plumbing"],
-    Buy: ["Books", "Furniture", "Mobile", "Car"],
+  const [form, setForm] = useState({
+    name: "",
+    phone: "",
+    email: "",
+    requestType: "",
+    brands: [],
+    reference: "",
+    message: "",
+    file: null,
+  });
+
+  const options = [
+    { value: "DEWALT", label: "DEWALT" },
+    { value: "STANLEY", label: "STANLEY" },
+    { value: "EUROBOOR", label: "EUROBOOR" },
+    { value: "AEG", label: "AEG" },
+    { value: "PROMOTECH", label: "PROMOTECH" },
+    { value: "OTHER", label: "OTHER" },
+  ];
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setForm((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleRequestTypeChange = (e) => {
-    const selected = e.target.value;
-    setRequestType(selected);
-    setSubjectOptions(subjectData[selected] || []);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (
+      !form.name ||
+      !form.phone ||
+      !form.email ||
+      !form.requestType ||
+      !form.message ||
+      form.brands.length === 0
+    ) {
+      toast.error("Please fill all required fields");
+      return;
+    }
+
+    setLoading(true);
+
+    try {
+      const formData = new FormData();
+      formData.append("name", form.name);
+      formData.append("phone", form.phone);
+      formData.append("email", form.email);
+      formData.append("requestType", form.requestType);
+      formData.append("brands", form.brands.map((b) => b.value).join(", "));
+      formData.append("reference", form.reference);
+      formData.append("message", form.message);
+
+      if (form.file) {
+        formData.append("file", form.file);
+      }
+
+      const response = await fetch("https://udemandme.com/api/enquiry", {
+        method: "POST",
+        body: formData,
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        toast.success(
+          "Thank you for your enquiry. We will contact you shortly."
+        );
+
+        setForm({
+          name: "",
+          phone: "",
+          email: "",
+          requestType: "",
+          brands: [],
+          reference: "",
+          message: "",
+          file: null,
+        });
+      } else {
+        toast.error("Unable to send enquiry. Please try again.");
+      }
+    } catch (err) {
+      toast.error("Server error. Please try again later.");
+    } finally {
+      setLoading(false);
+    }
   };
   return (
     <>
@@ -28,194 +102,98 @@ const ContactEnquiry = () => {
           <div className="row gy-5">
             <div className="col-lg-7">
               <div className="contact-box border border-gray-100 rounded-16 px-24 py-40">
-                <form action="#">
+                <form onSubmit={handleSubmit} noValidate>
                   <h6 className="mb-32">Your Enquiry</h6>
-                  <div className="row gy-4">
-                    {/* Full Name */}
-                    <div className="col-sm-12">
-                      <label
-                        htmlFor="name"
-                        className="flex-align gap-4 text-sm font-heading-two text-gray-900 fw-semibold mb-4"
-                      >
-                        Full Name{" "}
-                        <span className="text-danger text-xl line-height-1">
-                          *
-                        </span>
-                      </label>
-                      <input
-                        type="text"
-                        className="common-input px-16"
-                        id="name"
-                        placeholder="Full name"
-                      />
-                    </div>
-                    {/* Mobile Number with +971 */}
-                    <div className="col-sm-6 col-xs-6">
-                      <label
-                        htmlFor="phone"
-                        className="flex-align gap-4 text-sm font-heading-two text-gray-900 fw-semibold mb-4"
-                      >
-                        Mobile Number{" "}
-                        <span className="text-danger text-xl line-height-1">
-                          *
-                        </span>
-                      </label>
-                      <div className="d-flex">
-                        <PhoneInput
-                          country={"ae"} // Default country (India in this case)
-                          value={phone}
-                          onChange={(phone) => setPhone(phone)}
-                          inputClass="phone-custom-input"
-                          containerClass="w-100"
-                          inputProps={{
-                            name: "phone",
-                            required: true,
-                            autoFocus: false,
-                          }}
-                        />
-                      </div>
-                    </div>
-                    {/* Email Address */}
-                    <div className="col-sm-6 col-xs-6">
-                      <label
-                        htmlFor="email"
-                        className="flex-align gap-4 text-sm font-heading-two text-gray-900 fw-semibold mb-4"
-                      >
-                        Email Address{" "}
-                        <span className="text-danger text-xl line-height-1">
-                          *
-                        </span>
-                      </label>
-                      <input
-                        type="email"
-                        className="common-input px-16"
-                        id="email"
-                        placeholder="Email address"
-                      />
-                    </div>
-                    {/* File Upload */}
-                    <div className="col-sm-12">
-                      <label
-                        htmlFor="file"
-                        className="flex-align gap-4 text-sm font-heading-two text-gray-900 fw-semibold mb-4"
-                      >
-                        Upload file{" "}
-                        <span className="text-danger text-xl line-height-1">
-                          *
-                        </span>
-                      </label>
-                      <input
-                        type="file"
-                        className=" text-danger mb-2"
-                        id="file"
-                      />
-                      <small className="text-muted d-block">
-                        Maximum file size upload is 500KB & allowed formats are
-                        jpg, jpeg, pdf, docx, png.
-                      </small>
-                      <small className="text-muted d-block">
-                        For more file upload kindly email here{" "}
-                        <a href="mailto:info@udemandme.com">
-                          info@udemandme.com
-                        </a>{" "}
-                        or WhatsApp us at <strong>+971-50-2530888</strong>.
-                      </small>
-                    </div>
-                    {/* Request Type Dropdown single select  */}
-                    <div className="col-sm-12">
-                      <label
-                        htmlFor="requestType"
-                        className="flex-align gap-4 text-sm font-heading-two text-gray-900 fw-semibold mb-4"
-                      >
-                        Request Type{" "}
-                        <span className="text-danger text-xl line-height-1">
-                          *
-                        </span>
-                      </label>
-                      <select
-                        id="requestType"
-                        className="common-input px-16"
-                        onChange={handleRequestTypeChange}
-                      >
-                        <option value="">Select Request Type</option>
-                        <option value="Sell">Sell</option>
-                        <option value="Repair">Repair</option>
-                        <option value="Buy">Buy</option>
-                      </select>
-                    </div>
-                    {/* request type select  multi select */}
-                    {requestType && (
-                      <div className="col-sm-12">
-                        <label
-                          htmlFor="request"
-                          className="flex-align gap-4 text-sm font-heading-two text-gray-900 fw-semibold mb-4"
-                        >
-                          {`Request Type: ${requestType}`}{" "}
-                          <span className="text-danger">*</span>
-                        </label>
-                        <Select
-                          isMulti
-                          id="subject"
-                          name="subject"
-                          options={subjectOptions.map((item) => ({
-                            value: item,
-                            label: item,
-                          }))}
-                          className="basic-multi-select"
-                          classNamePrefix="select"
-                          onChange={(selected) => {
-                            setSelectedSubjects(selected.map((s) => s.value));
-                          }}
-                          value={selectedSubjects.map((val) => ({
-                            value: val,
-                            label: val,
-                          }))}
-                        />
-                      </div>
-                    )}
 
-                    <div className="col-sm-12">
-                      <label
-                        htmlFor="subject"
-                        className="flex-align gap-4 text-sm font-heading-two text-gray-900 fw-semibold mb-4"
-                      >
-                        Subject/Reference{" "}
-                      </label>
-                      <input
-                        type="text"
-                        className="common-input px-16"
-                        id="reference"
-                        placeholder="subject"
-                      />
-                    </div>
-                    {/* Comments / Questions */}
-                    <div className="col-sm-12">
-                      <label
-                        htmlFor="message"
-                        className="flex-align gap-4 text-sm font-heading-two text-gray-900 fw-semibold mb-4"
-                      >
-                        Comments / Questions{" "}
-                        <span className="text-danger text-xl line-height-1">
-                          *
-                        </span>
-                      </label>
-                      <textarea
-                        className="common-input px-16"
-                        id="message"
-                        placeholder="Type your message"
-                        defaultValue={""}
-                      />
-                    </div>
-                    {/* Submit Button */}
-                    <div className="col-sm-12 mt-32">
-                      <button
-                        type="submit"
-                        className="btn btn-main py-18 px-32 rounded-8"
-                      >
-                        Submit
-                      </button>
-                    </div>
-                  </div>
+                  <input
+                    type="text"
+                    name="name"
+                    className="common-input px-16 mb-16"
+                    placeholder="Full Name *"
+                    value={form.name}
+                    onChange={handleChange}
+                  />
+
+                  <PhoneInput
+                    country="ae"
+                    value={form.phone}
+                    onChange={(val) =>
+                      setForm((prev) => ({ ...prev, phone: val }))
+                    }
+                    inputClass="phone-custom-input"
+                    containerClass="w-100 mb-16"
+                  />
+
+                  <input
+                    type="email"
+                    name="email"
+                    className="common-input px-16 mb-16"
+                    placeholder="Email Address *"
+                    value={form.email}
+                    onChange={handleChange}
+                  />
+
+                  <input
+                    type="file"
+                    className="mb-16"
+                    onChange={(e) =>
+                      setForm((prev) => ({
+                        ...prev,
+                        file: e.target.files[0],
+                      }))
+                    }
+                  />
+                  <small className="text-muted d-block mb-16">
+                    Optional – Max 500KB (jpg, jpeg, png, pdf, docx)
+                  </small>
+
+                  <select
+                    name="requestType"
+                    className="common-input px-16 mb-16"
+                    value={form.requestType}
+                    onChange={handleChange}
+                  >
+                    <option value="">Select Request Type *</option>
+                    <option value="Sell">Sell</option>
+                    <option value="Repair">Repair</option>
+                    <option value="Buy">Buy</option>
+                  </select>
+
+                  <Select
+                    isMulti
+                    options={options}
+                    value={form.brands}
+                    onChange={(selected) =>
+                      setForm((prev) => ({ ...prev, brands: selected }))
+                    }
+                    className="mb-16"
+                    placeholder="Select Brands *"
+                  />
+
+                  <input
+                    type="text"
+                    name="reference"
+                    className="common-input px-16 mb-16"
+                    placeholder="Subject / Reference"
+                    value={form.reference}
+                    onChange={handleChange}
+                  />
+
+                  <textarea
+                    name="message"
+                    className="common-input px-16 mb-24"
+                    placeholder="Comments / Questions *"
+                    value={form.message}
+                    onChange={handleChange}
+                  />
+
+                  <button
+                    type="submit"
+                    className="btn btn-main py-18 px-32 rounded-8"
+                    disabled={loading}
+                  >
+                    {loading ? "Sending..." : "Submit"}
+                  </button>
                 </form>
               </div>
             </div>

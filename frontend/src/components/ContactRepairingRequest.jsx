@@ -251,7 +251,7 @@ const ContactRepairingRequest = () => {
                   rel="noopener noreferrer"
                   className="bg-neutral-600 hover-bg-main-600 rounded-8 p-10 px-16 flex-between flex-wrap gap-8 flex-grow-1"
                 >
-                  <span className="text-white fw-medium">Get Directiond</span>
+                  <span className="text-white fw-medium">Get Direction</span>
                   <span className="w-36 h-36 bg-black rounded-8 flex-center text-xl text-white">
                     <i className="ph ph-map-pin" />
                   </span>

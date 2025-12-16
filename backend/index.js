@@ -25,7 +25,7 @@ const weldingroutes = require("./Routes/WeldingRoutes.js");
 const brandroutes = require("./Routes/BrandRoutes.js");
 const EmailerRoutes = require("./Routes/Emailer.js");
 const RepairRoutes = require("./Routes/Repair.js");
-
+const EnquiryRoutes = require("./Routes/Enquiry.js");
 const PORT = process.env.PORT || 5000;
 
 app.use(compression());
@@ -48,6 +48,7 @@ app.use("/api/welding", weldingroutes);
 app.use("/api/brand", brandroutes);
 app.use("/api/emailer", EmailerRoutes);
 app.use("/api/repair", RepairRoutes);
+app.use("/api/enquiry", EnquiryRoutes);
 app.use("/api", attributeRoutes);
 app.listen(PORT, () => {
   console.log(`http://147.93.108.82:5000/ server is running on ${PORT}`);

@@ -6,20 +6,18 @@ const fs = require("fs");
 
 const router = express.Router();
 
-/**
- * Ensure upload directory exists
- */
+/* ===== DEBUG ===== */
+console.log("✅ EnquiryRoutes loaded");
+
+/* ===== Ensure upload folder exists ===== */
 const uploadDir = path.join(__dirname, "../uploads/email");
 if (!fs.existsSync(uploadDir)) {
   fs.mkdirSync(uploadDir, { recursive: true });
 }
 
-/**
- * Multer disk storage (REQUIRED for your case)
- */
+/* ===== Multer disk storage ===== */
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    console.log("📂 Multer destination hit");
     cb(null, uploadDir);
   },
   filename: (req, file, cb) => {
@@ -28,34 +26,24 @@ const storage = multer.diskStorage({
       "-" +
       Math.round(Math.random() * 1e9) +
       path.extname(file.originalname);
-    console.log("📄 Multer filename:", uniqueName);
     cb(null, uniqueName);
   },
 });
 
 const upload = multer({
   storage,
-  limits: { fileSize: 500 * 1024 },
+  limits: { fileSize: 500 * 1024 }, // 500KB
 });
 
-/**
- * 🔴 HARD PROOF: Router entered
- */
-router.use((req, res, next) => {
-  console.log("➡️ RepairRoutes middleware HIT:", req.method, req.originalUrl);
-  next();
-});
-
-/**
- * POST /api/repair
- */
+/* ===== POST /api/enquiry ===== */
 router.post("/", upload.single("file"), async (req, res) => {
-  console.log("🔥 Repair POST handler HIT");
+  console.log("🔥 Enquiry POST HIT");
 
-  const { name, email, phone, subject, brands, message } = req.body;
+  const { name, phone, email, requestType, brands, reference, message } =
+    req.body || {};
 
-  if (!name || !email || !phone || !subject || !brands || !message) {
-    console.log("❌ Validation failed", req.body);
+  // Validation (file optional)
+  if (!name || !phone || !email || !requestType || !brands || !message) {
     return res.status(400).json({
       success: false,
       message: "All required fields are missing",
@@ -69,51 +57,49 @@ router.post("/", upload.single("file"), async (req, res) => {
       secure: false,
       auth: {
         user: "contact@udemandme.com",
-        pass: "Sukoon110#",
+        pass: "Sukoon110#", // move to env later
       },
       tls: { rejectUnauthorized: false },
     });
 
     const mailOptions = {
-      from: `"Repair Request" <contact@udemandme.com>`,
+      from: `"New Enquiry" <contact@udemandme.com>`,
       to: "info@udemandme.com",
       replyTo: email,
-      subject: `Repair Request: ${subject}`,
+      subject: `New Enquiry – ${requestType}`,
       html: `
-        <h3>New Repair Request</h3>
+        <h3>New Enquiry</h3>
         <p><b>Name:</b> ${name}</p>
-        <p><b>Email:</b> ${email}</p>
         <p><b>Phone:</b> ${phone}</p>
-        <p><b>Repair For:</b><br>${brands}</p>
+        <p><b>Email:</b> ${email}</p>
+        <p><b>Request Type:</b> ${requestType}</p>
+        <p><b>Brands / Items:</b><br>${brands}</p>
+        <p><b>Reference:</b> ${reference || "-"}</p>
         <p><b>Message:</b><br>${message}</p>
       `,
     };
 
+    // attach file if uploaded
     if (req.file) {
-      console.log("📎 File attached:", req.file.path);
       mailOptions.attachments = [
         {
           filename: req.file.originalname,
           path: req.file.path,
         },
       ];
-    } else {
-      console.log("ℹ️ No file uploaded");
     }
 
     await transporter.sendMail(mailOptions);
 
-    console.log("✅ Repair email sent");
-
     return res.json({
       success: true,
-      message: "Repair request sent successfully",
+      message: "Enquiry sent successfully",
     });
   } catch (err) {
-    console.error("❌ Repair mail error:", err);
+    console.error("❌ Enquiry mail error:", err);
     return res.status(500).json({
       success: false,
-      message: "Failed to send repair request",
+      message: "Failed to send enquiry",
     });
   }
 });
