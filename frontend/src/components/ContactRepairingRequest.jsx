@@ -2,17 +2,99 @@ import React, { useState } from "react";
 import Select from "react-select";
 import { Link } from "react-router-dom";
 import PhoneInput from "react-phone-input-2";
+import toast from "react-hot-toast";
 import "react-phone-input-2/lib/bootstrap.css";
+
 const ContactRepairingRequest = () => {
-  const [phone, setPhone] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const [form, setForm] = useState({
+    name: "",
+    phone: "",
+    email: "",
+    subject: "",
+    message: "",
+    brands: [],
+    file: null, // optional
+  });
+
   const options = [
     { value: "DEWALT", label: "DEWALT" },
     { value: "STANLEY", label: "STANLEY" },
     { value: "EUROBOOR", label: "EUROBOOR" },
-    { value: "AEG", label: "Aeg" },
+    { value: "AEG", label: "AEG" },
     { value: "PROMOTECH", label: "PROMOTECH" },
     { value: "OTHER", label: "OTHER" },
   ];
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setForm((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    // Validation (file NOT required)
+    if (
+      !form.name ||
+      !form.phone ||
+      !form.email ||
+      !form.subject ||
+      !form.message ||
+      form.brands.length === 0
+    ) {
+      toast.error("Please fill all required fields");
+      return;
+    }
+
+    setLoading(true);
+
+    try {
+      const formData = new FormData();
+      formData.append("name", form.name);
+      formData.append("phone", form.phone);
+      formData.append("email", form.email);
+      formData.append("subject", form.subject);
+      formData.append("brands", form.brands.map((b) => b.value).join(", "));
+      formData.append("message", form.message);
+
+      // optional file
+      if (form.file) {
+        formData.append("file", form.file);
+      }
+
+      const response = await fetch("https://udemandme.com/api/repair", {
+        method: "POST",
+        body: formData, // ✅ DO NOT set headers
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        toast.success(
+          "Thank you for your repair request. We will contact you shortly."
+        );
+
+        setForm({
+          name: "",
+          phone: "",
+          email: "",
+          subject: "",
+          message: "",
+          brands: [],
+          file: null,
+        });
+      } else {
+        toast.error("Unable to send request. Please try again.");
+      }
+    } catch (error) {
+      toast.error("Server error. Please try again later.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <>
       <section className="contact py-80">
@@ -20,160 +102,98 @@ const ContactRepairingRequest = () => {
           <div className="row gy-5">
             <div className="col-lg-7">
               <div className="contact-box border border-gray-100 rounded-16 px-24 py-40">
-                <form action="#">
+                <form onSubmit={handleSubmit} noValidate>
                   <h6 className="mb-32">Repair Details</h6>
-                  <div className="row gy-4">
-                    {/* Full Name */}
-                    <div className="col-sm-12">
-                      <label
-                        htmlFor="name"
-                        className="flex-align gap-4 text-sm font-heading-two text-gray-900 fw-semibold mb-4"
-                      >
-                        Full Name{" "}
-                        <span className="text-danger text-xl line-height-1">
-                          *
-                        </span>
-                      </label>
-                      <input
-                        type="text"
-                        className="common-input px-16"
-                        id="name"
-                        placeholder="Full name"
-                      />
-                    </div>
-                    {/* Mobile Number with +971 */}
-                    <div className="col-sm-6 col-xs-6">
-                      <label
-                        htmlFor="phone"
-                        className="flex-align gap-4 text-sm font-heading-two text-gray-900 fw-semibold mb-4"
-                      >
-                        Mobile Number{" "}
-                        <span className="text-danger text-xl line-height-1">
-                          *
-                        </span>
-                      </label>
-                      <div className="d-flex">
-                        <PhoneInput
-                          country={"ae"} // Default country (India in this case)
-                          value={phone}
-                          onChange={(phone) => setPhone(phone)}
-                          inputClass="phone-custom-input"
-                          containerClass="w-100"
-                          inputProps={{
-                            name: "phone",
-                            required: true,
-                            autoFocus: false,
-                          }}
-                        />
-                      </div>
-                    </div>
-                    {/* Email Address */}
-                    <div className="col-sm-6 col-xs-6">
-                      <label
-                        htmlFor="email"
-                        className="flex-align gap-4 text-sm font-heading-two text-gray-900 fw-semibold mb-4"
-                      >
-                        Email Address{" "}
-                        <span className="text-danger text-xl line-height-1">
-                          *
-                        </span>
-                      </label>
-                      <input
-                        type="email"
-                        className="common-input px-16"
-                        id="email"
-                        placeholder="Email address"
-                      />
-                    </div>
-                    {/* File Upload */}
-                    <div className="col-sm-12">
-                      <label
-                        htmlFor="file"
-                        className="flex-align gap-4 text-sm font-heading-two text-gray-900 fw-semibold mb-4"
-                      >
-                        Upload file{" "}
-                        <span className="text-danger text-xl line-height-1">
-                          *
-                        </span>
-                      </label>
-                      <input
-                        type="file"
-                        className=" text-danger mb-2"
-                        id="file"
-                      />
-                      <small className="text-muted d-block">
-                        Maximum file size upload is 500KB & allowed formats are
-                        jpg, jpeg, pdf, docx, png.
-                      </small>
-                      <small className="text-muted d-block">
-                        For more file upload kindly email here{" "}
-                        <a href="mailto:info@udemandme.com">
-                          info@udemandme.com
-                        </a>{" "}
-                        or WhatsApp us at <strong>+971-50-2530888</strong>.
-                      </small>
-                    </div>
-                    {/* Request Type Dropdown multiple select  */}
-                    <div className="col-sm-12">
-                      <label
-                        htmlFor="requestType"
-                        className="flex-align gap-4 text-sm font-heading-two text-gray-900 fw-semibold mb-4"
-                      >
-                        Request For Repair{" "}
-                        <span className="text-danger text-xl line-height-1">
-                          *
-                        </span>
-                      </label>
-                      <Select
-                        isMulti
-                        options={options}
-                        className="basic-multi-select"
-                        classNamePrefix="select"
-                      />
-                    </div>
 
-                    <div className="col-sm-12">
-                      <label
-                        htmlFor="subject"
-                        className="flex-align gap-4 text-sm font-heading-two text-gray-900 fw-semibold mb-4"
-                      >
-                        Subject/Reference{" "}
-                      </label>
-                      <input
-                        type="text"
-                        className="common-input px-16"
-                        id="subject"
-                        placeholder="subject"
-                      />
-                    </div>
-                    {/* Comments / Questions */}
-                    <div className="col-sm-12">
-                      <label
-                        htmlFor="message"
-                        className="flex-align gap-4 text-sm font-heading-two text-gray-900 fw-semibold mb-4"
-                      >
-                        Comments / Questions{" "}
-                        <span className="text-danger text-xl line-height-1">
-                          *
-                        </span>
-                      </label>
-                      <textarea
-                        className="common-input px-16"
-                        id="message"
-                        placeholder="Type your message"
-                        defaultValue={""}
-                      />
-                    </div>
-                    {/* Submit Button */}
-                    <div className="col-sm-12 mt-32">
-                      <button
-                        type="submit"
-                        className="btn btn-main py-18 px-32 rounded-8"
-                      >
-                        Submit
-                      </button>
-                    </div>
-                  </div>
+                  {/* Full Name */}
+                  <input
+                    type="text"
+                    name="name"
+                    className="common-input px-16 mb-16"
+                    placeholder="Full name *"
+                    value={form.name}
+                    onChange={handleChange}
+                    required
+                  />
+
+                  {/* Phone */}
+                  <PhoneInput
+                    country="ae"
+                    value={form.phone}
+                    onChange={(value) =>
+                      setForm((prev) => ({ ...prev, phone: value }))
+                    }
+                    inputClass="phone-custom-input"
+                    containerClass="w-100 mb-16"
+                    inputProps={{ required: true }}
+                  />
+
+                  {/* Email */}
+                  <input
+                    type="email"
+                    name="email"
+                    className="common-input px-16 mb-16"
+                    placeholder="Email address *"
+                    value={form.email}
+                    onChange={handleChange}
+                    required
+                  />
+
+                  {/* File (Optional) */}
+                  <input
+                    type="file"
+                    className="mb-16"
+                    onChange={(e) =>
+                      setForm((prev) => ({
+                        ...prev,
+                        file: e.target.files[0],
+                      }))
+                    }
+                  />
+                  <small className="text-muted d-block mb-16">
+                    Optional – Max 500KB (jpg, jpeg, png, pdf, docx)
+                  </small>
+
+                  {/* Repair Brands */}
+                  <Select
+                    isMulti
+                    options={options}
+                    value={form.brands}
+                    onChange={(selected) =>
+                      setForm((prev) => ({ ...prev, brands: selected }))
+                    }
+                    className="mb-16"
+                    placeholder="Request For Repair *"
+                  />
+
+                  {/* Subject */}
+                  <input
+                    type="text"
+                    name="subject"
+                    className="common-input px-16 mb-16"
+                    placeholder="Subject *"
+                    value={form.subject}
+                    onChange={handleChange}
+                    required
+                  />
+
+                  {/* Message */}
+                  <textarea
+                    name="message"
+                    className="common-input px-16 mb-24"
+                    placeholder="Comments / Questions *"
+                    value={form.message}
+                    onChange={handleChange}
+                    required
+                  />
+
+                  <button
+                    type="submit"
+                    className="btn btn-main py-18 px-32 rounded-8"
+                    disabled={loading}
+                  >
+                    {loading ? "Sending..." : "Submit"}
+                  </button>
                 </form>
               </div>
             </div>
