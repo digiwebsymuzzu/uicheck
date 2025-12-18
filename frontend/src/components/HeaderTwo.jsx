@@ -507,7 +507,16 @@ const HeaderTwo = ({ category }) => {
               <form
                 ref={wrapperRef}
                 className="position-relative w-100"
-                onSubmit={(e) => e.preventDefault()}
+                onSubmit={(e) => {
+                  e.preventDefault();
+
+                  if (searchTerm.trim().length >= 3) {
+                    navigate(
+                      `/shop?search=${encodeURIComponent(searchTerm.trim())}`
+                    );
+                    setDropdownOpen(false);
+                  }
+                }}
                 style={{ maxWidth: "600px", margin: "0 auto" }}
               >
                 <input

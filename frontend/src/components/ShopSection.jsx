@@ -5,7 +5,7 @@ import React, {
   useRef,
   useCallback,
 } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 // import ReactSlider from "react-slider";
 import { CartContext } from "../context/CartContext";
 import { toast } from "react-toastify";
@@ -20,8 +20,16 @@ const ShopSection = () => {
   const [loading, setLoading] = useState(false);
   const observer = useRef();
 
+  const location = useLocation();
+
+  const searchQuery = new URLSearchParams(location.search).get("search");
+
   const [activeFilterGroup, setActiveFilterGroup] = useState(null);
   const [selectedFilters, setSelectedFilters] = useState([]);
+
+  useEffect(() => {
+    console.log("Search query:", searchQuery);
+  }, [searchQuery]);
 
   //REPLACE your current useEffect for fetching categories
   useEffect(() => {
@@ -139,9 +147,42 @@ const ShopSection = () => {
     }
   };
 
+  const fetchSearchProducts = async (query, pageNum = 1) => {
+    setLoading(true);
+    try {
+      const res = await fetch(
+        `https://udemandme.com/api/products/product/search?name=${encodeURIComponent(
+          query
+        )}&page=${pageNum}&limit=20`
+      );
+
+      const data = await res.json();
+
+      if (data.success) {
+        if (pageNum === 1) {
+          setProducts(data.products);
+        } else {
+          setProducts((prev) => [...prev, ...data.products]);
+        }
+
+        // search usually has fewer pages
+        setPages(data.pages || 1);
+        setPage(pageNum);
+      }
+    } catch (err) {
+      console.error("Search fetch error:", err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   useEffect(() => {
-    fetchProducts(1);
-  }, []); // only run once on mount
+    if (searchQuery && searchQuery.length >= 3) {
+      fetchSearchProducts(searchQuery, 1);
+    } else {
+      fetchProducts(1);
+    }
+  }, [searchQuery]);
 
   const [sortOption, setSortOption] = useState("default");
   const [originalProducts, setOriginalProducts] = useState([]);
