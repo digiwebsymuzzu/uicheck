@@ -274,8 +274,7 @@ const ShopSection = () => {
           }
         })
         .catch((err) => console.error(err));
-    } else if (!activeFilterGroup) {
-      // No filter → fetch default products
+    } else if (!activeFilterGroup && !searchQuery) {
       fetchProducts(1);
     }
   }, [selectedFilters, activeFilterGroup]);
