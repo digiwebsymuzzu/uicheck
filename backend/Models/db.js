@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+mongoose.set("bufferCommands", false);
 const mongo_url = process.env.MONGO_CONN;
 
 mongoose
