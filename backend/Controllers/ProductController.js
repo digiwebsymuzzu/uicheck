@@ -68,14 +68,9 @@ const getProductsBySuperparent = async (req, res) => {
     }
 
     // Fetch all categories
-    const allCategories = await Category.find();
-    console.log("Total categories fetched:", allCategories.length);
-
-    const matchedCategories = allCategories.filter(
-      (cat) =>
-        cat.cat_superparent_name &&
-        cat.cat_superparent_name.toLowerCase() === superParentName
-    );
+    const matchedCategories = await Category.find({
+      cat_superparent_name: new RegExp(`^${superParentName}$`, "i"),
+    }).select("name");
 
     console.log(
       "Matched categories:",
