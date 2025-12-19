@@ -194,7 +194,7 @@ const searchProducts = async (req, res) => {
       {
         $search: {
           index: "productSearch",
-          text: {
+          autocomplete: {
             query: name,
             path: "productName",
             fuzzy: { maxEdits: 1 },
@@ -219,7 +219,7 @@ const searchProducts = async (req, res) => {
       {
         $search: {
           index: "productSearch",
-          text: {
+          autocomplete: {
             query: name,
             path: "productName",
           },
