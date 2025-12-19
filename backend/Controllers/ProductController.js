@@ -145,37 +145,103 @@ const getProductsBySuperparent = async (req, res) => {
 
 const searchProducts = async (req, res) => {
   try {
-    const { name } = req.query;
+    const { name, page = 1, limit = 20 } = req.query;
 
     if (!name || name.length < 3) {
-      return res.json({ success: true, products: [] });
+      return res.json({ success: true, products: [], total: 0, pages: 0 });
     }
 
-    const products = await Product.aggregate([
+    const pageNum = parseInt(page);
+    const limitNum = parseInt(limit);
+    const skip = (pageNum - 1) * limitNum;
+
+    // 🔑 detect source
+    const isShopSearch = req.query.page || req.query.limit;
+
+    // -------------------------------
+    // 1️⃣ HEADER AUTOCOMPLETE MODE
+    // -------------------------------
+    if (!isShopSearch) {
+      const products = await Product.aggregate([
+        {
+          $search: {
+            index: "productSearch",
+            autocomplete: {
+              query: name,
+              path: "productName",
+              fuzzy: { maxEdits: 1 },
+            },
+          },
+        },
+        { $limit: 10 },
+        {
+          $project: {
+            productName: 1,
+            productSlug: 1,
+            productMainImage: 1,
+            productSalePriceInr: 1,
+          },
+        },
+      ]);
+
+      return res.json({ success: true, products });
+    }
+
+    // -------------------------------
+    // 2️⃣ SHOP SEARCH MODE (PAGINATED)
+    // -------------------------------
+    const searchPipeline = [
       {
         $search: {
           index: "productSearch",
-          autocomplete: {
+          text: {
             query: name,
             path: "productName",
             fuzzy: { maxEdits: 1 },
           },
         },
       },
-      { $limit: 10 },
-
-      // 🔥 THIS IS THE KEY FIX
+      { $skip: skip },
+      { $limit: limitNum },
       {
         $project: {
           productName: 1,
           productSlug: 1,
           productMainImage: 1,
           productSalePriceInr: 1,
+          productRegularPriceInr: 1,
+          productCategories: 1,
         },
       },
+    ];
+
+    const countPipeline = [
+      {
+        $search: {
+          index: "productSearch",
+          text: {
+            query: name,
+            path: "productName",
+          },
+        },
+      },
+      { $count: "total" },
+    ];
+
+    const [products, countResult] = await Promise.all([
+      Product.aggregate(searchPipeline),
+      Product.aggregate(countPipeline),
     ]);
 
-    res.json({ success: true, products });
+    const total = countResult[0]?.total || 0;
+
+    res.json({
+      success: true,
+      products,
+      total,
+      page: pageNum,
+      pages: Math.ceil(total / limitNum),
+    });
   } catch (err) {
     console.error("Search error:", err);
     res.status(500).json({ success: false, message: "Server Error" });
