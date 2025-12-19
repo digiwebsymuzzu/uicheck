@@ -362,9 +362,7 @@ const ShopSection = () => {
           <div className="col-lg-9">
             {/* Top Start */}
             <div className="flex-between gap-16 flex-wrap mb-40 ">
-              <span className="text-gray-900">
-                Showing Total {products.length} result
-              </span>
+              <span className="text-gray-900"></span>
               <div className="position-relative flex-align gap-16 flex-wrap">
                 <div className="list-grid-btns flex-align gap-16">
                   <button
